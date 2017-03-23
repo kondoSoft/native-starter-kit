@@ -79,7 +79,7 @@ function bindAction(dispatch) {
     setIndex: index => dispatch(setIndex(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
-    reset: key => dispatch(reset([{ key: 'login' }], key, 0)),
+    reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
 }
 

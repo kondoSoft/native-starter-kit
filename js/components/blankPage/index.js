@@ -8,6 +8,7 @@ import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 
 const {
+  reset,
   popRoute,
 } = actions;
 
@@ -19,14 +20,15 @@ class BlankPage extends Component {
     list: React.PropTypes.arrayOf(React.PropTypes.string),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
+    reset: React.PropTypes.func,
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
     }),
   }
 
-  popRoute() {
-    this.props.popRoute(this.props.navigation.key);
-  }
+  // popRoute() {
+  //   this.props.popRoute(this.props.navigation.key);
+  // }
 
   render() {
     const { props: { name, index, list } } = this;
@@ -35,8 +37,8 @@ class BlankPage extends Component {
       <Container style={styles.container}>
         <Header>
           <Left>
-            <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="ios-arrow-back" />
+            <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
+              <Icon name="power" />
             </Button>
           </Left>
 
@@ -65,6 +67,7 @@ function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
+    reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
 }
 
