@@ -7,18 +7,26 @@ export type State = {
 }
 
 const initialState = {
-  list: [
-    'Zonas',
-    'Categorias',
+  results: [
+    // 'Zona Norte',
+    // 'Zona Sur',
+    {
+      "id": 1,
+      "name_zone": "Zona Norte",
+    },
+    {
+      "id": 2,
+      "name_zone": "Zona Sur",
+    },
   ],
-    selectedIndex: undefined,
+  selectedZone: undefined,
 };
 
 export default function (state:State = initialState, action:Action): State {
-  if (action.type === SET_INDEX) {
+  if (action.type === SET_ZONE) {
     return {
       ...state,
-      selectedIndex: action.payload
+      selectedZone: action.payload,
     };
   }
   return state;
