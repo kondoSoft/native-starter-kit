@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import { Grid, Row } from 'react-native-easy-grid';
+import { Container, Content, Thumbnail, Header, Title, Text, Button, Item, Icon, Input, Left, Body, Right } from 'native-base';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import { openDrawer } from '../../actions/drawer';
 import { setIndex } from '../../actions/list';
@@ -13,6 +13,7 @@ import styles from './styles';
 const {
   reset,
   pushRoute,
+
 } = actions;
 
 class Home extends Component {
@@ -37,36 +38,37 @@ class Home extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
-              <Icon active name="power" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>{(this.props.name) ? this.props.name : 'Home'}</Title>
-          </Body>
-
-          <Right>
+        <Header searchBar style={styles.header}>
+          <Item style={styles.item}>
+            <Icon name="search" />
+            <Input placeholder="A dónde quieres ir?" style={styles.itemInput}/>
+          </Item>
+          <Right style={{ flex: 1 }}>
             <Button transparent onPress={this.props.openDrawer}>
               <Icon active name="menu" />
             </Button>
           </Right>
         </Header>
-
-        <Content>
+        <Content >
           <Grid style={styles.mt}>
             {this.props.list.map((item, i) =>
-              <Row key={i}>
+              <Col key={i} style={{ height: 200, alignItems: 'center', flexDirection: 'row',}}>
                 <TouchableOpacity
                   style={styles.row}
                   onPress={() => this.pushRoute('blankPage', i)}
                 >
+                  <Image square source={require('../../../images/city.jpg')} style={{width: 120, height: 120}}/>
                   <Text style={styles.text}>{item}</Text>
                 </TouchableOpacity>
-              </Row>
+              </Col>
             )}
+          </Grid>
+          <Grid>
+            <Col style={{ flexDirection: 'row', justifyContent: 'center', paddingTop: 10}}>
+              <Button light >
+                <Text>Anunciate Aqui!</Text>
+              </Button>
+            </Col>
           </Grid>
         </Content>
       </Container>

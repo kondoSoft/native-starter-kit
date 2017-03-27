@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from 'native-base';
-
+import { Dimensions } from 'react-native'
+import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
+import Classified from '../classified'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 
@@ -11,6 +12,7 @@ const {
   reset,
   popRoute,
 } = actions;
+
 
 class BlankPage extends Component {
 
@@ -26,38 +28,41 @@ class BlankPage extends Component {
     }),
   }
 
-  // popRoute() {
-  //   this.props.popRoute(this.props.navigation.key);
-  // }
+  popRoute() {
+    this.props.popRoute(this.props.navigation.key);
+  }
 
   render() {
     const { props: { name, index, list } } = this;
+    const { width, height } = Dimensions.get('window')
 
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
-            <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
-              <Icon name="power" />
+            <Button transparent onPress={() => this.popRoute()}>
+              <Icon name="arrow-round-back" />
             </Button>
           </Left>
-
           <Body>
-            <Title>{(name) ? this.props.name : 'Blank Page'}</Title>
+            <Title>{list[index]}</Title>
           </Body>
 
           <Right>
+
             <Button transparent onPress={this.props.openDrawer}>
               <Icon name="ios-menu" />
             </Button>
           </Right>
         </Header>
+        <Content padder scrollEnabled={false} style={{ height, backgroundColor: 'yellow' }}>
+          {console.log(this.props)}
+          {(index == 1) ? <Classified /> : }
 
-        <Content padder>
-          <Text>
-            {(!isNaN(index)) ? list[index] : 'Create Something Awesome . . .'}
-          </Text>
         </Content>
+        <Footer style={{ height: 90 }}>
+          <Text>Publicidad</Text>
+        </Footer>
       </Container>
     );
   }
