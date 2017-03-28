@@ -10,6 +10,7 @@ import { closeDrawer } from './actions/drawer';
 import Login from './components/login/';
 import Home from './components/home/';
 import BlankPage from './components/blankPage';
+import Classified from './components/classified/';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import MainMenu from './components/mainMenu';
@@ -82,6 +83,8 @@ class AppNavigator extends Component {
         return <Home />;
       case 'blankPage':
         return <BlankPage />;
+      case 'classified':
+        return <Classified />;
       default :
         return <Login />;
     }

@@ -5,6 +5,7 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
 import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import Classified from '../classified'
+import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 
@@ -55,10 +56,8 @@ class BlankPage extends Component {
             </Button>
           </Right>
         </Header>
-        <Content padder scrollEnabled={false} style={{ height, backgroundColor: 'yellow' }}>
-          {console.log(this.props)}
-          {(index == 1) ? <Classified /> : }
-
+        <Content padder scrollEnabled={false} style={{ height, paddingLeft: 5 }}>
+          <ListZone />
         </Content>
         <Footer style={{ height: 90 }}>
           <Text>Publicidad</Text>

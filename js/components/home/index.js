@@ -57,6 +57,7 @@ class Home extends Component {
                   style={styles.row}
                   onPress={() => this.pushRoute('blankPage', i)}
                 >
+                  {console.log(this.props)}
                   <Image square source={require('../../../images/city.jpg')} style={{width: 120, height: 120}}/>
                   <Text style={styles.text}>{item}</Text>
                 </TouchableOpacity>

@@ -18,6 +18,14 @@ const initialState = {
       "id": 2,
       "name_zone": "Zona Sur",
     },
+    {
+      "id": 3,
+      "name_zone": "Zona Poniente",
+    },
+    {
+      "id": 4,
+      "name_zone": "Paseo Montejo",
+    },
   ],
   selectedZone: undefined,
 };
