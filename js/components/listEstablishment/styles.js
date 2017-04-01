@@ -5,58 +5,67 @@ const { StyleSheet } = React;
 const { width, height } = Dimensions.get('window');
 
 export default {
-  wrapper: {
-
-  },
-
   slide: {
     flex: 1,
     backgroundColor: 'transparent',
+    },
+  content:{
+    maxHeight: 85,
+    width: 370,
+  },
+  paginationStyle:{
+    bottom: 90,
+    width,
+  },
+  card:{
+    borderWidth: 0,
+    shadowColor: 'transparent',
+    paddingBottom: 0,
+  },
 
-  },
-  view:{
-    backgroundColor: 'yellow',
-    height,
-
-  },
-  row:{
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    height: 120,
-  },
   thumbnail:{
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     position: 'relative',
-    bottom: 5,
+    bottom: 25,
     right: 5,
     // marginBottom: 10,
   },
-  leftHeader:{
-    paddingLeft: 80,
-    paddingBottom: 4,
+  header:{
+    paddingLeft: 75,
+    paddingBottom: 7,
+    paddingTop: 10,
+    backgroundColor: 'transparent',
+
   },
   cardText:{
     paddingTop: 0,
     borderBottomWidth: 2,
+    paddingBottom: 0,
+    bottom: 6,
   },
   bodyText:{
     paddingTop: 0,
+    backgroundColor: 'transparent',
+    paddingBottom: 0,
   },
   textDescription:{
-    fontSize: 14,
+    fontSize: 10,
+    right: 10,
+    width: 200,
+
+  },
+  iconFav:{
+    top: 0,
+    left: 0,
+  },
+  textIconFav:{
+    fontSize: 8,
   },
   paginationStyle:{
     bottom: 70,
     width,
-    backgroundColor: 'lightgray',
-    height: 90,
-  },
-  iconFav:{
-    top: 4,
-  },
-  textIconFav:{
-    fontSize: 10,
-  },
+    backgroundColor: '#fff',
+    height: 80,
+  }
 };

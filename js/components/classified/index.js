@@ -33,7 +33,6 @@ class Classified extends Component {
 
   render() {
     const { props: { name, index, list } } = this;
-    const { width, height } = Dimensions.get('window')
 
     return (
       <Container style={styles.container}>
@@ -45,7 +44,7 @@ class Classified extends Component {
           </Left>
           <Body>
             {/* <Title>{list[index]}</Title> */}
-            <Title>Categorias</Title>
+            <Title>Clasificados</Title>
           </Body>
 
           <Right>
@@ -57,7 +56,6 @@ class Classified extends Component {
         </Header>
         <Content padder scrollEnabled={false} style={styles.content}>
           <ListCategory />
-
         </Content>
         {/* <Footer style={{backgroundColor: 'lightgray', height: 50}}/> */}
 

@@ -11,7 +11,6 @@ import styles from './styles'
 import Swiper from 'react-native-swiper';
 
 
-
 const {
   reset,
   pushRoute,
@@ -28,28 +27,38 @@ class ListEstablishment extends Component {
 
   render() {
     return (
-      <Container>
-          <Content>
-              <Card>
-              <CardItem header style={styles.leftHeader}>
+      <View style={styles.view} showsVerticalScrollIndicator={false}>
+        <Swiper style={styles.wrapper}
+        showsPagination={true}
+        horizontal={true}
+        dot={<View style={{backgroundColor: 'dodgerblue', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
+        activeDot={<View style={{backgroundColor: '#fff', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
+        paginationStyle={styles.paginationStyle}
+        loop={false}>
+        <View style={styles.slide} showsVerticalScrollIndicator={false}>
+          <Content style= {styles.content} showsVerticalScrollIndicator={false}>
+            <Card style={styles.card}>
+              <CardItem header style={styles.header}>
                 <Text >Hotel del Gobernador</Text>
               </CardItem>
               <CardItem style={styles.bodyText}>
-
                 <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-
                 <Body>
                   <CardItem style={styles.cardText}>
                     <Text style={styles.textDescription}>Lorem ipsum dolor sit amet, consectetur adipisicing.</Text>
                     <Right style={styles.iconFav}>
-                       <Text style={styles.textIconFav}><Icon name="heart" />000</Text>
+                      <Text style={styles.textIconFav}><Icon name="heart" />000</Text>
                     </Right>
                   </CardItem>
                 </Body>
               </CardItem>
-             </Card>
+            </Card>
           </Content>
-      </Container>
+        </View>
+        <View style={styles.slide}>
+        </View>
+        </Swiper>
+      </View>
     );
   }
 }
