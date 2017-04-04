@@ -45,7 +45,7 @@ class Home extends Component {
           </Item>
           <Right style={{ flex: 1 }}>
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon active name="menu" />
+              <Icon name="md-more" />
             </Button>
           </Right>
         </Header>
@@ -57,7 +57,6 @@ class Home extends Component {
                   style={styles.row}
                   onPress={() => this.pushRoute('blankPage', i)}
                 >
-                  {console.log(this.props)}
                   <Image square source={require('../../../images/city.jpg')} style={{width: 120, height: 120}}/>
                   <Text style={styles.text}>{item}</Text>
                 </TouchableOpacity>

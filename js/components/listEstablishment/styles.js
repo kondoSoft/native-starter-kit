@@ -2,70 +2,66 @@ import { Dimensions } from 'react-native';
 const React = require('react-native');
 
 const { StyleSheet } = React;
-const { width, height } = Dimensions.get('window');
 
 export default {
-  slide: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    },
+
   content:{
-    maxHeight: 85,
-    width: 370,
   },
-  paginationStyle:{
-    bottom: 90,
-    width,
-  },
+
   card:{
     borderWidth: 0,
     shadowColor: 'transparent',
     paddingBottom: 0,
+    height: 70,
   },
-
+  textHeader:{
+    fontSize: 13,
+    top: 2,
+    right: 5,
+  },
   thumbnail:{
     width: 55,
     height: 55,
-    position: 'relative',
-    bottom: 25,
+    bottom: 14,
     right: 5,
+    borderWidth: 1,
+    borderColor: 'lightgray',
     // marginBottom: 10,
   },
   header:{
     paddingLeft: 75,
     paddingBottom: 7,
-    paddingTop: 10,
+    paddingTop: 0,
     backgroundColor: 'transparent',
-
   },
   cardText:{
     paddingTop: 0,
     borderBottomWidth: 2,
+    borderColor: 'lightgray',
     paddingBottom: 0,
-    bottom: 6,
+    bottom: 5,
+    paddingRight: 0,
+    height: 40
   },
   bodyText:{
     paddingTop: 0,
     backgroundColor: 'transparent',
     paddingBottom: 0,
+    height: 45,
   },
   textDescription:{
     fontSize: 10,
-    right: 10,
-    width: 200,
-
-  },
-  iconFav:{
-    top: 0,
-    left: 0,
+    right: 15,
+    width: 230,
+    top: 2,
+    color: 'gray',
   },
   textIconFav:{
-    fontSize: 8,
+    fontSize: 11,
+    marginLeft: 2,
   },
-  paginationStyle:{
-    bottom: 70,
-    width,
-    backgroundColor: '#fff',
-    height: 80,
-  }
+  fontIcon: {
+    fontSize: 15,
+  },
+
 };

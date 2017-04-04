@@ -12,6 +12,7 @@ import Home from './components/home/';
 import BlankPage from './components/blankPage';
 import Classified from './components/classified/';
 import Establishments from './components/establishments/';
+import Single from './components/single';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import MainMenu from './components/mainMenu';
@@ -88,6 +89,8 @@ class AppNavigator extends Component {
         return <Classified />;
       case 'establishments':
         return <Establishments />;
+      case 'single':
+        return <Single />;
       default :
         return <Login />;
     }

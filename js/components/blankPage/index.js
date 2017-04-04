@@ -52,7 +52,7 @@ class BlankPage extends Component {
           <Right>
 
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="ios-menu" />
+              <Icon name="md-more" />
             </Button>
           </Right>
         </Header>

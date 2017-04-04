@@ -39,7 +39,7 @@ class Classified extends Component {
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
             <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="power" />
+              <Icon name="arrow-round-back" />
             </Button>
           </Left>
           <Body>
@@ -50,7 +50,7 @@ class Classified extends Component {
           <Right>
 
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="ios-menu" />
+              <Icon name="md-more" />
             </Button>
           </Right>
         </Header>
