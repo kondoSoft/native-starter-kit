@@ -1,11 +1,9 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
 import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
-import Classified from '../classified'
-import ListZone from '../listZone'
+import ListEstablishment from '../listEstablishment'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 
@@ -14,8 +12,7 @@ const {
   popRoute,
 } = actions;
 
-
-class BlankPage extends Component {
+class Establishments extends Component {
 
   static propTypes = {
     name: React.PropTypes.string,
@@ -46,7 +43,8 @@ class BlankPage extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>{list[index]}</Title>
+            {/* <Title>{list[index]}</Title> */}
+            <Title>Lista</Title>
           </Body>
 
           <Right>
@@ -56,12 +54,11 @@ class BlankPage extends Component {
             </Button>
           </Right>
         </Header>
-        <Content padder scrollEnabled={false} style={{ height, paddingLeft: 5 }}>
-          <ListZone />
+        <Content padder scrollEnabled={false} style={styles.content}>
+          <ListEstablishment/>
         </Content>
-        <Footer style={{ height: 90 }}>
-          <Text>Publicidad</Text>
-        </Footer>
+        {/* <Footer style={{backgroundColor: 'lightgray', height: 50}}/> */}
+
       </Container>
     );
   }
@@ -83,4 +80,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, bindAction)(BlankPage);
+export default connect(mapStateToProps, bindAction)(Establishments);

@@ -45,7 +45,7 @@ class Home extends Component {
           </Item>
           <Right style={{ flex: 1 }}>
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon active name="menu" />
+              <Icon name="md-more" />
             </Button>
           </Right>
         </Header>
