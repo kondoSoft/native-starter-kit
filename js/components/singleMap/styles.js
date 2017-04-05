@@ -5,48 +5,36 @@ const { StyleSheet } = React;
 const { width, height } = Dimensions.get('window');
 
 export default {
-
-  header:{
-    paddingRight: 0,
-    paddingLeft: 0,
-    height:310,
+  image:{
+    flex: 1,
+    height: 300,
+    width,
     shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 7},
     shadowOpacity: 0.8,
     shadowRadius: 0.8,
-
-  },
-  body:{
-    flexDirection: 'row',
-    bottom: 130,
-  },
-  image:{
-    flex: 1,
-    height: 300,
   },
   fontIconHeart:{
     fontSize: 24,
-    color: '#fff',
-  },
-  headerRight:{
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    color: 'dimgray',
   },
   buttonMaps:{
     justifyContent: 'center',
-    bottom: 25,
+    bottom: 8,
   },
   gridDescription:{
     padding: 15,
   },
   colDescription:{
     flexDirection: 'row',
+    marginBottom: 10,
+
   },
   rowDescription:{
     borderBottomWidth: 2,
     borderBottomColor: 'darkgray',
     marginTop: 5,
+    marginBottom: 5,
   },
   rowMain:{
     paddingTop: 10,

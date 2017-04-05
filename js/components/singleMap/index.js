@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Image } from 'react-native'
@@ -12,7 +13,7 @@ const {
   popRoute,
 } = actions;
 
-class Single extends Component {
+class SingleMap extends Component {
 
   constructor() {
     super();
@@ -41,48 +42,50 @@ class Single extends Component {
 
     return (
       <Container>
-        <Header style={styles.header}>
-          <Image
-            style={styles.image}
-            source={require('../../../images/zone.jpg')}
-          >
-            <Body style={styles.body}>
-              <Left>
-                <Button transparent onPress={() => this.popRoute()}>
-                  <Icon style={{ color: '#fff' }} name="arrow-round-back" />
-                </Button>
-              </Left>
-              <Right style={styles.headerRight}>
-                <Button transparent >
-                  <Icon style={styles.fontIconHeart} name="heart" />
-                </Button>
-                <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
-                  <Icon style={{ color: '#fff' }} name="md-more" />
-                </Button>
-              </Right>
+          <MapView
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+            provider={PROVIDER_GOOGLE}
 
-            </Body>
-
-          </Image>
+          />
+        <Header searchBar style={{ backgroundColor: '#ffa726' }}>
+          <Left>
+            <Button transparent onPress={() => this.popRoute()}>
+              <Icon style={{ color: 'dimgray' }} name="arrow-round-back" />
+            </Button>
+          </Left>
+          <Right style={styles.headerRight}>
+            <Button transparent >
+              <Icon style={styles.fontIconHeart} name="heart" />
+            </Button>
+            <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
+              <Icon style={{ color: 'dimgray' }} name="md-more" />
+            </Button>
+          </Right>
         </Header>
+        <Grid>
+          <Row>
+
+          </Row>
+        </Grid>
         <Grid style={{ alignItems: 'center', maxHeight: 50 }}>
           <Row style={{ height: 50 }}>
             <Button style={styles.buttonMaps} transparent>
               <Thumbnail style={{ backgroundColor: 'orange', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon style={{ fontSize: 22, color: 'dimgray', bottom: 4}} name="md-pin" />
-                <Text style={{ fontSize: 12, color: 'dimgray', bottom: 6 }}>Mapa</Text>
+                <Icon style={{ fontSize: 22, color: 'dimgray', bottom: 4}} name="md-camera" />
+                <Text style={{ fontSize: 12, color: 'dimgray', bottom: 6 }}>Galería</Text>
               </Thumbnail>
             </Button>
           </Row>
         </Grid>
         <Content scrollEnabled={false}>
           <Grid style={styles.gridDescription}>
-            <Row>
-              <H3>Presidente Intercontinental Villa Mercedes Merida</H3>
-            </Row>
             <Row style={styles.rowDescription}>
-              <Text style={styles.fontText}>El hotel esta a una corta distancia a pie del Centro de Convenciones
-              Siglo XXI, del palacio del gobernador y de la catedral.</Text>
+              <H3>Presidente Intercontinental Villa Mercedes Merida</H3>
             </Row>
             <Row style={styles.rowMain}>
               <Icon style={styles.iconGray} name="md-pin" />
@@ -93,19 +96,8 @@ class Single extends Component {
                 <Icon style={styles.iconGray} name="md-call" />
                 <Text style={styles.textRow}>01 800 502 0500</Text>
               </Col>
-              <Col style={styles.colDescription}>
-                <Icon style={styles.iconGray} name="clock"/>
-                <Text style={styles.textRow}>7:00 AM - 11:00 PM</Text>
-              </Col>
-            </Row>
-            <Row style={styles.rowDescription}>
-              <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
-              <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
-              <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
-              <Icon style={styles.iconFooter} name="globe"></Icon>
             </Row>
             <Row>
-
               <Right>
                 <Text style={styles.fontFooter}>Te encuentras en "Presidente Intercontinental Villa Mercedes Merida" a traves de Que Hacer? Merida</Text>
               </Right>
@@ -151,4 +143,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, bindAction)(Single);
+export default connect(mapStateToProps, bindAction)(SingleMap);
