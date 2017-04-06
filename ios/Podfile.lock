@@ -1,9 +1,16 @@
 PODS:
-  - GoogleMaps (2.2.0):
-    - GoogleMaps/Maps (= 2.2.0)
-  - GoogleMaps/Base (2.2.0)
-  - GoogleMaps/Maps (2.2.0):
+  - GoogleMaps (2.1.1):
+    - GoogleMaps/Maps (= 2.1.1)
+  - GoogleMaps/Base (2.1.1)
+  - GoogleMaps/Maps (2.1.1):
     - GoogleMaps/Base
+  - React (0.41.2):
+    - React/Core (= 0.41.2)
+  - react-native-google-maps (0.13.0):
+    - GoogleMaps (= 2.1.1)
+    - React
+  - react-native-maps (0.13.0):
+    - React
   - React/Core (0.41.2):
     - React/cxxreact
     - React/yoga
@@ -11,6 +18,8 @@ PODS:
     - React/jschelpers
   - React/jschelpers (0.41.2)
   - React/RCTActionSheet (0.41.2):
+    - React/Core
+  - React/RCTAnimation (0.41.2):
     - React/Core
   - React/RCTGeolocation (0.41.2):
     - React/Core
@@ -33,8 +42,11 @@ PODS:
 
 DEPENDENCIES:
   - GoogleMaps
+  - react-native-google-maps (from `../node_modules/react-native-maps`)
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
+  - React/RCTAnimation (from `../node_modules/react-native`)
   - React/RCTGeolocation (from `../node_modules/react-native`)
   - React/RCTImage (from `../node_modules/react-native`)
   - React/RCTLinkingIOS (from `../node_modules/react-native`)
@@ -47,11 +59,17 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
+  react-native-google-maps:
+    :path: ../node_modules/react-native-maps
+  react-native-maps:
+    :path: ../node_modules/react-native-maps
 
 SPEC CHECKSUMS:
-  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   React: 2b10c07d947dea71c144a33764e9162ed81e3825
+  react-native-google-maps: 3a5625fb70cdfc7dda9c49e78659bdf6fca3010c
+  react-native-maps: ac1537737fc421d9164dc2cf371e051a76c63e5c
 
-PODFILE CHECKSUM: af7e894808dd3a80378988b74bc0df1c56652a6b
+PODFILE CHECKSUM: 25fd0dce22a6ae7c1e19fd065a8ffc5591730c84
 
 COCOAPODS: 1.2.0

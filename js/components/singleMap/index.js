@@ -1,26 +1,52 @@
 import React, { Component } from 'react';
-import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Image } from 'react-native'
+import { Image, TouchableOpacity, Dimensions } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
 import ListEstablishment from '../listEstablishment'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import markerMerida from '../../../assets/img/marker-merida.png';
+
 const {
   reset,
   popRoute,
 } = actions;
 
+const { width, height } = Dimensions.get('window');
+
+const ASPECT_RATIO = width / height;
+const LATITUDE = 20.986035;
+const LONGITUDE = -89.619899;
+const LATITUDE_DELTA = 0.0043;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+let id=0;
+
 class SingleMap extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
        this.state = {
-           active: false
-       };
+         region: {
+           latitude: LATITUDE,
+           longitude: LONGITUDE,
+           latitudeDelta: LATITUDE_DELTA,
+           longitudeDelta: LONGITUDE_DELTA,
+          },
+          markers:[{
+            title: 'Presidente Intercontinental',
+            coordinate: {
+              latitude: LATITUDE,
+              longitude: LONGITUDE
+            },
+            key: id,
+          }],
+          active: false,
+         }
    }
+
   static propTypes = {
     name: React.PropTypes.string,
     index: React.PropTypes.number,
@@ -42,16 +68,6 @@ class SingleMap extends Component {
 
     return (
       <Container>
-          <MapView
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-            provider={PROVIDER_GOOGLE}
-
-          />
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
             <Button transparent onPress={() => this.popRoute()}>
@@ -69,9 +85,25 @@ class SingleMap extends Component {
         </Header>
         <Grid>
           <Row>
-
+            <View style={styles.container}>
+              <MapView
+                provider={this.props.provider}
+                style={styles.map}
+                initialRegion={this.state.region}
+              >
+                {this.state.markers.map(marker => (
+                  <MapView.Marker
+                    title={marker.title}
+                    key={marker.key}
+                    coordinate={marker.coordinate}
+                    image={markerMerida}
+                  />
+                ))}
+              </MapView>
+            </View>
           </Row>
         </Grid>
+
         <Grid style={{ alignItems: 'center', maxHeight: 50 }}>
           <Row style={{ height: 50 }}>
             <Button style={styles.buttonMaps} transparent>
@@ -126,6 +158,9 @@ class SingleMap extends Component {
     );
   }
 }
+SingleMap.propTypes = {
+  provider: MapView.ProviderPropType,
+};
 
 function bindAction(dispatch) {
   return {
