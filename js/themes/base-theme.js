@@ -10,7 +10,7 @@ export default {
 
 
   // Button
-  btnFontFamily: (Platform.OS === 'ios') ? 'Roboto_medium' : 'HelveticaNeue',
+  btnFontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'HelveticaNeue',
   btnDisabledBg: '#b5b5b5',
   btnDisabledClr: '#f1f1f1',
 

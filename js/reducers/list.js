@@ -8,8 +8,14 @@ export type State = {
 
 const initialState = {
   list: [
-    'Zonas',
-    'Categorias',
+    {
+      "name": 'Zonas',
+      "image": 'catzone.png',
+    },
+    {
+      "name":'Categorias',
+      "image": 'catgral.png',
+    },
   ],
     selectedIndex: undefined,
 };

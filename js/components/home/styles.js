@@ -17,13 +17,9 @@ export default {
   itemInput:{
     fontSize: 12,
   },
-  row: {
-    flex: 1,
-    alignItems: 'center',
-  },
+
   text: {
-    fontSize: 20,
-    marginBottom: 15,
+    fontSize: 18,
     alignItems: 'center',
   },
   mt: {
