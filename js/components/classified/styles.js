@@ -6,7 +6,6 @@ const { width, height } = Dimensions.get('window');
 
 export default {
   content: {
-    backgroundColor: 'yellow',
     paddingLeft: 5,
   }
 };

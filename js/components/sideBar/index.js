@@ -38,6 +38,9 @@ class SideBar extends Component {
           <ListItem button onPress={() => this.navigateTo('singlemap')} >
             <Text>SingleMap</Text>
           </ListItem>
+          <ListItem button onPress={() => this.navigateTo('contactus')} >
+            <Text>Contact Us</Text>
+          </ListItem>
       </Content>
     );
   }
