@@ -39,7 +39,7 @@ class Establishments extends Component {
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
             <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="arrow-round-back" />
+              <Icon style={{color: 'dimgray'}} name="arrow-round-back" />
             </Button>
           </Left>
           <Body>
@@ -50,7 +50,7 @@ class Establishments extends Component {
           <Right>
 
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="md-more" />
+              <Icon style={{color: 'dimgray'}} name="md-more" />
             </Button>
           </Right>
         </Header>

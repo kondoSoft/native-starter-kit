@@ -36,8 +36,9 @@ class BlankPage extends Component {
   render() {
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
-
+    const listItem = Object.keys(this.props.list)
     return (
+
       <Container style={styles.container}>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
@@ -46,7 +47,7 @@ class BlankPage extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>{list[index]}</Title>
+            <Title>{listItem}</Title>
           </Body>
 
           <Right>

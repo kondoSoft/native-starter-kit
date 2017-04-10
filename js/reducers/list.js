@@ -10,11 +10,11 @@ const initialState = {
   list: [
     {
       "name": 'Zonas',
-      "image": 'catzone.png',
+      "image": 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h=125',
     },
     {
       "name":'Categorias',
-      "image": 'catgral.png',
+      "image": 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h=125',
     },
   ],
     selectedIndex: undefined,

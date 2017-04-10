@@ -1,8 +1,18 @@
+import { Dimensions } from 'react-native';
 
 const React = require('react-native');
+const { width, height } = Dimensions.get('window');
 
 const { StyleSheet } = React;
 export default {
+  backgroundImage:{
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
+    opacity: 1,
+
+  },
   container: {
     backgroundColor: '#FBFAFA',
   },
@@ -25,4 +35,21 @@ export default {
   mt: {
     marginTop: 18,
   },
+  imagePub:{
+    flex: 1,
+    height: 50,
+  },
+  videoRow:{
+    flexDirection: 'column',
+    height: 170,
+    width: 240,
+    borderWidth: 0.3,
+    borderColor: '#A0A0A0',
+    borderRadius: 1,
+    backgroundColor: '#fff'
+  },
+  videoGrid:{
+    alignItems: 'center',
+
+  }
 };
