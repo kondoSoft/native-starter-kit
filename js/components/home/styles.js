@@ -29,15 +29,16 @@ export default {
   },
 
   text: {
-    fontSize: 18,
-    alignItems: 'center',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 8,
   },
   mt: {
-    marginTop: 18,
+    marginTop: 22,
   },
   imagePub:{
     flex: 1,
-    height: 50,
+    height: 60,
   },
   videoRow:{
     flexDirection: 'column',
@@ -50,6 +51,7 @@ export default {
   },
   videoGrid:{
     alignItems: 'center',
+    marginTop: 17,
 
   }
 };

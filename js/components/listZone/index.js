@@ -37,7 +37,6 @@ class ListZone extends Component {
   }
 
   render() {
-    const listZone = Object.keys(this.props.listZone)
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
           <StatusBar barStyle='light-content'/>
@@ -47,13 +46,16 @@ class ListZone extends Component {
               loop={false}>
               <View style={styles.slide} showsVerticalScrollIndicator={false}>
                 <Row style={styles.row}>
-                  {listZone.map((item, i) =>
-                    <Col key= {i} style={{ width: 150 }}>
+                  {this.props.listZone.map((item, i) =>
+
+                    <Col key= {i} style={styles.colImage}>
                       <TouchableOpacity
                         onPress={() => this.pushRoute('classified', i)}
                       >
-                        <Thumbnail style={{width: 150, height: 70}} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                        <Text>{this.props.listZone[i].name_zone}</Text>
+                        {/* <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}> */}
+                        <Image style={styles.imageZone} square source={require('../../../assets/img/Zonas/norte.png')}>
+                          <Text style={styles.textName}>{this.props.listZone[i].name_zone}</Text>
+                        </Image>
                       </TouchableOpacity>
                     </Col>
                   )}

@@ -9,11 +9,11 @@ export type State = {
 const initialState = {
   list: [
     {
-      "name": 'Zonas',
+      "name": 'ZONAS',
       "image": 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h=125',
     },
     {
-      "name":'Categorias',
+      "name":'GENERALES',
       "image": 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h=125',
     },
   ],

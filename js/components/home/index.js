@@ -51,8 +51,8 @@ class Home extends Component {
               </Button>
             </Right>
           </Header>
-          <Grid style={{ maxHeight: 50 }}>
-            <Row style={{height: 50}}>
+          <Grid style={{ maxHeight: 60 }}>
+            <Row style={{height: 60}}>
               <Thumbnail style={styles.imagePub} square source={{uri: 'https://placeholdit.imgix.net/~text?txtsize=13&txt=350%C3%9750&w=350&h=50'}} />
             </Row>
           </Grid>
@@ -70,16 +70,15 @@ class Home extends Component {
             <Grid style={styles.mt}>
               {this.props.list.map((item, i) =>
               <Card key={i}>
-
-                <CardItem bordered>
+                <CardItem>
                   <TouchableOpacity
                     onPress={() => this.pushRoute('blankPage', i)}
                   >
-                  <Body>
-                    <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125}} />
+                  <Body style={{ alignItems: 'center' }}>
+                    <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
 
                     {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
-                    <Text style={styles.text}>{this.props.list[i].name}</Text>
+                    <Text style={styles.text}>CATEGORÍAS {this.props.list[i].name}</Text>
                   </Body>
                 </TouchableOpacity>
                 </CardItem>

@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
-import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
+import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left,Thumbnail, Right, Body, Footer } from 'native-base';
 import Classified from '../classified'
 import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
+import { Grid, Row, Col } from 'react-native-easy-grid';
 
 const {
   reset,
@@ -20,7 +21,7 @@ class BlankPage extends Component {
   static propTypes = {
     name: React.PropTypes.string,
     index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
+    list: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -36,7 +37,6 @@ class BlankPage extends Component {
   render() {
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
-    const listItem = Object.keys(this.props.list)
     return (
 
       <Container style={styles.container}>
@@ -47,7 +47,7 @@ class BlankPage extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>{listItem}</Title>
+            <Title>{this.props.list[index].name}</Title>
           </Body>
 
           <Right>
@@ -57,12 +57,14 @@ class BlankPage extends Component {
             </Button>
           </Right>
         </Header>
+        <Grid style={{ maxHeight: 60 }}>
+          <Row style={{height: 60}}>
+            <Thumbnail style={styles.imagePub} square source={{uri: 'https://placeholdit.imgix.net/~text?txtsize=13&txt=350%C3%9750&w=350&h=50'}} />
+          </Row>
+        </Grid>
         <Content padder scrollEnabled={false} style={{ height, paddingLeft: 5 }}>
           <ListZone />
         </Content>
-        <Footer style={{ height: 90 }}>
-          <Text>Publicidad</Text>
-        </Footer>
       </Container>
     );
   }

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
-import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
+import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
-
+import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
   reset,
   popRoute,
@@ -17,8 +17,8 @@ class Classified extends Component {
 
   static propTypes = {
     name: React.PropTypes.string,
+    listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
     index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -32,8 +32,8 @@ class Classified extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { props: { name, index, list } } = this;
-
     return (
       <Container style={styles.container}>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
@@ -43,8 +43,7 @@ class Classified extends Component {
             </Button>
           </Left>
           <Body>
-            {/* <Title>{list[index]}</Title> */}
-            <Title>Clasificados</Title>
+            <Title></Title>
           </Body>
 
           <Right>
@@ -54,6 +53,11 @@ class Classified extends Component {
             </Button>
           </Right>
         </Header>
+        <Grid style={{ maxHeight: 60 }}>
+          <Row style={{height: 60}}>
+            <Thumbnail style={styles.imagePub} square source={{uri: 'https://placeholdit.imgix.net/~text?txtsize=13&txt=350%C3%9750&w=350&h=50'}} />
+          </Row>
+        </Grid>
         <Content padder scrollEnabled={false} style={styles.content}>
           <ListCategory />
         </Content>
@@ -76,7 +80,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
   index: state.list.selectedIndex,
-  list: state.list.list,
+  listCategory: state.listCategory.results,
 });
 
 

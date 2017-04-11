@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, SET_ZONE } from '../actions/listZone';
+import { SET_ZONE } from '../actions/listCategory';
 
 export type State = {
     results: string
@@ -10,26 +10,31 @@ const initialState = {
   results: [
     {
       "id": 1,
-      "name_zone": "Zona Norte",
+      "name_category": "Hoteles",
       "image": "../../../assets/img/Zonas/norte.png",
     },
     {
       "id": 2,
-      "name_zone": "Zona Sur",
+      "name_category": "Antros y Bares",
       "image": "../../../assets/img/Zonas/sur.png",
     },
     {
       "id": 3,
-      "name_zone": "Zona Poniente",
+      "name_category": "Restaurantes",
       "image": "../../../assets/img/Zonas/poniente.png",
     },
     {
       "id": 4,
-      "name_zone": "Paseo Montejo",
+      "name_category": "Fiestas",
+      "image": "../../../assets/img/Zonas/paseo_montejo.png",
+    },
+    {
+      "id": 5,
+      "name_category": "Comida Rapida",
       "image": "../../../assets/img/Zonas/paseo_montejo.png",
     },
   ],
-  selectedZone: undefined,
+  selectedCategory: undefined,
 };
 
 export default function (state:State = initialState, action:Action): State {
