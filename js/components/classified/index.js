@@ -32,8 +32,7 @@ class Classified extends Component {
   }
 
   render() {
-    console.log(this.props)
-    const { props: { name, index, list } } = this;
+    const { props: { name, index, listCategory } } = this;
     return (
       <Container style={styles.container}>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>

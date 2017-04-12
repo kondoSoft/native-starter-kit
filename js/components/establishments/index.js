@@ -17,7 +17,7 @@ class Establishments extends Component {
   static propTypes = {
     name: React.PropTypes.string,
     index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
+    list: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,

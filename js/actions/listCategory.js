@@ -1,11 +1,11 @@
 
 import type { Action } from './types';
 
-export const SET_ZONE = 'SET_ZONE';
+export const SET_CATEGORY = 'SET_CATEGORY';
 
-export function setCategory(index:number):Action {
+export function setIndex(index:number):Action {
   return {
-    type: SET_ZONE,
+    type: SET_CATEGORY,
     payload: index,
   };
 }

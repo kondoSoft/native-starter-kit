@@ -19,7 +19,7 @@ const {
 class Home extends Component {
 
   static propTypes = {
-    name: React.PropTypes.string,
+
     list: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
@@ -109,7 +109,6 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => ({
-  name: state.user.name,
   list: state.list.list,
   navigation: state.cardNavigation,
 });

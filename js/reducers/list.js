@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, SET_ZONE } from '../actions/list';
+import { SET_INDEX } from '../actions/list';
 
 export type State = {
     list: string

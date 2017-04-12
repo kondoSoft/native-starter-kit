@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-import { setCategory } from '../../actions/listCategory';
-import { openDrawer } from '../../actions/drawer';
+
 
 import styles from './styles'
+import { openDrawer } from '../../actions/drawer';
+import { setIndex } from '../../actions/listCategory';
 import Swiper from 'react-native-swiper';
-
 
 
 const {
@@ -23,8 +23,7 @@ class ListCategory extends Component {
 
   static propTypes = {
     listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
-    setZone: React.PropTypes.func,
-    setCategory: React.PropTypes.func,
+    setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -34,13 +33,11 @@ class ListCategory extends Component {
   }
 
   pushRoute(route, index) {
-
-    this.props.setCategory(index);
+    this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
-    // console.log(this.props)
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
             <Swiper style={styles.wrapper}
@@ -77,7 +74,7 @@ class ListCategory extends Component {
 }
 function bindAction(dispatch) {
   return {
-    setCategory: index => dispatch(setCategory(index)),
+    setIndex: index => dispatch(setIndex(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
@@ -85,10 +82,9 @@ function bindAction(dispatch) {
 }
 const mapStateToProps = state => ({
   name: state.user.name,
-  // list: state.list.list,
   navigation: state.cardNavigation,
   listCategory: state.listCategory.results,
 
 });
 
-export default connect(mapStateToProps)(ListCategory);
+export default connect(mapStateToProps, bindAction)(ListCategory);

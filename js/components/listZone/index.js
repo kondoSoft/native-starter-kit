@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-
 import { openDrawer } from '../../actions/drawer';
 import { setZone } from '../../actions/listZone';
 import styles from './styles';
@@ -20,7 +19,6 @@ const {
 class ListZone extends Component {
 
   static propTypes = {
-    name: React.PropTypes.string,
     listZone: React.PropTypes.arrayOf(React.PropTypes.object),
     setZone: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
@@ -69,7 +67,6 @@ class ListZone extends Component {
 
 function bindAction(dispatch) {
   return {
-    setIndex: index => dispatch(setIndex(index)),
     setZone: index => dispatch(setZone(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
@@ -78,8 +75,6 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => ({
-  name: state.user.name,
-  list: state.list.list,
   navigation: state.cardNavigation,
   listZone: state.listZone.results,
 });
