@@ -13,11 +13,7 @@ const {
 } = actions;
 
 class Establishments extends Component {
-
   static propTypes = {
-    name: React.PropTypes.string,
-    index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -31,6 +27,7 @@ class Establishments extends Component {
   }
 
   render() {
+    
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -76,7 +73,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
   index: state.list.selectedIndex,
-  list: state.list.list,
+
 });
 
 

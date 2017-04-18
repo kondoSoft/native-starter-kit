@@ -7,7 +7,6 @@ const { width, height } = Dimensions.get('window');
 export default {
   wrapper: {
     flex: 1,
-
   },
 
   slide: {
@@ -31,15 +30,14 @@ export default {
     marginBottom: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
-
   },
   text:{
     fontSize: 14,
     color: 'white',
   },
   paginationStyle:{
+    flex: 1,
     bottom: 70,
-    width,
     backgroundColor: 'lightgray',
     height: 90,
   },

@@ -78,6 +78,7 @@ export default {
     color: 'gray',
     marginLeft: 20,
     marginRight: 20,
+    paddingRight: 50,
     marginTop: 15,
   },
   fab:{

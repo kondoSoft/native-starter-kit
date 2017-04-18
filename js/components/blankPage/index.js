@@ -59,7 +59,7 @@ class BlankPage extends Component {
         </Header>
         <Grid style={{ maxHeight: 60 }}>
           <Row style={{height: 60}}>
-            <Thumbnail style={styles.imagePub} square source={{uri: 'https://placeholdit.imgix.net/~text?txtsize=13&txt=350%C3%9750&w=350&h=50'}} />
+            <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad.png')} />
           </Row>
         </Grid>
         <Content padder scrollEnabled={false} style={{ height, paddingLeft: 5 }}>

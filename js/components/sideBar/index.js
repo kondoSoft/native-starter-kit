@@ -26,18 +26,6 @@ class SideBar extends Component {
           <ListItem button onPress={() => this.navigateTo('home')} >
             <Text>Home</Text>
           </ListItem>
-          <ListItem button onPress={() => this.navigateTo('blankPage')} >
-            <Text>Zones</Text>
-          </ListItem>
-          <ListItem button onPress={() => this.navigateTo('establishments')} >
-            <Text>Establishments</Text>
-          </ListItem>
-          <ListItem button onPress={() => this.navigateTo('single')} >
-            <Text>Single</Text>
-          </ListItem>
-          <ListItem button onPress={() => this.navigateTo('singlemap')} >
-            <Text>SingleMap</Text>
-          </ListItem>
           <ListItem button onPress={() => this.navigateTo('contactus')} >
             <Text>Contact Us</Text>
           </ListItem>

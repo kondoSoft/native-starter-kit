@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Image, TouchableOpacity, Dimensions } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
-import ListEstablishment from '../listEstablishment'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
@@ -20,7 +19,7 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 20.986035;
 const LONGITUDE = -89.619899;
-const LATITUDE_DELTA = 0.0043;
+const LATITUDE_DELTA = 0.0053;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id=0;
 
@@ -30,19 +29,11 @@ class SingleMap extends Component {
     super(props);
        this.state = {
          region: {
-           latitude: LATITUDE,
-           longitude: LONGITUDE,
+           latitude: props.listEstablishment[id].coordinate.latitude,
+           longitude: props.listEstablishment[id].coordinate.longitude,
            latitudeDelta: LATITUDE_DELTA,
            longitudeDelta: LONGITUDE_DELTA,
           },
-          markers:[{
-            title: 'Presidente Intercontinental',
-            coordinate: {
-              latitude: LATITUDE,
-              longitude: LONGITUDE
-            },
-            key: id,
-          }],
           active: false,
          }
    }
@@ -50,7 +41,7 @@ class SingleMap extends Component {
   static propTypes = {
     name: React.PropTypes.string,
     index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
+    listEstablishment: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -64,10 +55,10 @@ class SingleMap extends Component {
   }
 
   render() {
-    const { props: { name, index, list } } = this;
-
+    const activeFab = this.state.active
+    const { props: { name, index, listEstablishment } } = this;
     return (
-      <Container>
+      <Container >
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
             <Button transparent onPress={() => this.popRoute()}>
@@ -89,16 +80,16 @@ class SingleMap extends Component {
               <MapView
                 provider={this.props.provider}
                 style={styles.map}
-                initialRegion={this.state.region}
+                initialRegion={this.props.listEstablishment[index].coordinate}
               >
-                {this.state.markers.map(marker => (
+
                   <MapView.Marker
-                    title={marker.title}
-                    key={marker.key}
-                    coordinate={marker.coordinate}
+                    title={this.props.listEstablishment[index].name}
+                    key={this.props.listEstablishment[index].id}
+                    coordinate={this.props.listEstablishment[index].coordinate}
                     image={markerMerida}
                   />
-                ))}
+
               </MapView>
             </View>
           </Row>
@@ -117,21 +108,25 @@ class SingleMap extends Component {
         <Content scrollEnabled={false}>
           <Grid style={styles.gridDescription}>
             <Row style={styles.rowDescription}>
-              <H3>Presidente Intercontinental Villa Mercedes Merida</H3>
+              <H3>{this.props.listEstablishment[index].name}</H3>
             </Row>
             <Row style={styles.rowMain}>
               <Icon style={styles.iconGray} name="md-pin" />
-              <Text style={styles.textRow}>Av. Colon No. 500 Col. Centro, Merida, Yucatan, Mexico</Text>
+              <Text style={styles.textRow}>{this.props.listEstablishment[index].address}</Text>
             </Row>
             <Row style={styles.rowDescription}>
               <Col style={styles.colDescription}>
                 <Icon style={styles.iconGray} name="md-call" />
-                <Text style={styles.textRow}>01 800 502 0500</Text>
+                <Text style={styles.textRow}>{this.props.listEstablishment[index].phone}</Text>
               </Col>
             </Row>
             <Row>
               <Right>
-                <Text style={styles.fontFooter}>Te encuentras en "Presidente Intercontinental Villa Mercedes Merida" a traves de Que Hacer? Merida</Text>
+                { activeFab ? (
+                  <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[index].name}" a traves de Que Hacer? Merida</Text>
+                ):(
+                  <Text></Text>
+                )}
               </Right>
             </Row>
           </Grid>
@@ -173,8 +168,8 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
-  index: state.list.selectedIndex,
-  list: state.list.list,
+  index: state.listEstablishment.selectedEstablishment,
+  listEstablishment: state.listEstablishment.results,
 });
 
 

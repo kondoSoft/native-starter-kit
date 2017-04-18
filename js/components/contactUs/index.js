@@ -21,9 +21,6 @@ class ContactUs extends Component {
        };
    }
   static propTypes = {
-    name: React.PropTypes.string,
-    index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -37,8 +34,6 @@ class ContactUs extends Component {
   }
 
   render() {
-    const { props: { name, index, list } } = this;
-
     return (
       <Container>
         <Header style={styles.header}>
@@ -98,9 +93,6 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  name: state.user.name,
-  index: state.list.selectedIndex,
-  list: state.list.list,
 });
 
 

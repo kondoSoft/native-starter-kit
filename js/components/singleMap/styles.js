@@ -58,6 +58,7 @@ export default {
     marginLeft: 20,
     marginRight: 20,
     marginTop: 15,
+    paddingRight: 50,
   },
   fab:{
     backgroundColor: '#5067FF',

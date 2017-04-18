@@ -41,7 +41,7 @@ export default function (state:State = initialState, action:Action): State {
   if (action.type === SET_CATEGORY) {
     return {
       ...state,
-      selectedZone: action.payload,
+      selectedCategory: action.payload,
     };
   }
   return state;

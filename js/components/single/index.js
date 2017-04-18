@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Image } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
-import ListEstablishment from '../listEstablishment'
+import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
   reset,
   popRoute,
+  pushRoute,
 } = actions;
 
 class Single extends Component {
@@ -21,9 +22,8 @@ class Single extends Component {
        };
    }
   static propTypes = {
-    name: React.PropTypes.string,
-    index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
+    setEstablishment: React.PropTypes.func,
+    listEstablishment: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -32,19 +32,24 @@ class Single extends Component {
     }),
   }
 
+  pushRoute(route, index) {
+    this.props.setEstablishment(index);
+    this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
+  }
+
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
 
   render() {
+    const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
-
     return (
-      <Container>
+      <Container key={index}>
         <Header style={styles.header}>
           <Image
             style={styles.image}
-            source={require('../../../images/zone.jpg')}
+            source={require('../../../assets/img/Negocios/lugar.png')}
           >
             <Body style={styles.body}>
               <Left>
@@ -65,9 +70,9 @@ class Single extends Component {
 
           </Image>
         </Header>
-        <Grid style={{ alignItems: 'center', maxHeight: 50 }}>
+        <Grid  style={{ alignItems: 'center', maxHeight: 50 }}>
           <Row style={{ height: 50 }}>
-            <Button style={styles.buttonMaps} transparent>
+            <Button style={styles.buttonMaps} transparent onPress={() => this.pushRoute('singlemap', index)}>
               <Thumbnail style={{ backgroundColor: 'orange', alignItems: 'center', justifyContent: 'center' }}>
                 <Icon style={{ fontSize: 22, color: 'dimgray', bottom: 4}} name="md-pin" />
                 <Text style={{ fontSize: 12, color: 'dimgray', bottom: 6 }}>Mapa</Text>
@@ -78,28 +83,29 @@ class Single extends Component {
         <Content scrollEnabled={false}>
           <Grid style={styles.gridDescription}>
             <Row>
-              <H3>Presidente Intercontinental Villa Mercedes Merida</H3>
+              <H3>{this.props.listEstablishment[index].name}</H3>
             </Row>
             <Row style={styles.rowDescription}>
-              <Text style={styles.fontText}>El hotel esta a una corta distancia a pie del Centro de Convenciones
-              Siglo XXI, del palacio del gobernador y de la catedral.</Text>
+              <Text style={styles.fontText}>{this.props.listEstablishment[index].description}</Text>
             </Row>
             <Row style={styles.rowMain}>
               <Icon style={styles.iconGray} name="md-pin" />
-              <Text style={styles.textRow}>Av. Colon No. 500 Col. Centro, Merida, Yucatan, Mexico</Text>
+              <Text style={styles.textRow}>{this.props.listEstablishment[index].address}</Text>
             </Row>
             <Row style={styles.rowDescription}>
               <Col style={styles.colDescription}>
                 <Icon style={styles.iconGray} name="md-call" />
-                <Text style={styles.textRow}>01 800 502 0500</Text>
+                <Text style={styles.textRow}>{this.props.listEstablishment[index].phone}</Text>
               </Col>
               <Col style={styles.colDescription}>
                 <Icon style={styles.iconGray} name="clock"/>
-                <Text style={styles.textRow}>7:00 AM - 11:00 PM</Text>
+                <Text style={styles.textRow}>{this.props.listEstablishment[index].horary}</Text>
               </Col>
             </Row>
             <Row style={styles.rowDescription}>
-              <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
+              {/* <Button> */}
+                <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
+              {/* </Button> */}
               <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
               <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
               <Icon style={styles.iconFooter} name="globe"></Icon>
@@ -107,8 +113,14 @@ class Single extends Component {
             <Row>
 
               <Right>
-                <Text style={styles.fontFooter}>Te encuentras en "Presidente Intercontinental Villa Mercedes Merida" a traves de Que Hacer? Merida</Text>
+
+                { activeFab ? (
+                  <Text style={styles.fontFooter}>Te encuentras en "{this.props.listEstablishment[index].name}" a traves de Que Hacer? Merida</Text>
+                ):(
+                  <Text></Text>
+                )}
               </Right>
+
             </Row>
           </Grid>
         </Content>
@@ -137,7 +149,9 @@ class Single extends Component {
 
 function bindAction(dispatch) {
   return {
+    setEstablishment: index => dispatch(setEstablishment(index)),
     openDrawer: () => dispatch(openDrawer()),
+    pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
@@ -146,8 +160,8 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
-  index: state.list.selectedIndex,
-  list: state.list.list,
+  index: state.listEstablishment.selectedEstablishment,
+  listEstablishment: state.listEstablishment.results,
 });
 
 
