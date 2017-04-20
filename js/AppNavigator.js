@@ -10,8 +10,10 @@ import { closeDrawer } from './actions/drawer';
 import Login from './components/login/';
 import Home from './components/home/';
 import BlankPage from './components/blankPage';
+import ContactUs from './components/contactUs';
 import Classified from './components/classified/';
 import Establishments from './components/establishments/';
+import SingleMap from './components/singleMap';
 import Single from './components/single';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
@@ -91,6 +93,10 @@ class AppNavigator extends Component {
         return <Establishments />;
       case 'single':
         return <Single />;
+      case 'singlemap':
+        return <SingleMap />;
+      case 'contactus':
+        return <ContactUs />;
       default :
         return <Login />;
     }

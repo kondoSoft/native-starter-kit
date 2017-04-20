@@ -10,7 +10,7 @@ export default {
 
 
   // Button
-  btnFontFamily: (Platform.OS === 'ios') ? 'HelveticaNeue' : 'Roboto_medium',
+  btnFontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'HelveticaNeue',
   btnDisabledBg: '#b5b5b5',
   btnDisabledClr: '#f1f1f1',
 
@@ -88,7 +88,7 @@ export default {
 
 
   // Font
-  fontFamily: (Platform.OS === 'ios') ? 'HelveticaNeue' : 'Roboto',
+  fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'HelveticaNeue',
   fontSizeBase: 15,
 
   get fontSizeH1() {

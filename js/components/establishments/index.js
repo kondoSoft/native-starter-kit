@@ -13,11 +13,7 @@ const {
 } = actions;
 
 class Establishments extends Component {
-
   static propTypes = {
-    name: React.PropTypes.string,
-    index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -31,6 +27,7 @@ class Establishments extends Component {
   }
 
   render() {
+    
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -39,7 +36,7 @@ class Establishments extends Component {
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
             <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="arrow-round-back" />
+              <Icon style={{color: 'dimgray'}} name="arrow-round-back" />
             </Button>
           </Left>
           <Body>
@@ -50,7 +47,7 @@ class Establishments extends Component {
           <Right>
 
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="md-more" />
+              <Icon style={{color: 'dimgray'}} name="md-more" />
             </Button>
           </Right>
         </Header>
@@ -76,7 +73,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
   index: state.list.selectedIndex,
-  list: state.list.list,
+
 });
 
 

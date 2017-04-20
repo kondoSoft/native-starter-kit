@@ -6,7 +6,11 @@ const { width, height } = Dimensions.get('window');
 
 export default {
   content: {
-    backgroundColor: 'yellow',
     paddingLeft: 5,
-  }
+    backgroundColor: 'white',
+  },
+  imagePub:{
+    flex: 1,
+    height: 60,
+  },
 };

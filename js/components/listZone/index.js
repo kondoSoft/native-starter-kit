@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-
 import { openDrawer } from '../../actions/drawer';
 import { setZone } from '../../actions/listZone';
 import styles from './styles';
@@ -20,7 +19,6 @@ const {
 class ListZone extends Component {
 
   static propTypes = {
-    name: React.PropTypes.string,
     listZone: React.PropTypes.arrayOf(React.PropTypes.object),
     setZone: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
@@ -37,7 +35,6 @@ class ListZone extends Component {
   }
 
   render() {
-    const listZone = Object.keys(this.props.listZone)
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
           <StatusBar barStyle='light-content'/>
@@ -47,13 +44,16 @@ class ListZone extends Component {
               loop={false}>
               <View style={styles.slide} showsVerticalScrollIndicator={false}>
                 <Row style={styles.row}>
-                  {listZone.map((item, i) =>
-                    <Col key= {i} style={{ width: 150 }}>
+                  {this.props.listZone.map((item, i) =>
+
+                    <Col key= {i} style={styles.colImage}>
                       <TouchableOpacity
                         onPress={() => this.pushRoute('classified', i)}
                       >
-                        <Thumbnail style={{width: 150, height: 70}} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                        <Text>{this.props.listZone[i].name_zone}</Text>
+                        {/* <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}> */}
+                        <Image style={styles.imageZone} square source={require('../../../assets/img/Zonas/norte.png')}>
+                          <Text style={styles.textName}>{this.props.listZone[i].name_zone}</Text>
+                        </Image>
                       </TouchableOpacity>
                     </Col>
                   )}
@@ -67,7 +67,6 @@ class ListZone extends Component {
 
 function bindAction(dispatch) {
   return {
-    setIndex: index => dispatch(setIndex(index)),
     setZone: index => dispatch(setZone(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
@@ -76,8 +75,6 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => ({
-  name: state.user.name,
-  list: state.list.list,
   navigation: state.cardNavigation,
   listZone: state.listZone.results,
 });

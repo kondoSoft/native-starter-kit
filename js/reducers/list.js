@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, SET_ZONE } from '../actions/list';
+import { SET_INDEX } from '../actions/list';
 
 export type State = {
     list: string
@@ -8,8 +8,14 @@ export type State = {
 
 const initialState = {
   list: [
-    'Zonas',
-    'Categorias',
+    {
+      "name": 'ZONAS',
+      "image": 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h=125',
+    },
+    {
+      "name":'GENERALES',
+      "image": 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h=125',
+    },
   ],
     selectedIndex: undefined,
 };

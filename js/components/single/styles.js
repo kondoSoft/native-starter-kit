@@ -9,20 +9,20 @@ export default {
   header:{
     paddingRight: 0,
     paddingLeft: 0,
-    height:300,
-    zIndex: 1,
+    height:310,
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 7},
+    shadowOpacity: 0.8,
+    shadowRadius: 0.8,
+
   },
   body:{
     flexDirection: 'row',
     bottom: 130,
-
   },
   image:{
     flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
     height: 300,
-
   },
   fontIconHeart:{
     fontSize: 24,
@@ -35,7 +35,7 @@ export default {
   },
   buttonMaps:{
     justifyContent: 'center',
-
+    bottom: 25,
   },
   gridDescription:{
     padding: 15,
@@ -55,6 +55,7 @@ export default {
   fontText:{
     fontSize: 10,
     paddingBottom: 7,
+    color: 'dimgray',
   },
   textRow:{
     marginTop: 2,
@@ -77,6 +78,7 @@ export default {
     color: 'gray',
     marginLeft: 20,
     marginRight: 20,
+    paddingRight: 50,
     marginTop: 15,
   },
   fab:{

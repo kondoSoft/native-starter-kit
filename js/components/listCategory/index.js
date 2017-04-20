@@ -6,11 +6,11 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
-import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
+import { openDrawer } from '../../actions/drawer';
+import { setIndex } from '../../actions/listCategory';
 import Swiper from 'react-native-swiper';
-
 
 
 const {
@@ -21,15 +21,25 @@ const {
 
 class ListCategory extends Component {
 
+  static propTypes = {
+    listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
+    setIndex: React.PropTypes.func,
+    openDrawer: React.PropTypes.func,
+    pushRoute: React.PropTypes.func,
+    reset: React.PropTypes.func,
+    navigation: React.PropTypes.shape({
+      key: React.PropTypes.string,
+    }),
+  }
+
   pushRoute(route, index) {
-    this.props.setZone(index);
+    this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
-          <StatusBar barStyle='light-content'/>
             <Swiper style={styles.wrapper}
               showsPagination={true}
               horizontal={true}
@@ -39,104 +49,22 @@ class ListCategory extends Component {
               loop={false}>
               <View style={styles.slide} showsVerticalScrollIndicator={false}>
                 <Row style={styles.row}>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Hoteles</Text>
+                  {this.props.listCategory.map((item, i) =>
+                  <Col key={i} style={{ width: 115 }}>
+                    <TouchableOpacity
+                        onPress={() => this.pushRoute('establishments', i)}
+                      >
+                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}>
+                        <Text style={styles.text}>{this.props.listCategory[i].name_category}</Text>
+                      </Thumbnail>
                     </TouchableOpacity>
                   </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Antros y Bares</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Restaurantes</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Fiestas</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Comida Rapida</Text>
-                    </TouchableOpacity>
-                  </Col>
+                  )}
                 </Row>
               </View>
               <View style={styles.slide} showsVerticalScrollIndicator={false}>
                 <Row style={styles.row}>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Salones de Evento</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Cafeterias</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Mascotas</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Belleza y Spa</Text>
-                    </TouchableOpacity>
-                  </Col>
-                </Row>
-              </View>
-              <View style={styles.slide} showsVerticalScrollIndicator={false}>
-                <Row style={styles.row}>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Hoteles</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Antros y Bares</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Restaurantes</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Fiestas</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Comida Rapida</Text>
-                    </TouchableOpacity>
-                  </Col>
-                  <Col style={{ width: 115 }}>
-                    <TouchableOpacity>
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}></Thumbnail>
-                      <Text style={styles.text}>Comida Rapida</Text>
-                    </TouchableOpacity>
-                  </Col>
+
                 </Row>
               </View>
             </Swiper>
@@ -144,12 +72,19 @@ class ListCategory extends Component {
     );
   }
 }
-
+function bindAction(dispatch) {
+  return {
+    setIndex: index => dispatch(setIndex(index)),
+    openDrawer: () => dispatch(openDrawer()),
+    pushRoute: (route, key) => dispatch(pushRoute(route, key)),
+    reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+  };
+}
 const mapStateToProps = state => ({
   name: state.user.name,
-  list: state.list.list,
   navigation: state.cardNavigation,
-  listZone: state.listZone.results,
+  listCategory: state.listCategory.results,
+
 });
 
-export default connect(mapStateToProps)(ListCategory);
+export default connect(mapStateToProps, bindAction)(ListCategory);
