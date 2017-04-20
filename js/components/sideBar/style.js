@@ -11,4 +11,7 @@ export default {
     paddingTop: 30,
     backgroundColor: '#fff',
   },
+  text:{
+    marginLeft: 10,
+  },
 };
