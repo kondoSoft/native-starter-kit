@@ -57,7 +57,7 @@ class ListCategory extends Component {
                     shadowRadius: 0.8, }}
                     >
                     <TouchableOpacity
-                        onPress={() => this.pushRoute('establishments', i)}
+                        onPress={() => this.pushRoute('subCategory', i)}
                       >
                       <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}>
                         <Text style={styles.text}>{this.props.listCategory[i].name_category}</Text>

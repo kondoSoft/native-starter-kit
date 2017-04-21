@@ -27,8 +27,8 @@ export default {
   cardItem:{
     shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 0.8,
-    shadowRadius: 0.8,
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
   itemInput:{
     fontSize: 12,
@@ -60,8 +60,8 @@ export default {
     marginTop: 17,
     shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 0.8,
-    shadowRadius: 0.8,
+    shadowOpacity: 1,
+    shadowRadius: 1,
 
   }
 };
