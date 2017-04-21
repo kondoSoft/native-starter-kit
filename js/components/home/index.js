@@ -60,7 +60,7 @@ class Home extends Component {
           <Content padder scrollEnabled={false}>
             <Grid style={styles.videoGrid}>
               <Row style={styles.videoRow}>
-                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5 }}>VIDEO VIRAL DE LA SEMANA</Text>
+                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>VIDEO VIRAL DE LA SEMANA</Text>
                 <WebView
                   source={{ uri: 'https://www.youtube.com/embed/v7MGUNV8MxU' }}
                   style={{ margin: 7, flex: 1 }}
@@ -71,7 +71,7 @@ class Home extends Component {
             <Grid style={styles.mt}>
               {this.props.list.map((item, i) =>
               <Card key={i}>
-                <CardItem>
+                <CardItem style={styles.cardItem}>
                   { this.props.list[i] == this.props.list[0] ?  (
                     <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
                       <Body style={{ alignItems: 'center' }}>

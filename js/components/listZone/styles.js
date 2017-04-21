@@ -41,8 +41,9 @@ export default {
   colImage:{
     width: 150,
     height: 75,
-    shadowColor: '#000000',
-    shadowRadius: 1.5,
+    shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.8,
+    shadowRadius: 0.8,
   },
 };

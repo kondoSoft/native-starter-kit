@@ -30,6 +30,7 @@ export default {
     marginBottom: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    
   },
   text:{
     fontSize: 14,

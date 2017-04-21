@@ -50,7 +50,12 @@ class ListCategory extends Component {
               <View style={styles.slide} showsVerticalScrollIndicator={false}>
                 <Row style={styles.row}>
                   {this.props.listCategory.map((item, i) =>
-                  <Col key={i} style={{ width: 115 }}>
+                  <Col key={i} style={{
+                    width: 115, shadowColor: 'dimgray',
+                    shadowOffset: {width: 0, height: 0},
+                    shadowOpacity: 0.8,
+                    shadowRadius: 0.8, }}
+                    >
                     <TouchableOpacity
                         onPress={() => this.pushRoute('establishments', i)}
                       >

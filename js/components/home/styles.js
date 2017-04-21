@@ -24,6 +24,12 @@ export default {
     flex: 3,
 
   },
+  cardItem:{
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.8,
+    shadowRadius: 0.8,
+  },
   itemInput:{
     fontSize: 12,
   },
@@ -52,6 +58,10 @@ export default {
   videoGrid:{
     alignItems: 'center',
     marginTop: 17,
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0.8,
+    shadowRadius: 0.8,
 
   }
 };
