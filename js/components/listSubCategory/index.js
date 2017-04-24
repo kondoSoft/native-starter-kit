@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail, ListItem  } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
+
 import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
@@ -21,6 +22,7 @@ class ListSubCategory extends Component {
   static propTypes = {
 
     setEstablishment: React.PropTypes.func,
+    listTypeClassifieds: React.PropTypes.arrayOf(React.PropTypes.object),
     listEstablishment: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
@@ -37,14 +39,15 @@ class ListSubCategory extends Component {
 
   render() {
     console.log(this.props);
-    const listEstablishment = Object.keys(this.props.listEstablishment)
+    const listTypeClassifieds = Object.keys(this.props.listEstablishment)
+
     return (
       <Container>
         <Content style= {styles.content}>
           {/* { this.props.list[i] == this.props.list[0] ?  ( */}
-            {this.props.listEstablishment.map((item, i) =>
+            {this.props.listTypeClassifieds.map((item, i) =>
             <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments')}>
-              <Text>{this.props.listEstablishment[i].type_classifieds}</Text>
+              <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
             </ListItem>
           )}
 
@@ -67,6 +70,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   listEstablishment: state.listEstablishment.results,
   list: state.listZone.results,
+  listTypeClassifieds: state.listTypeClassifieds.results,
 
 });
 

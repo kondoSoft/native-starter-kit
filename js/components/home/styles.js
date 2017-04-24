@@ -25,10 +25,10 @@ export default {
 
   },
   cardItem:{
-    shadowColor: 'dimgray',
-    shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 1,
-    shadowRadius: 1,
+    // shadowColor: 'dimgray',
+    // shadowOffset: {width: 0, height: 0},
+    // shadowOpacity: 1,
+    // shadowRadius: 1,
   },
   itemInput:{
     fontSize: 12,
@@ -58,10 +58,10 @@ export default {
   videoGrid:{
     alignItems: 'center',
     marginTop: 17,
-    shadowColor: 'dimgray',
-    shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 1,
-    shadowRadius: 1,
+    // shadowColor: 'dimgray',
+    // shadowOffset: {width: 0, height: 0},
+    // shadowOpacity: 1,
+    // shadowRadius: 1,
 
   }
 };

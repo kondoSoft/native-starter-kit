@@ -19,8 +19,8 @@ const initialState = {
       "name": "Hotel Viva",
       "description": "lorem ipsum sunt in culpa qui officia deserunt mollit anim id est laborum." ,
       "classifieds": 0,
-      "type_classifieds": "Cuatro Estrellas",
-      "zone": "Zona Norte",
+      "type_classifieds": 1,
+      "zone": [ 1 ],
       "address" : "Av. Ruiz Cortinez S/N",
       "coordinate": {
         "longitude": -92.940639,
@@ -42,8 +42,8 @@ const initialState = {
       "name": "Wings Army Tabasco 2000",
       "description": "lorem ipsum sunt in culpa qui officia deserunt mollit anim id est laborum." ,
       "classifieds": 3,
-      "type_classifieds": "Alitas",
-      "zone": "Zona Norte",
+      "type_classifieds": 5,
+      "zone": [ 1 ],
       "address" : "Av. Ruiz Cortinez S/N",
       "coordinate": {
         "longitude": -92.942216,
