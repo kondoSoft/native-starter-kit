@@ -38,7 +38,6 @@ class ListSubCategory extends Component {
   }
 
   render() {
-    console.log(this.props);
     const listTypeClassifieds = Object.keys(this.props.listEstablishment)
 
     return (

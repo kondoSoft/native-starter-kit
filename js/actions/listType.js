@@ -9,3 +9,19 @@ export function setType(index:number):Action {
     payload: index,
   };
 }
+
+export function fetchCategory(index:number):Action{
+  console.log(index);
+  return dispatch => {
+    return fetch('http://127.0.0.1:8000/type_classifieds/',{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(res => dispatch(setType(res)))
+    .catch(err => console.log(err))
+  }
+}

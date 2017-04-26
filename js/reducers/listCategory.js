@@ -8,41 +8,7 @@ export type State = {
 
 const initialState = {
   results: [
-    {
-      "id": 1,
-      "name_category": "Hoteles",
-      "logo": "../../../assets/img/Zonas/norte.png",
-      "tags": "",
-      "zone" : 0,
-    },
-    {
-      "id": 2,
-      "name_category": "Antros y Bares",
-      "logo": "../../../assets/img/Zonas/sur.png",
-      "tags": "",
-      "zone" : 0,
-    },
-    {
-      "id": 3,
-      "name_category": "Restaurantes",
-      "logo": "../../../assets/img/Zonas/poniente.png",
-      "tags": "",
-      "zone" : 2,
-    },
-    {
-      "id": 4,
-      "name_category": "Fiestas",
-      "logo": "../../../assets/img/Zonas/paseo_montejo.png",
-      "tags": "",
-      "zone" : 1,
-    },
-    {
-      "id": 5,
-      "name_category": "Comida Rapida",
-      "logo": "../../../assets/img/Zonas/paseo_montejo.png",
-      "tags": "",
-      "zone" : 1,
-    },
+    
   ],
   selectedCategory: undefined,
 };

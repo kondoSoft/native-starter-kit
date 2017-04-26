@@ -73,7 +73,9 @@ class Home extends Component {
               <Card key={i}>
                 <CardItem style={styles.cardItem}>
                   { this.props.list[i] == this.props.list[0] ?  (
+                    // <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
                     <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
+
                       <Body style={{ alignItems: 'center' }}>
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
                         {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
