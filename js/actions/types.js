@@ -10,6 +10,7 @@ export type Action =
     | { type: 'SET_USER', name: string}
     | { type: 'SET_LIST', list: string}
     | { type: 'PRINT_ZONE' }
+    | { type: 'PRINT_CLASSIFIEDS'}
 
 export type Dispatch = (action:Action | Array<Action>) => any;
 export type GetState = () => Object;

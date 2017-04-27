@@ -26,10 +26,10 @@ export default {
   },
   textName:{
     color: '#FFF',
-    // shadowColor: '#000000',
-    // shadowOpacity: 1,
-    // shadowRadius: 2,
-    // shadowOffset: {width: 0, height: 0},
+    shadowColor: '#000000',
+    shadowOpacity: 1,
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 0},
     fontSize: 14
   },
   imageZone:{
@@ -41,9 +41,9 @@ export default {
   colImage:{
     width: 150,
     height: 75,
-    // shadowColor: 'dimgray',
-    // shadowOffset: {width: 0, height: 0},
-    // shadowOpacity: 1,
-    // shadowRadius: 1,
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
 };

@@ -7,7 +7,7 @@ import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, But
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import { openDrawer } from '../../actions/drawer';
-import { setIndex } from '../../actions/list';
+import { setIndex, fetchCategory } from '../../actions/list';
 import styles from './styles';
 
 const {
@@ -28,6 +28,10 @@ class Home extends Component {
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
     }),
+  }
+
+  componentWillMount(){
+    this.props.fetchCategory()
   }
 
   pushRoute(route, index) {
@@ -79,15 +83,17 @@ class Home extends Component {
                       <Body style={{ alignItems: 'center' }}>
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
                         {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
-                        <Text style={styles.text}>CATEGORÍAS {this.props.list[i].name}</Text>
+                        <Text style={styles.text}>CATEGORÍAS {this.props.list[i].category_name}</Text>
+
                       </Body>
                       </TouchableOpacity>
                   ) : (
                     <TouchableOpacity onPress={() => this.pushRoute('classified', i)} >
                       <Body style={{ alignItems: 'center' }}>
+
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
                         {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
-                        <Text style={styles.text}>CATEGORÍAS {this.props.list[i].name}</Text>
+                        <Text style={styles.text}>CATEGORÍAS {this.props.list[i].category_name}</Text>
                       </Body>
                     </TouchableOpacity>
                   )}
@@ -114,6 +120,7 @@ class Home extends Component {
 function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
+    fetchCategory: index => dispatch(fetchCategory(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),

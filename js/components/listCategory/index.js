@@ -9,7 +9,7 @@ import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import styles from './styles'
 import { openDrawer } from '../../actions/drawer';
-import { setIndex } from '../../actions/listCategory';
+import { setIndex, fetchClassifieds } from '../../actions/listCategory';
 import Swiper from 'react-native-swiper';
 
 
@@ -32,6 +32,9 @@ class ListCategory extends Component {
     }),
   }
 
+  componentWillMount(){
+    this.props.fetchClassifieds()
+  }
   pushRoute(route, index) {
     this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
@@ -51,13 +54,17 @@ class ListCategory extends Component {
                 <Row style={styles.row}>
                   {this.props.listCategory.map((item, i) =>
                   <Col key={i} style={{
-                    width: 115 }}
+                    width: 115,
+                    shadowColor: 'dimgray',
+                    shadowOffset: {width: 0, height: 0},
+                    shadowOpacity: 1,
+                    shadowRadius: 1, }}
                     >
                     <TouchableOpacity
                         onPress={() => this.pushRoute('subCategory', i)}
                       >
-                      <Thumbnail style={styles.thumbnail} square source={{uri:'https://placeholdit.imgix.net/~text?txtsize=16&txt=150%C3%9770&w=150&h=70'}}>
-                        <Text style={styles.text}>{this.props.listCategory[i].name_category}</Text>
+                      <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
+                        <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
                       </Thumbnail>
                     </TouchableOpacity>
                   </Col>
@@ -77,6 +84,7 @@ class ListCategory extends Component {
 function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
+    fetchClassifieds: index => dispatch(fetchClassifieds(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),

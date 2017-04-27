@@ -26,13 +26,10 @@ export default function (state:State = initialState, action:Action): State {
     };
   }
   else if (action.type === PRINT_ZONE) {
-    console.log("me estoy ejecutando");
-    console.log(action.payload.results);
     return {
       ...state,
       results: action.payload.results
     }
-    console.log(action.payload);
   }
   return state;
 }

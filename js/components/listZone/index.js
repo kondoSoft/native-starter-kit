@@ -55,7 +55,6 @@ class ListZone extends Component {
                       >
                         {/* <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}> */}
                         <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}>
-                          {console.log(this.props.listZone[i])}
                           <Text style={styles.textName}>{this.props.listZone[i].name_zone}</Text>
                         </Image>
                       </TouchableOpacity>

@@ -30,11 +30,15 @@ export default {
     marginBottom: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    
+
   },
   text:{
     fontSize: 14,
     color: 'white',
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
   paginationStyle:{
     flex: 1,

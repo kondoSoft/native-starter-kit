@@ -20,7 +20,6 @@ export function printZone(res){
 }
 
 export function fetchZone(index:number):Action{
-  // console.log(index);
   return dispatch => {
     return fetch('http://127.0.0.1:8000/category_zone/',{
       method: 'GET',
