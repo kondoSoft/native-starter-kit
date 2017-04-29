@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Image } from 'react-native'
+import { Image, Linking } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
@@ -20,6 +20,7 @@ class Single extends Component {
        this.state = {
            active: false
        };
+    this.handleClick = this.handleClick.bind(this)
    }
   static propTypes = {
     setEstablishment: React.PropTypes.func,
@@ -41,7 +42,18 @@ class Single extends Component {
     this.props.popRoute(this.props.navigation.key);
   }
 
+  handleClick(index){
+    console.log(this.props.listEstablishment[index]);
+    Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.listEstablishment[index].web);
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
+      }
+    });
+  };
   render() {
+
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     return (
@@ -49,7 +61,7 @@ class Single extends Component {
         <Header style={styles.header}>
           <Image
             style={styles.image}
-            source={require('../../../assets/img/Negocios/lugar.png')}
+            source={{uri: this.props.listEstablishment[index].gallery}}
           >
             <Body style={styles.body}>
               <Left>
@@ -103,12 +115,18 @@ class Single extends Component {
               </Col>
             </Row>
             <Row style={styles.rowDescription}>
-              {/* <Button> */}
+              <Button style={styles.buttonSocial} transparent>
                 <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
-              {/* </Button> */}
-              <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
-              <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
-              <Icon style={styles.iconFooter} name="globe"></Icon>
+              </Button>
+              <Button style={styles.buttonSocial} transparent>
+                <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
+              </Button>
+              <Button style={styles.buttonSocial} transparent>
+                <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
+              </Button>
+              <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
+                <Icon style={styles.iconFooter} name="globe"></Icon>
+              </Button>
             </Row>
             <Row>
 

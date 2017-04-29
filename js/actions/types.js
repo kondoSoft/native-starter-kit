@@ -11,6 +11,8 @@ export type Action =
     | { type: 'SET_LIST', list: string}
     | { type: 'PRINT_ZONE' }
     | { type: 'PRINT_CLASSIFIEDS'}
+    | { type: 'PRINT_TYPE'}
+    | { type: 'PRINT_ESTABLISHMENT'}
 
 export type Dispatch = (action:Action | Array<Action>) => any;
 export type GetState = () => Object;

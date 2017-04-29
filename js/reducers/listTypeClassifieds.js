@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_TYPE } from '../actions/listType';
+import { SET_TYPE, PRINT_TYPE } from '../actions/listType';
 
 export type State = {
     results: string
@@ -8,31 +8,7 @@ export type State = {
 
 const initialState = {
   results: [
-    {
-      "id": 1,
-      "type_classifieds": "Una Estrella",
-      "classifieds": 1,
-    },
-    {
-      "id": 2,
-      "type_classifieds": "Dos Estrellas",
-      "classifieds": 1,
-    },
-    {
-      "id": 3,
-      "type_classifieds": "Tres Estrellas",
-      "classifieds": 1,
-    },
-    {
-      "id": 4,
-      "type_classifieds": "Cuatro Estrellas",
-      "classifieds": 1,
-    },
-    {
-      "id": 5,
-      "type_classifieds": "Alitas",
-      "classifieds": 2,
-    },
+
   ],
   selectedType: undefined,
 };
@@ -42,6 +18,12 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       selectedType: action.payload,
+    }
+  }
+  if (action.type === PRINT_TYPE) {
+    return {
+      ...state,
+      results: action.payload.results
     }
   }
   return state;

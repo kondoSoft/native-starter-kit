@@ -21,8 +21,6 @@ export default function (state:State = initialState, action:Action): State {
     };
   }
   else if (action.type === PRINT_CLASSIFIEDS) {
-    console.log("me estoy ejecutando");
-    console.log(action.payload.results);
     return {
       ...state,
       results: action.payload.results

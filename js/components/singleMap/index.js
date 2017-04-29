@@ -29,8 +29,8 @@ class SingleMap extends Component {
     super(props);
        this.state = {
          region: {
-           latitude: props.listEstablishment[id].coordinate.latitude,
-           longitude: props.listEstablishment[id].coordinate.longitude,
+           latitude: props.listEstablishment[id].coor.latitude,
+           longitude: props.listEstablishment[id].coor.longitude,
            latitudeDelta: LATITUDE_DELTA,
            longitudeDelta: LONGITUDE_DELTA,
           },
@@ -80,13 +80,13 @@ class SingleMap extends Component {
               <MapView
                 provider={this.props.provider}
                 style={styles.map}
-                initialRegion={this.props.listEstablishment[index].coordinate}
+                initialRegion={this.props.listEstablishment[id].coor}
               >
 
                   <MapView.Marker
-                    title={this.props.listEstablishment[index].name}
-                    key={this.props.listEstablishment[index].id}
-                    coordinate={this.props.listEstablishment[index].coordinate}
+                    title={this.props.listEstablishment[id].name}
+                    key={this.props.listEstablishment[id].id}
+                    coordinate={this.props.listEstablishment[id].coor}
                     image={markerMerida}
                   />
 
@@ -94,36 +94,25 @@ class SingleMap extends Component {
             </View>
           </Row>
         </Grid>
-
-        <Grid style={{ alignItems: 'center', maxHeight: 50 }}>
-          <Row style={{ height: 50 }}>
-            <Button style={styles.buttonMaps} transparent>
-              <Thumbnail style={{ backgroundColor: 'orange', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon style={{ fontSize: 22, color: 'dimgray', bottom: 4}} name="md-camera" />
-                <Text style={{ fontSize: 12, color: 'dimgray', bottom: 6 }}>Galería</Text>
-              </Thumbnail>
-            </Button>
-          </Row>
-        </Grid>
         <Content scrollEnabled={false}>
           <Grid style={styles.gridDescription}>
             <Row style={styles.rowDescription}>
-              <H3>{this.props.listEstablishment[index].name}</H3>
+              <H3>{this.props.listEstablishment[id].name}</H3>
             </Row>
             <Row style={styles.rowMain}>
               <Icon style={styles.iconGray} name="md-pin" />
-              <Text style={styles.textRow}>{this.props.listEstablishment[index].address}</Text>
+              <Text style={styles.textRow}>{this.props.listEstablishment[id].address}</Text>
             </Row>
             <Row style={styles.rowDescription}>
               <Col style={styles.colDescription}>
                 <Icon style={styles.iconGray} name="md-call" />
-                <Text style={styles.textRow}>{this.props.listEstablishment[index].phone}</Text>
+                <Text style={styles.textRow}>{this.props.listEstablishment[id].phone}</Text>
               </Col>
             </Row>
             <Row>
               <Right>
                 { activeFab ? (
-                  <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[index].name}" a traves de Que Hacer? Merida</Text>
+                  <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[id].name}" a traves de Que Hacer? Merida</Text>
                 ):(
                   <Text></Text>
                 )}

@@ -68,9 +68,10 @@ export default {
     fontSize: 18,
   },
   iconFooter:{
-    marginRight: 13,
+    marginRight: 2,
     marginTop: 5,
     marginBottom: 5,
+    marginLeft: 2,
     color: 'dodgerblue',
   },
   fontFooter:{
@@ -95,6 +96,10 @@ export default {
   },
   buttonM:{
     backgroundColor: '#DD5144',
+
+  },
+  buttonSocial:{
+    padding: 0,
 
   },
 
