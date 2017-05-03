@@ -7,7 +7,7 @@ import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, But
 import { Grid, Row, Col } from 'react-native-easy-grid';
 
 import { openDrawer } from '../../actions/drawer';
-import { setIndex, fetchCategory } from '../../actions/list';
+import { setIndex, fetchCategory, fetchAdvertising } from '../../actions/list';
 import styles from './styles';
 
 const {
@@ -21,6 +21,7 @@ class Home extends Component {
   static propTypes = {
 
     list: React.PropTypes.arrayOf(React.PropTypes.object),
+    advertising: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
@@ -29,9 +30,15 @@ class Home extends Component {
       key: React.PropTypes.string,
     }),
   }
+  constructor(props) {
+    super(props);
+    this.getRandomIndex = this.getRandomIndex.bind(this)
 
+  }
   componentWillMount(){
     this.props.fetchCategory()
+    this.props.fetchAdvertising()
+
   }
 
   pushRoute(route, index) {
@@ -39,9 +46,16 @@ class Home extends Component {
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
+  getRandomIndex(){
+    const advertising = this.props.advertising
+    randomIndex = Math.floor(Math.random()*advertising.length)
+    return randomIndex
+  }
+
+
   render() {
 
-    const list = Object.keys(this.props.list)
+    var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>
         <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
@@ -57,9 +71,11 @@ class Home extends Component {
             </Right>
           </Header>
           <Grid style={{ maxHeight: 60 }}>
-            <Row style={{height: 60}}>
-              <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad1.png')} />
-            </Row>
+
+              <Row  style={{height: 60}}>
+                <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
+              </Row>
+
           </Grid>
           <Content padder scrollEnabled={false}>
             <Grid style={styles.videoGrid}>
@@ -80,7 +96,7 @@ class Home extends Component {
                     // <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
                     <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
 
-                      <Body style={{ alignItems: 'center' }}>
+                      <Body style={{ alignItems: 'center'}}>
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
                         {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
                         <Text style={styles.text}>CATEGORÍAS {this.props.list[i].category_name}</Text>
@@ -121,6 +137,7 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
+    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
@@ -129,6 +146,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   list: state.list.list,
+  advertising: state.list.advertising,
   navigation: state.cardNavigation,
 });
 

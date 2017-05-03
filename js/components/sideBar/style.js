@@ -9,15 +9,21 @@ export default {
     padding: 0,
     paddingTop: 30,
     backgroundColor: '#fff',
-    width: 300,
+    // width: 300,
   },
   text:{
     marginLeft: 10,
   },
+  view:{
+    flex: 1,
+    backgroundColor: '#eee',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   image:{
-    width: 300,
+    flex: 1,
     height: 200,
-
   },
   listItem:{
     borderBottomWidth: 1.5,

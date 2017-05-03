@@ -50,6 +50,9 @@ class ListSubCategory extends Component {
             {this.props.listTypeClassifieds.map((item, i) =>
             <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
               <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
+              <Right>
+                 <Icon name="arrow-forward" />
+               </Right>
             </ListItem>
           )}
 

@@ -25,10 +25,11 @@ export default {
 
   },
   cardItem:{
-    // shadowColor: 'dimgray',
-    // shadowOffset: {width: 0, height: 0},
-    // shadowOpacity: 1,
-    // shadowRadius: 1,
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    justifyContent: 'center'
   },
   itemInput:{
     fontSize: 12,

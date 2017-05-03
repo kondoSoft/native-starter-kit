@@ -1,23 +1,17 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, PRINT_CATEGORY } from '../actions/list';
+import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING } from '../actions/list';
 
 export type State = {
     list: string
 }
 
 const initialState = {
-  list: [
-    // {
-    //   "name": 'ZONAS',
-    //   "image": 'http://127.0.0.1:8000/media/catzone.png',
-    // },
-    // {
-    //   "name":'GENERALES',
-    //   "image": 'http://127.0.0.1:8000/media/catgral.png',
-    // },
-  ],
-    selectedIndex: undefined,
+  list: [ ],
+  advertising: [ {
+    'image': ''
+  } ],
+  selectedIndex: undefined,
 };
 
 export default function (state:State = initialState, action:Action): State {
@@ -31,6 +25,12 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       list: action.payload.results
+    }
+  }
+  else if (action.type === PRINT_ADVERTISING) {
+    return {
+      ...state,
+      advertising: action.payload.results
     }
   }
   return state;

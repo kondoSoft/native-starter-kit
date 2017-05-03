@@ -7,12 +7,25 @@ import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import Swiper from 'react-native-swiper';
 const {
   reset,
   popRoute,
   pushRoute,
 } = actions;
 
+const cards = [
+  {
+   text: 'Card One',
+   name: 'One',
+   image: require('../../../assets/img/Negocios/lugar.png'),
+  },
+  {
+   text: 'Card One',
+   name: 'One',
+   image: require('../../../assets/img/Negocios/hotel_1.png'),
+  },
+];
 class Single extends Component {
 
   constructor() {
@@ -33,6 +46,8 @@ class Single extends Component {
     }),
   }
 
+
+
   pushRoute(route, index) {
     this.props.setEstablishment(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
@@ -43,7 +58,6 @@ class Single extends Component {
   }
 
   handleClick(index){
-    console.log(this.props.listEstablishment[index]);
     Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
       if (supported) {
         Linking.openURL(this.props.listEstablishment[index].web);
@@ -53,34 +67,45 @@ class Single extends Component {
     });
   };
   render() {
-
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     return (
       <Container key={index}>
         <Header style={styles.header}>
-          <Image
-            style={styles.image}
-            source={{uri: this.props.listEstablishment[index].gallery}}
-          >
-            <Body style={styles.body}>
-              <Left>
-                <Button transparent onPress={() => this.popRoute()}>
-                  <Icon style={{ color: '#fff' }} name="arrow-round-back" />
-                </Button>
-              </Left>
-              <Right style={styles.headerRight}>
-                <Button transparent >
-                  <Icon style={styles.fontIconHeart} name="heart" />
-                </Button>
-                <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
-                  <Icon style={{ color: '#fff' }} name="md-more" />
-                </Button>
-              </Right>
+          <Swiper showsButtons height={285} showsPagination={false} width={380}>
+            {this.props.listEstablishment.map((item, i) =>
 
-            </Body>
+              <View key={i} style={styles.slide1}>
+                {this.props.listEstablishment[i].image.map((item, index) =>
+                <Image
+                  key={index}
+                  style={styles.image}
+                  source={{uri: this.props.listEstablishment[i].image[index].image}}
+                  // source={item.image}
+                  >
+                  <Text>{this.props.listEstablishment[i].image[index].image}</Text>
+                  <Body style={styles.body}>
+                    <Left>
 
-          </Image>
+                      <Button transparent onPress={() => this.popRoute()}>
+                        <Icon style={{ color: '#fff' }} name="arrow-round-back" />
+                      </Button>
+                    </Left>
+                    <Right style={styles.headerRight}>
+                      <Button transparent >
+                        <Icon style={styles.fontIconHeart} name="heart" />
+                      </Button>
+                      <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
+                        <Icon style={{ color: '#fff' }} name="md-more" />
+                      </Button>
+                    </Right>
+                  </Body>
+                </Image>
+                )}
+              </View>
+            )}
+
+            </Swiper>
         </Header>
         <Grid  style={{ alignItems: 'center', maxHeight: 50 }}>
           <Row style={{ height: 50 }}>
