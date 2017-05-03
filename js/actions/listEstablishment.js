@@ -18,7 +18,7 @@ export function printEstablishment(index:number):Action {
 }
 export function fetchEstablishment(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/establishment/',{
+    return fetch('http://192.168.1.76:8000/establishment/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

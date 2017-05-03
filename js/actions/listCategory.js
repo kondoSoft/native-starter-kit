@@ -20,7 +20,7 @@ export function printClassifieds(index:number):Action {
 
 export function fetchClassifieds(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/classifieds/',{
+    return fetch('http://192.168.1.76:8000/classifieds/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
