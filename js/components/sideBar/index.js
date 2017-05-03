@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Content, Text, List, ListItem, Icon } from 'native-base';
+import { Content, Text, List, ListItem, Icon, Thumbnail, View } from 'native-base';
 
 import { setIndex } from '../../actions/list';
 import navigateTo from '../../actions/sideBarNav';
@@ -18,27 +18,25 @@ class SideBar extends Component {
 
   navigateTo(route) {
     this.props.navigateTo(route, 'home');
-    // console.log(route)
-
   }
 
   render() {
-    const i = this.props.navigation.index
-    // console.log("este es navigation index: " + this.props.navigation.index)
-    // console.log("este es key de la ruta:  " + this.props.navigation.routes[i].key);
     return (
       <Content style={styles.sidebar} >
-          <ListItem button onPress={() => this.navigateTo('home')} >
-            <Icon name="ios-home"/>
-            <Text style={styles.text}>Inicio</Text>
+          <View style={styles.view} >
+            <Thumbnail square style={styles.image} source={require('../../../assets/img/Menu-Imagen.png')} />
+          </View>
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('home')} >
+            <Icon style={styles.icon} name="ios-home"/>
+            <Text style={styles.text}>INICIO</Text>
           </ListItem>
-          <ListItem button onPress={() => this.navigateTo('contactus')} >
-            <Icon name="ios-mail"/>
-            <Text style={styles.text}>Contactanos</Text>
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('contactus')} >
+            <Icon style={styles.icon} name="ios-mail"/>
+            <Text style={styles.text}>CONTACTANOS</Text>
           </ListItem>
-          <ListItem button onPress={() => this.navigateTo('contactus')} >
-            <Icon name="ios-heart"/>
-            <Text style={styles.text}>Favoritos</Text>
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('favorites')} >
+            <Icon style={styles.icon} name="ios-heart"/>
+            <Text style={styles.text}>FAVORITOS</Text>
           </ListItem>
       </Content>
     );

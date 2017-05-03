@@ -9,21 +9,33 @@ export default {
   header:{
     paddingRight: 0,
     paddingLeft: 0,
-    height:310,
+    height: 300,
     shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 7},
-    shadowOpacity: 0.8,
-    shadowRadius: 0.8,
+    shadowOpacity: 1,
+    shadowRadius: 1,
 
+  },
+
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+    // width
   },
   body:{
     flexDirection: 'row',
     bottom: 130,
+    // width
   },
   image:{
     flex: 1,
     height: 300,
+    resizeMode: 'cover',
+    width: 380
   },
+
   fontIconHeart:{
     fontSize: 24,
     color: '#fff',
@@ -68,9 +80,10 @@ export default {
     fontSize: 18,
   },
   iconFooter:{
-    marginRight: 13,
+    marginRight: 2,
     marginTop: 5,
     marginBottom: 5,
+    marginLeft: 2,
     color: 'dodgerblue',
   },
   fontFooter:{
@@ -95,6 +108,10 @@ export default {
   },
   buttonM:{
     backgroundColor: '#DD5144',
+
+  },
+  buttonSocial:{
+    padding: 0,
 
   },
 

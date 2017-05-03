@@ -6,7 +6,7 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
-import { setZone } from '../../actions/listZone';
+import { setZone, fetchZone } from '../../actions/listZone';
 import styles from './styles';
 import Swiper from 'react-native-swiper'
 
@@ -27,6 +27,9 @@ class ListZone extends Component {
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
     }),
+  }
+  componentWillMount(){
+    this.props.fetchZone()
   }
 
   pushRoute(route, index) {
@@ -51,7 +54,7 @@ class ListZone extends Component {
                         onPress={() => this.pushRoute('classified', i)}
                       >
                         {/* <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}> */}
-                        <Image style={styles.imageZone} square source={require('../../../assets/img/Zonas/norte.png')}>
+                        <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}>
                           <Text style={styles.textName}>{this.props.listZone[i].name_zone}</Text>
                         </Image>
                       </TouchableOpacity>
@@ -68,6 +71,7 @@ class ListZone extends Component {
 function bindAction(dispatch) {
   return {
     setZone: index => dispatch(setZone(index)),
+    fetchZone: index => dispatch(fetchZone(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),

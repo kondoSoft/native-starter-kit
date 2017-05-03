@@ -22,7 +22,7 @@ export default class SplashPage extends Component {
   }
 
   render() { // eslint-disable-line class-methods-use-this
-  console.log(this.props);
+
     return (
       <Image source={launchscreen} style={{ flex: 1, height: null, width: null }} />
     );

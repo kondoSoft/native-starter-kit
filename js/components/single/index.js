@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Image } from 'react-native'
+import { Image, Linking } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import Swiper from 'react-native-swiper';
 const {
   reset,
   popRoute,
   pushRoute,
 } = actions;
 
+const cards = [
+  {
+   text: 'Card One',
+   name: 'One',
+   image: require('../../../assets/img/Negocios/lugar.png'),
+  },
+  {
+   text: 'Card One',
+   name: 'One',
+   image: require('../../../assets/img/Negocios/hotel_1.png'),
+  },
+];
 class Single extends Component {
 
   constructor() {
@@ -20,6 +33,7 @@ class Single extends Component {
        this.state = {
            active: false
        };
+    this.handleClick = this.handleClick.bind(this)
    }
   static propTypes = {
     setEstablishment: React.PropTypes.func,
@@ -32,6 +46,8 @@ class Single extends Component {
     }),
   }
 
+
+
   pushRoute(route, index) {
     this.props.setEstablishment(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
@@ -41,34 +57,55 @@ class Single extends Component {
     this.props.popRoute(this.props.navigation.key);
   }
 
+  handleClick(index){
+    Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.listEstablishment[index].web);
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
+      }
+    });
+  };
   render() {
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     return (
       <Container key={index}>
         <Header style={styles.header}>
-          <Image
-            style={styles.image}
-            source={require('../../../assets/img/Negocios/lugar.png')}
-          >
-            <Body style={styles.body}>
-              <Left>
-                <Button transparent onPress={() => this.popRoute()}>
-                  <Icon style={{ color: '#fff' }} name="arrow-round-back" />
-                </Button>
-              </Left>
-              <Right style={styles.headerRight}>
-                <Button transparent >
-                  <Icon style={styles.fontIconHeart} name="heart" />
-                </Button>
-                <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
-                  <Icon style={{ color: '#fff' }} name="md-more" />
-                </Button>
-              </Right>
+          <Swiper showsButtons height={285} showsPagination={false} width={380}>
+            {this.props.listEstablishment.map((item, i) =>
 
-            </Body>
+              <View key={i} style={styles.slide1}>
+                {this.props.listEstablishment[i].image.map((item, index) =>
+                <Image
+                  key={index}
+                  style={styles.image}
+                  source={{uri: this.props.listEstablishment[i].image[index].image}}
+                  // source={item.image}
+                  >
+                  <Text>{this.props.listEstablishment[i].image[index].image}</Text>
+                  <Body style={styles.body}>
+                    <Left>
 
-          </Image>
+                      <Button transparent onPress={() => this.popRoute()}>
+                        <Icon style={{ color: '#fff' }} name="arrow-round-back" />
+                      </Button>
+                    </Left>
+                    <Right style={styles.headerRight}>
+                      <Button transparent >
+                        <Icon style={styles.fontIconHeart} name="heart" />
+                      </Button>
+                      <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
+                        <Icon style={{ color: '#fff' }} name="md-more" />
+                      </Button>
+                    </Right>
+                  </Body>
+                </Image>
+                )}
+              </View>
+            )}
+
+            </Swiper>
         </Header>
         <Grid  style={{ alignItems: 'center', maxHeight: 50 }}>
           <Row style={{ height: 50 }}>
@@ -103,12 +140,18 @@ class Single extends Component {
               </Col>
             </Row>
             <Row style={styles.rowDescription}>
-              {/* <Button> */}
+              <Button style={styles.buttonSocial} transparent>
                 <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
-              {/* </Button> */}
-              <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
-              <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
-              <Icon style={styles.iconFooter} name="globe"></Icon>
+              </Button>
+              <Button style={styles.buttonSocial} transparent>
+                <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
+              </Button>
+              <Button style={styles.buttonSocial} transparent>
+                <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
+              </Button>
+              <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
+                <Icon style={styles.iconFooter} name="globe"></Icon>
+              </Button>
             </Row>
             <Row>
 
