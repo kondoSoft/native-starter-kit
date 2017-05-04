@@ -52,8 +52,8 @@ class Classified extends Component {
             </Button>
           </Right>
         </Header>
-        <Grid style={{ maxHeight: 60 }}>
-          <Row style={{height: 60}}>
+        <Grid style={{ maxHeight: 60, flex: 1 }}>
+          <Row>
             <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad3.png')} />
           </Row>
         </Grid>

@@ -7,10 +7,17 @@ export type State = {
 }
 
 const initialState = {
-  list: [ ],
+  list: [
+    {
+      'id': '',
+      'category_name': '',
+      'image': '',
+    }
+  ],
   advertising: [ {
     'image': ''
-  } ],
+    }
+  ],
   selectedIndex: undefined,
 };
 
@@ -22,6 +29,7 @@ export default function (state:State = initialState, action:Action): State {
     };
   }
   else if (action.type === PRINT_CATEGORY) {
+    console.log(action.payload.results);
     return {
       ...state,
       list: action.payload.results

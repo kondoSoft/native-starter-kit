@@ -5,10 +5,17 @@ const { StyleSheet } = React;
 const { width, height } = Dimensions.get('window');
 
 export default {
+  backgroundImage:{
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
+    opacity: 1,
+  },
   wrapper: {
     flex: 1,
+    width,
   },
-
   slide: {
     flex: 1,
     backgroundColor: 'transparent',
@@ -39,6 +46,7 @@ export default {
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
     shadowRadius: 1,
+    bottom: 2,
   },
   paginationStyle:{
     flex: 1,

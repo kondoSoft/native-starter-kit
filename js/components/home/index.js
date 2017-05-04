@@ -70,45 +70,40 @@ class Home extends Component {
               </Button>
             </Right>
           </Header>
-          <Grid style={{ maxHeight: 60 }}>
-
-              <Row  style={{height: 60}}>
+          <Grid style={{ maxHeight: 60, flex: 1 }}>
+              <Row>
                 <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
               </Row>
-
           </Grid>
-          <Content padder scrollEnabled={false}>
+          <Content padder scrollEnabled={true} style={styles.contentHome}>
             <Grid style={styles.videoGrid}>
               <Row style={styles.videoRow}>
                 <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>VIDEO VIRAL DE LA SEMANA</Text>
                 <WebView
                   source={{ uri: 'https://www.youtube.com/embed/v7MGUNV8MxU' }}
-                  style={{ margin: 7, flex: 1 }}
+                  style={styles.webView}
                   javaScriptEnabled={true}
                 />
               </Row>
             </Grid>
             <Grid style={styles.mt}>
               {this.props.list.map((item, i) =>
-              <Card key={i}>
+              <Card key={i} style={{ flex: 1 }}>
                 <CardItem style={styles.cardItem}>
                   { this.props.list[i] == this.props.list[0] ?  (
-                    // <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
                     <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
 
-                      <Body style={{ alignItems: 'center'}}>
-                        <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
-                        {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
+                      <Body style={{ flex: 1, alignItems: 'center'}}>
+                        <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
                         <Text style={styles.text}>CATEGORÍAS {this.props.list[i].category_name}</Text>
 
                       </Body>
-                      </TouchableOpacity>
+                    </TouchableOpacity>
                   ) : (
                     <TouchableOpacity onPress={() => this.pushRoute('classified', i)} >
-                      <Body style={{ alignItems: 'center' }}>
+                      <Body style={{  flex: 1, alignItems: 'center' }}>
 
-                        <Thumbnail square source={{ uri: this.props.list[i].image }} style={{width: 145, height: 125, marginTop: 5}} />
-                        {/* <Thumbnail square source={require('../../../assets/img/catzone.png')} style={{width: 145, height: 125}} /> */}
+                        <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
                         <Text style={styles.text}>CATEGORÍAS {this.props.list[i].category_name}</Text>
                       </Body>
                     </TouchableOpacity>
@@ -119,10 +114,9 @@ class Home extends Component {
               )}
             </Grid>
             <Grid>
-              <Row style={{ justifyContent: 'center', top: 30 }}>
-                <Button style={{ width: 300, justifyContent: 'center' , backgroundColor: 'orange' }}
-                  onPress={() => this.pushRoute('contactus')}>
-                  <Text style={{ textAlign: 'center', color: 'black' }} >ANUNCIATE AQUI</Text>
+              <Row style={styles.rowAnun}>
+                <Button full warning onPress={() => this.pushRoute('contactus')}>
+                  <Text style={styles.textAun}> ANUNCIATE AQUI</Text>
                 </Button>
               </Row>
             </Grid>

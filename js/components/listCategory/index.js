@@ -42,8 +42,10 @@ class ListCategory extends Component {
 
   render() {
     return (
+      <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
         <View style={styles.view} showsVerticalScrollIndicator={false}>
             <Swiper style={styles.wrapper}
+              
               showsPagination={true}
               horizontal={true}
               dot={<View style={{backgroundColor: 'dodgerblue', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
@@ -78,6 +80,7 @@ class ListCategory extends Component {
               </View>
             </Swiper>
         </View>
+      </Image>
     );
   }
 }

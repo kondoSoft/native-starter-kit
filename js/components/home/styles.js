@@ -16,6 +16,11 @@ export default {
   container: {
     backgroundColor: '#FBFAFA',
   },
+  contentHome:{
+    flex: 1,
+    height,
+    paddingTop: 0,
+  },
   header: {
     backgroundColor: '#ffa726',
   },
@@ -29,7 +34,8 @@ export default {
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
     shadowRadius: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flex: 1,
   },
   itemInput:{
     fontSize: 12,
@@ -42,14 +48,14 @@ export default {
   },
   mt: {
     marginTop: 22,
+    flex: 1,
   },
   imagePub:{
     flex: 1,
-    height: 60,
   },
   videoRow:{
     flexDirection: 'column',
-    height: 170,
+    height: 160,
     width: 240,
     borderWidth: 0.3,
     borderColor: '#A0A0A0',
@@ -57,12 +63,37 @@ export default {
     backgroundColor: '#fff'
   },
   videoGrid:{
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 17,
-    // shadowColor: 'dimgray',
-    // shadowOffset: {width: 0, height: 0},
-    // shadowOpacity: 1,
-    // shadowRadius: 1,
+    top: 10,
 
-  }
+  },
+  webView:{
+    margin: 7,
+    flex: 1
+  },
+  thumbnailHome:{
+    flex: 1,
+    marginTop: 5,
+    flexDirection: 'row',
+    height: 125,
+    width: 145,
+  },
+  textAnun:{
+    textAlign: 'center',
+    color: 'black',
+
+  },
+  rowAnun:{
+  flex: 1,
+  justifyContent: 'center',
+
+  },
+
 };
