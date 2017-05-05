@@ -62,7 +62,7 @@ class BlankPage extends Component {
             <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad.png')} />
           </Row>
         </Grid>
-        <Content padder scrollEnabled={false} style={{ height, paddingLeft: 5 }}>
+        <Content padder scrollEnabled={false} style={{ paddingLeft: 5 }}>
           <ListZone />
         </Content>
       </Container>

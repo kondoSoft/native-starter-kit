@@ -16,7 +16,7 @@ export default {
     backgroundColor: 'transparent',
   },
   view:{
-    height: 100,
+    // height: 100,
   },
   row:{
     flexDirection: 'row',

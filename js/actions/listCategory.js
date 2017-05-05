@@ -3,6 +3,7 @@ import type { Action } from './types';
 
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const PRINT_CLASSIFIEDS = 'PRINT_CLASSIFIEDS';
+export const PRINT_CLASSIFIEDS_PK = 'PRINT_CLASSIFIEDS_PK'
 
 export function setIndex(index:number):Action {
   return {
@@ -16,6 +17,12 @@ export function printClassifieds(index:number):Action {
     type: PRINT_CLASSIFIEDS,
     payload: index,
   };
+}
+export function printClassifiedsPK(index:number):Action {
+  return {
+    type: PRINT_CLASSIFIEDS_PK,
+    payload: index,
+  }
 }
 
 export function fetchClassifieds(index:number):Action{

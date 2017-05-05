@@ -9,8 +9,8 @@ export type State = {
 const initialState = {
   list: [
     {
-      'id': '',
-      'category_name': '',
+      'id': 0,
+      'category_name': 'ZONAS',
       'image': '',
     }
   ],
@@ -29,7 +29,6 @@ export default function (state:State = initialState, action:Action): State {
     };
   }
   else if (action.type === PRINT_CATEGORY) {
-    console.log(action.payload.results);
     return {
       ...state,
       list: action.payload.results

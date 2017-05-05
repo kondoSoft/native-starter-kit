@@ -54,7 +54,6 @@ class Home extends Component {
 
 
   render() {
-    console.log(this.props);
     var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>

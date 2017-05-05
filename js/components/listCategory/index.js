@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-
-
 import styles from './styles'
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchClassifieds } from '../../actions/listCategory';
@@ -23,6 +21,7 @@ class ListCategory extends Component {
 
   static propTypes = {
     listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
+    listZone: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
@@ -45,7 +44,7 @@ class ListCategory extends Component {
       <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
         <View style={styles.view} showsVerticalScrollIndicator={false}>
             <Swiper style={styles.wrapper}
-              
+
               showsPagination={true}
               horizontal={true}
               dot={<View style={{backgroundColor: 'dodgerblue', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
@@ -97,7 +96,8 @@ const mapStateToProps = state => ({
   name: state.user.name,
   navigation: state.cardNavigation,
   listCategory: state.listCategory.results,
-
+  selectZone: state.listZone.selectedZone,
+  selectedPKCategory: state.listZone.selectedPKCategory,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);
