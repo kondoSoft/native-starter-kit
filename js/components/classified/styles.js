@@ -7,7 +7,8 @@ const { width, height } = Dimensions.get('window');
 export default {
   content: {
     padding: 0,
-    backgroundColor: 'white',
+    flex: 1,
+    height,
   },
   imagePub:{
     flex: 1,

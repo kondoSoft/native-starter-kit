@@ -19,16 +19,20 @@ export default {
   slide: {
     flex: 1,
     backgroundColor: 'transparent',
-  },
-  view:{
-    flex: 1,
     height,
   },
+
   row:{
     flexDirection: 'row',
     justifyContent: 'space-around',
+    alignItems: 'center',
     flexWrap: 'wrap',
-    height: 95,
+    height: 100,
+  },
+  touchableOpacity:{
+    flex: 1,
+    alignItems: 'center',
+
   },
   thumbnail:{
     width: 110,
@@ -42,16 +46,16 @@ export default {
   text:{
     fontSize: 14,
     color: 'white',
-    shadowColor: 'dimgray',
+    shadowColor: 'black',
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
-    shadowRadius: 1,
+    shadowRadius: 3,
     bottom: 2,
   },
-  paginationStyle:{
-    flex: 1,
-    bottom: 70,
-    backgroundColor: 'lightgray',
-    height: 90,
-  },
+  // paginationStyle:{
+  //   flex: 1,
+  //   bottom: 70,
+  //   backgroundColor: 'lightgray',
+  //   height: 90,
+  // },
 };

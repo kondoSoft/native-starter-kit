@@ -5,6 +5,7 @@ import { Dimensions } from 'react-native'
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
 import { openDrawer } from '../../actions/drawer';
+import { fetchAdvertising } from '../../actions/list';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
@@ -17,6 +18,7 @@ class Classified extends Component {
 
   static propTypes = {
     name: React.PropTypes.string,
+    advertising: React.PropTypes.arrayOf(React.PropTypes.object),
     listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
     index: React.PropTypes.number,
     openDrawer: React.PropTypes.func,
@@ -26,10 +28,22 @@ class Classified extends Component {
       key: React.PropTypes.string,
     }),
   }
+  constructor(props) {
+    super(props);
 
+    this.getRandomIndex = this.getRandomIndex.bind(this)
+
+  }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+
   }
+  getRandomIndex(){
+    const advertising = this.props.advertising
+    randomIndex = Math.floor(Math.random()*advertising.length)
+    return randomIndex
+  }
+
 
   render() {
     const { props: { name, index, listCategory } } = this;
@@ -53,15 +67,13 @@ class Classified extends Component {
           </Right>
         </Header>
         <Grid style={{ maxHeight: 60, flex: 1 }}>
-          <Row>
-            <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad3.png')} />
-          </Row>
+            <Row>
+              <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
+            </Row>
         </Grid>
-        <Content padder scrollEnabled={false} style={styles.content}>
+        <Content padder scrollEnabled={true} style={styles.content}>
           <ListCategory />
         </Content>
-        {/* <Footer style={{backgroundColor: 'lightgray', height: 50}}/> */}
-
       </Container>
     );
   }
@@ -70,6 +82,7 @@ class Classified extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
+    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
@@ -77,6 +90,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
+  advertising: state.list.advertising,
   name: state.user.name,
   index: state.list.selectedIndex,
   listCategory: state.listCategory.results,

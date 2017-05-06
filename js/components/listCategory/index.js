@@ -30,7 +30,11 @@ class ListCategory extends Component {
       key: React.PropTypes.string,
     }),
   }
+  constructor(props) {
+    super(props);
+    // this.state = {}
 
+  }
   componentWillMount(){
     this.props.fetchClassifieds()
   }
@@ -42,42 +46,26 @@ class ListCategory extends Component {
   render() {
     return (
       <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
-        <View style={styles.view} showsVerticalScrollIndicator={false}>
-            <Swiper style={styles.wrapper}
-
-              showsPagination={true}
-              horizontal={true}
-              dot={<View style={{backgroundColor: 'dodgerblue', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
-              activeDot={<View style={{backgroundColor: '#fff', width: 13, height: 13, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
-              paginationStyle={styles.paginationStyle}
-              loop={false}>
-              <View style={styles.slide} showsVerticalScrollIndicator={false}>
-                <Row style={styles.row}>
-                  {this.props.listCategory.map((item, i) =>
-                  <Col key={i} style={{
-                    width: 115,
-                    shadowColor: 'dimgray',
-                    shadowOffset: {width: 0, height: 0},
-                    shadowOpacity: 1,
-                    shadowRadius: 1, }}
-                    >
-                    <TouchableOpacity
-                        onPress={() => this.pushRoute('subCategory', i)}
-                      >
-                      <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                        <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                      </Thumbnail>
-                    </TouchableOpacity>
-                  </Col>
-                  )}
-                </Row>
-              </View>
-              <View style={styles.slide} showsVerticalScrollIndicator={false}>
-                <Row style={styles.row}>
-
-                </Row>
-              </View>
-            </Swiper>
+        <View style={styles.slide} showsVerticalScrollIndicator={false}>
+            <Row style={styles.row}>
+              {this.props.listCategory.map((item, i) =>
+              <Col key={i} style={{
+                width: 115,
+                shadowColor: 'dimgray',
+                shadowOffset: {width: 0, height: 0},
+                shadowOpacity: 1,
+                shadowRadius: 1, }}
+                >
+                <TouchableOpacity style={styles.touchableOpacity}
+                    onPress={() => this.pushRoute('subCategory', i)}
+                  >
+                  <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
+                    <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
+                  </Thumbnail>
+                </TouchableOpacity>
+              </Col>
+              )}
+            </Row>
         </View>
       </Image>
     );
