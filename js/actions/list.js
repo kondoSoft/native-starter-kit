@@ -27,7 +27,7 @@ export function printAdvertising(index:number):Action{
 
 export function fetchCategory(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/category/',{
+    return fetch('http://138.68.2.137/category/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -42,7 +42,7 @@ export function fetchCategory(index:number):Action{
 
 export function fetchAdvertising(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/advertising/',{
+    return fetch('http://138.68.2.137/advertising/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

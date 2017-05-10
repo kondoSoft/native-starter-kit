@@ -4,6 +4,7 @@ import type { Action } from './types';
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const PRINT_CLASSIFIEDS = 'PRINT_CLASSIFIEDS';
 
+
 export function setIndex(index:number):Action {
   return {
     type: SET_CATEGORY,
@@ -18,9 +19,10 @@ export function printClassifieds(index:number):Action {
   };
 }
 
+
 export function fetchClassifieds(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/classifieds/',{
+    return fetch('http://138.68.2.137/classifieds/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

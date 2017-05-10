@@ -3,6 +3,9 @@ import type { Action } from './types';
 
 export const SET_ESTABLISHMENT = 'SET_ESTABLISHMENT';
 export const PRINT_ESTABLISHMENT = 'PRINT_ESTABLISHMENT';
+export const PRINT_ESTABLISHMENT_CLASSIFIED = 'PRINT_ESTABLISHMENT_CLASSIFIED';
+export const PRINT_ESTABLISHMENT_TYPE = 'PRINT_ESTABLISHMENT_TYPE';
+
 
 export function setEstablishment(index:number):Action {
   return {
@@ -16,9 +19,23 @@ export function printEstablishment(index:number):Action {
     payload: index,
   }
 }
+export function printEstablishmentClassified(index:number):Action {
+  return {
+    type: PRINT_ESTABLISHMENT_CLASSIFIED,
+    payload: index,
+  }
+}
+export function printEstablishmentType(index:number, type_id:number):Action{
+  return{
+    type: PRINT_ESTABLISHMENT_TYPE,
+    index: index,
+    type_id: type_id,
+  }
+}
+
 export function fetchEstablishment(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/establishment/',{
+    return fetch('http://138.68.2.137/establishment/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -27,6 +44,34 @@ export function fetchEstablishment(index:number):Action{
     })
     .then(res => res.json())
     .then(res => dispatch(printEstablishment(res)))
+    .catch(err => console.log(err))
+  }
+}
+export function fetchEstablishmentClassified(index:number):Action{
+  return dispatch => {
+    return fetch('http://138.68.2.137/establishment/?classified_id=' + index,{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(res => dispatch(printEstablishmentClassified(res)))
+    .catch(err => console.log(err))
+  }
+}
+export function fetchEstablishmentType(index:number, type_id:number):Action{
+  return dispatch => {
+    return fetch('http://138.68.2.137/establishment/?type_id=' + type_id + '&zone_id=' + index,{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(res => dispatch(printEstablishmentType(res)))
     .catch(err => console.log(err))
   }
 }

@@ -6,7 +6,7 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
-import { setZone, fetchZone } from '../../actions/listZone';
+import { setZone, fetchZone, fetchPkZone } from '../../actions/listZone';
 import styles from './styles';
 import Swiper from 'react-native-swiper'
 
@@ -20,6 +20,7 @@ class ListZone extends Component {
 
   static propTypes = {
     listZone: React.PropTypes.arrayOf(React.PropTypes.object),
+    pk_zone: React.PropTypes.func,
     setZone: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
@@ -30,14 +31,17 @@ class ListZone extends Component {
   }
   componentWillMount(){
     this.props.fetchZone()
+
   }
 
   pushRoute(route, index) {
     this.props.setZone(index);
+    this.props.fetchPkZone(index + 1);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
+
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
           <StatusBar barStyle='light-content'/>
@@ -53,7 +57,6 @@ class ListZone extends Component {
                       <TouchableOpacity
                         onPress={() => this.pushRoute('classified', i)}
                       >
-                        {/* <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}> */}
                         <Image style={styles.imageZone} square source={{uri: this.props.listZone[i].image }}>
                           <Text style={styles.textName}>{this.props.listZone[i].name_zone}</Text>
                         </Image>
@@ -71,6 +74,7 @@ class ListZone extends Component {
 function bindAction(dispatch) {
   return {
     setZone: index => dispatch(setZone(index)),
+    fetchPkZone: index => dispatch(fetchPkZone(index)),
     fetchZone: index => dispatch(fetchZone(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),

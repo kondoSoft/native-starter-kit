@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail, ListItem  } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
-import { fetchTypeClassifieds } from '../../actions/listType';
+import { fetchPKClassifieds } from '../../actions/listType';
 import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
@@ -13,6 +13,7 @@ import styles from './styles'
 const {
   reset,
   pushRoute,
+  replaceAtIndex,
 
 } = actions;
 
@@ -26,6 +27,7 @@ class ListSubCategory extends Component {
     listEstablishment: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
+    replaceAtIndex: React.PropTypes.func,
     reset: React.PropTypes.func,
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
@@ -33,16 +35,24 @@ class ListSubCategory extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchTypeClassifieds()
+    // this.props.fetchPKClassifieds()
+    // console.log(this.props.listTypeClassifieds);
+
+  }
+  componentDidMount(){
+
+
   }
   pushRoute(route, index) {
     this.props.setEstablishment(index);
+    // this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index], type_id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
+
   }
 
   render() {
+    console.log(this.props);
     const listTypeClassifieds = Object.keys(this.props.listEstablishment)
-
     return (
       <Container>
         <Content style= {styles.content}>
@@ -66,8 +76,9 @@ class ListSubCategory extends Component {
 function bindAction(dispatch) {
   return {
     setEstablishment: index => dispatch(setEstablishment(index)),
-    fetchTypeClassifieds: index => dispatch(fetchTypeClassifieds(index)),
+    fetchPKClassifieds: index => dispatch(fetchPKClassifieds(index)),
     openDrawer: () => dispatch(openDrawer()),
+    replaceAtIndex: (index, route, key) => dispatch(replaceAtIndex(index, route, key)),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };

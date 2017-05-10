@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_ZONE, PRINT_ZONE } from '../actions/listZone';
+import { SET_ZONE, PRINT_ZONE, PK_ZONE } from '../actions/listZone';
 
 export type State = {
     results: string
@@ -16,6 +16,7 @@ const initialState = {
     },
   ],
   selectedZone: undefined,
+  selectedPKCategory: [],
 };
 
 export default function (state:State = initialState, action:Action): State {
@@ -29,6 +30,12 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       results: action.payload.results
+    }
+  }
+  else if (action.type == PK_ZONE) {
+    return {
+      ...state,
+      selectedPKCategory: action.payload,
     }
   }
   return state;

@@ -104,7 +104,7 @@ class AppNavigator extends Component {
       case 'subCategory':
         return <SubCategory />;
       default :
-        return <Login />;
+        return <Home />;
     }
   }
 

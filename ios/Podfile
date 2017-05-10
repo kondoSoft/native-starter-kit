@@ -4,9 +4,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 # Change 'AirMapsExplorer' to match the target in your Xcode project.
-target 'NativeStarterKit' do
+target 'Que_Hacer_Merida' do
 
-  
+
   pod 'React', path: '../node_modules/react-native', :subspecs => [
     'Core',
     'RCTActionSheet',

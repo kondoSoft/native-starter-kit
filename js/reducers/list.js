@@ -7,10 +7,17 @@ export type State = {
 }
 
 const initialState = {
-  list: [ ],
+  list: [
+    {
+      'id': 0,
+      'category_name': 'ZONAS',
+      'image': '',
+    }
+  ],
   advertising: [ {
     'image': ''
-  } ],
+    }
+  ],
   selectedIndex: undefined,
 };
 

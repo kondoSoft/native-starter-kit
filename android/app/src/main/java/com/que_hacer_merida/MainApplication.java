@@ -1,4 +1,4 @@
-package com.nativestarterkit;
+package com.que_hacer_merida;
 
 import android.app.Application;
 import android.util.Log;

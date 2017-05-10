@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_TYPE, PRINT_TYPE } from '../actions/listType';
+import { SET_TYPE, PK_CLASSIFIED } from '../actions/listType';
 
 export type State = {
     results: string
@@ -8,7 +8,7 @@ export type State = {
 
 const initialState = {
   results: [
-
+    
   ],
   selectedType: undefined,
 };
@@ -20,10 +20,10 @@ export default function (state:State = initialState, action:Action): State {
       selectedType: action.payload,
     }
   }
-  if (action.type === PRINT_TYPE) {
+  if (action.type === PK_CLASSIFIED) {
     return {
       ...state,
-      results: action.payload.results
+      results: action.payload
     }
   }
   return state;

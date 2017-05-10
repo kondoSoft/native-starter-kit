@@ -13,6 +13,11 @@ export type Action =
     | { type: 'PRINT_CLASSIFIEDS'}
     | { type: 'PRINT_TYPE'}
     | { type: 'PRINT_ESTABLISHMENT'}
+    | { type: 'PK_ZONE'}
+    | { type: 'PK_CLASSIFIED'}
+    | { type: 'SEARCH_NAME'}
+    | { type: 'PRINT_ESTABLISHMENT_TYPE'}
+
 
 export type Dispatch = (action:Action | Array<Action>) => any;
 export type GetState = () => Object;

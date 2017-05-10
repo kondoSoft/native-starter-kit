@@ -34,7 +34,7 @@ class SideBar extends Component {
             <Icon style={styles.icon} name="ios-mail"/>
             <Text style={styles.text}>CONTACTANOS</Text>
           </ListItem>
-          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('favorites')} >
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('establishments')} >
             <Icon style={styles.icon} name="ios-heart"/>
             <Text style={styles.text}>FAVORITOS</Text>
           </ListItem>
