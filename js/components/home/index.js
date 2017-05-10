@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, Button, Item, Icon, Input, Left, Body, Right } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchCategory, fetchAdvertising } from '../../actions/list';
+import { fetchSearch } from '../../actions/search';
+
 import styles from './styles';
 
 const {
@@ -22,6 +23,7 @@ class Home extends Component {
 
     list: React.PropTypes.arrayOf(React.PropTypes.object),
     advertising: React.PropTypes.arrayOf(React.PropTypes.object),
+    listSearch: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
@@ -32,7 +34,9 @@ class Home extends Component {
   }
   constructor(props) {
     super(props);
+    this.state = {value: ''};
     this.getRandomIndex = this.getRandomIndex.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 
   }
   componentWillMount(){
@@ -41,8 +45,9 @@ class Home extends Component {
 
   }
 
-  pushRoute(route, index) {
+  pushRoute(route, index, value) {
     this.props.setIndex(index);
+    this.props.fetchSearch(value);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
@@ -52,16 +57,21 @@ class Home extends Component {
     return randomIndex
   }
 
+  handleChange(event) {
+
+    this.setState({value: event.nativeEvent.text});
+   }
 
   render() {
+
     var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>
         <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
           <Header searchBar style={styles.header}>
             <Item style={styles.item}>
-              <Icon name="search" />
-              <Input placeholder="A dónde quieres ir?" style={styles.itemInput}/>
+              <Icon name="search" onPress={() => this.pushRoute('establishments', this.props.navigation.key, this.state.value)}/>
+              <Input placeholder="A dónde quieres ir?" onChange={event => this.handleChange(event)} style={styles.itemInput}/>
             </Item>
             <Right style={{ flex: 1 }}>
               <Button transparent onPress={this.props.openDrawer}>
@@ -130,6 +140,7 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
+    fetchSearch: name => dispatch(fetchSearch(name)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
@@ -141,6 +152,7 @@ const mapStateToProps = state => ({
   list: state.list.list,
   advertising: state.list.advertising,
   navigation: state.cardNavigation,
+  listSearch: state.search.results,
 });
 
 export default connect(mapStateToProps, bindAction)(Home);

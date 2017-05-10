@@ -9,6 +9,8 @@ import listZone from './listZone';
 import listCategory from './listCategory';
 import listEstablishment from './listEstablishment';
 import listTypeClassifieds from './listTypeClassifieds';
+import search from './search';
+
 export default combineReducers({
 
   drawer,
@@ -19,5 +21,6 @@ export default combineReducers({
   listEstablishment,
   listTypeClassifieds,
   cardNavigation,
+  search,
 
 });

@@ -67,6 +67,7 @@ class Single extends Component {
     });
   };
   render() {
+    console.log(this.props);
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     return (
@@ -83,7 +84,7 @@ class Single extends Component {
                   source={{uri: this.props.listEstablishment[i].image[index].image}}
                   // source={item.image}
                   >
-                  <Text>{this.props.listEstablishment[i].image[index].image}</Text>
+                  {/* <Text>{this.props.listEstablishment[i].image[index].image}</Text> */}
                   <Body style={styles.body}>
                     <Left>
 

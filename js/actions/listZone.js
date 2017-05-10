@@ -28,7 +28,7 @@ export function pk_zone(pk){
 
 export function fetchZone(index:number):Action{
   return dispatch => {
-    return fetch('http://192.168.1.76:8000/category_zone/',{
+    return fetch('http://138.68.2.137/category_zone/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -43,7 +43,7 @@ export function fetchZone(index:number):Action{
 
 export function fetchPkZone(index:number):Action{
   return dispatch => {
-    return fetch('http://192.168.1.76:8000/zone_establishment/?zone_id=' + index,{
+    return fetch('http://138.68.2.137/zone_establishment/?zone_id=' + index,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

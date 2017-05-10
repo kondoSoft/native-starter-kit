@@ -24,22 +24,8 @@ export default function (state:State = initialState, action:Action): State {
       selectedCategory: action.payload,
     };
   }
-  // else if (action.type === PK_ZONE) {
-  //   var classifieds =[];
-  //   var establishment = action.payload.results.map((item, i) =>{
-  //
-  //     item.classifieds.map((itemClassifieds, i) =>{
-  //       classifieds.push(itemClassifieds)
-  //       return classifieds
-  //     })
-  //   })
-  //   return {
-  //     ...state,
-  //     results: classifieds
-  //   }
-  // }
+
   else if (action.type === PK_ZONE) {
-    console.log(action.payload.results);
     return {
       ...state,
       results: action.payload

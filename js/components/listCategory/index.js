@@ -8,6 +8,9 @@ import { Grid, Row, Col } from 'react-native-easy-grid';
 import styles from './styles'
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchClassifieds } from '../../actions/listCategory';
+import { fetchEstablishmentClassified } from '../../actions/listEstablishment'
+import { fetchPKClassifieds } from '../../actions/listType';
+
 import Swiper from 'react-native-swiper';
 
 
@@ -32,15 +35,18 @@ class ListCategory extends Component {
   }
   constructor(props) {
     super(props);
-    // this.state = {}
 
   }
   componentWillMount(){
     this.props.fetchClassifieds()
+    // this.props.fetchEstablishmentClassified()
   }
+
   pushRoute(route, index) {
-    this.props.setIndex(index);
-    this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
+    this.props.setIndex(index)
+    this.props.fetchPKClassifieds(this.props.listCategory[index].id)
+    this.props.fetchEstablishmentClassified(this.props.listCategory[index].id)
+    this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
 
   render() {
@@ -56,13 +62,15 @@ class ListCategory extends Component {
                 shadowOpacity: 1,
                 shadowRadius: 1, }}
                 >
-                <TouchableOpacity style={styles.touchableOpacity}
+                  <TouchableOpacity style={styles.touchableOpacity}
+                    // onPress={()=>(this.routeCondition(i))}
                     onPress={() => this.pushRoute('subCategory', i)}
-                  >
-                  <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                    <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                  </Thumbnail>
-                </TouchableOpacity>
+
+                    >
+                      <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
+                        <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
+                      </Thumbnail>
+                    </TouchableOpacity>
               </Col>
               )}
             </Row>
@@ -75,6 +83,8 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchClassifieds: index => dispatch(fetchClassifieds(index)),
+    fetchEstablishmentClassified: index => dispatch(fetchEstablishmentClassified(index)),
+    fetchPKClassifieds: index => dispatch(fetchPKClassifieds(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
@@ -85,7 +95,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   listCategory: state.listCategory.results,
   selectZone: state.listZone.selectedZone,
-  selectedPKCategory: state.listZone.selectedPKCategory,
+  listTypeClassifieds: state.listTypeClassifieds.results,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);
