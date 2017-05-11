@@ -1,6 +1,8 @@
 
 import type { Action } from '../actions/types';
 import { SET_ZONE, PRINT_ZONE, PK_ZONE } from '../actions/listZone';
+import { PRINT_CLASSIFIEDS } from '../actions/listCategory';
+
 
 export type State = {
     results: string
@@ -36,6 +38,12 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       selectedPKCategory: action.payload,
+    }
+  }
+  else if (action.type == PRINT_CLASSIFIEDS) {
+    return {
+      ...state,
+      selectedPKCategory: action.payload.results,
     }
   }
   return state;

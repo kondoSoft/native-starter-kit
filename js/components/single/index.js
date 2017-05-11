@@ -90,13 +90,14 @@ class Single extends Component {
         <Grid style={styles.gridSwiper}>
           <Swiper
             showsButtons
-            height={285}
+            height={280}
             showsPagination={false}
             scrollEnabled={false}
             automaticallyAdjustContentInsets={true}
             style={
               { padding: 0,
-                margin: 0}
+                margin: 0,
+              }
               }>
             {this.props.listEstablishment[this.props.index].image.map((item, i) =>
              <View key={i} style={styles.slide1}>
@@ -106,7 +107,6 @@ class Single extends Component {
                  source={{uri: item.image}}
                  >
                  </Image>
-                 {console.log(item.image)}
                </View>
              )}
              </Swiper>

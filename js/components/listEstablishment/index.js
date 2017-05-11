@@ -3,9 +3,8 @@ import { TouchableOpacity, Image, View } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
-import { setEstablishment, fetchEstablishment, fetchEstablishmentClassified } from '../../actions/listEstablishment';
+import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
-
 import styles from './styles'
 
 
@@ -31,8 +30,7 @@ class ListEstablishment extends Component {
   }
 
   componentWillMount(){
-    // this.props.fetchEstablishment()
-    // this.props.fetchEstablishmentClassified()
+
   }
   pushRoute(route, index) {
     this.props.setEstablishment(index)
@@ -85,8 +83,6 @@ class ListEstablishment extends Component {
 function bindAction(dispatch) {
   return {
     setEstablishment: index => dispatch(setEstablishment(index)),
-    fetchEstablishment: index => dispatch(fetchEstablishment(index)),
-    fetchEstablishmentClassified: index => dispatch(fetchEstablishmentClassified(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),

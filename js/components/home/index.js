@@ -7,6 +7,8 @@ import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, But
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchCategory, fetchAdvertising } from '../../actions/list';
+import { fetchClassifieds } from '../../actions/listCategory';
+
 import { fetchSearch } from '../../actions/search';
 
 import styles from './styles';
@@ -14,6 +16,7 @@ import styles from './styles';
 const {
   reset,
   pushRoute,
+  pushRouteC,
 
 } = actions;
 
@@ -50,6 +53,12 @@ class Home extends Component {
     this.props.fetchSearch(value);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
+  pushRouteC(route, index) {
+    this.props.setIndex(index);
+    this.props.fetchClassifieds(index)
+    this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
+  }
+
 
   getRandomIndex(){
     const advertising = this.props.advertising
@@ -109,7 +118,7 @@ class Home extends Component {
                       </Body>
                     </TouchableOpacity>
                   ) : (
-                    <TouchableOpacity onPress={() => this.pushRoute('classified', i)} >
+                    <TouchableOpacity onPress={() => this.pushRouteC('classified', i)} >
                       <Body style={{  flex: 1, alignItems: 'center' }}>
 
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
@@ -140,6 +149,8 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
+    fetchClassifieds: index => dispatch(fetchClassifieds(index)),
+
     fetchSearch: name => dispatch(fetchSearch(name)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     openDrawer: () => dispatch(openDrawer()),

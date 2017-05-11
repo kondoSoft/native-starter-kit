@@ -7,19 +7,21 @@ const { width, height } = Dimensions.get('window');
 export default {
   swiper:{
     flex: 1,
+
   },
   slide1: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
-    height: 285,
+    // height: 285,
   },
   image:{
     flex: 1,
     width,
-    resizeMode: 'cover',
-    height: 300,
+    // resizeMode: 'cover',
+    height: 280,
   },
 
   gridCircle:{
@@ -46,12 +48,14 @@ export default {
     bottom: 25,
   },
   gridSwiper:{
+    flex: 1,
+    flexDirection: 'column',
     shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 7},
     shadowOpacity: 1,
     shadowRadius: 1,
-    maxHeight: 285,
-    width: 430,
+    maxHeight: 280,
+    // width: 430,
   },
 
   gridDescription:{
