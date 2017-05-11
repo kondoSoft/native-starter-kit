@@ -17,7 +17,6 @@ export function setIndex(index:number):Action {
   };
 }
 export function fetchSearch(name:string):Action{
-  console.log(name);
   return dispatch => {
     return fetch('http://138.68.2.137/search/?search=' + name,{
       method: 'GET',

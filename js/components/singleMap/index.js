@@ -21,7 +21,6 @@ const LATITUDE = 20.986035;
 const LONGITUDE = -89.619899;
 const LATITUDE_DELTA = 0.0053;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-let id=0;
 
 class SingleMap extends Component {
 
@@ -29,8 +28,8 @@ class SingleMap extends Component {
     super(props);
        this.state = {
          region: {
-           latitude: props.listEstablishment[id].coor.latitude,
-           longitude: props.listEstablishment[id].coor.longitude,
+           latitude: props.listEstablishment[this.props.index].coor.latitude,
+           longitude: props.listEstablishment[this.props.index].coor.longitude,
            latitudeDelta: LATITUDE_DELTA,
            longitudeDelta: LONGITUDE_DELTA,
           },
@@ -55,6 +54,7 @@ class SingleMap extends Component {
   }
 
   render() {
+    const id = this.props.index
     const activeFab = this.state.active
     const { props: { name, index, listEstablishment } } = this;
     return (

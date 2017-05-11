@@ -45,7 +45,6 @@ class ListCategory extends Component {
   pushRoute(route, index) {
     this.props.setIndex(index)
     this.props.fetchPKClassifieds(this.props.listCategory[index].id)
-    this.props.fetchEstablishmentClassified(this.props.listCategory[index].id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
 
@@ -93,7 +92,7 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   name: state.user.name,
   navigation: state.cardNavigation,
-  listCategory: state.listCategory.results,
+  listCategory: state.listZone.selectedPKCategory,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
 });

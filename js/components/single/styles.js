@@ -5,40 +5,36 @@ const { StyleSheet } = React;
 const { width, height } = Dimensions.get('window');
 
 export default {
-
-  header:{
-    paddingRight: 0,
-    paddingLeft: 0,
-    height: 300,
-    shadowColor: 'dimgray',
-    shadowOffset: {width: 0, height: 7},
-    shadowOpacity: 1,
-    shadowRadius: 1,
-
+  swiper:{
+    flex: 1,
   },
-
   slide1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
-    // width
-  },
-  body:{
-    flexDirection: 'row',
-    bottom: 130,
-    // width
+    height: 285,
   },
   image:{
     flex: 1,
-    height: 300,
+    width,
     resizeMode: 'cover',
-    width: 380
+    height: 300,
+  },
+
+  gridCircle:{
+    flex: 1,
+    alignItems: 'center',
+    maxHeight: 50
+  },
+  contentDescription:{
+    flex: 3,
+    padding: 0,
   },
 
   fontIconHeart:{
     fontSize: 24,
-    color: '#fff',
+    color: 'dimgray',
   },
   headerRight:{
     flexDirection: 'row',
@@ -49,7 +45,17 @@ export default {
     justifyContent: 'center',
     bottom: 25,
   },
+  gridSwiper:{
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 7},
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    maxHeight: 285,
+    width: 430,
+  },
+
   gridDescription:{
+
     padding: 15,
   },
   colDescription:{
