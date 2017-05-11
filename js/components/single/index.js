@@ -67,48 +67,51 @@ class Single extends Component {
     });
   };
   render() {
-    console.log(this.props);
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
+    // console.log(nativeEvent.layout.height);
     return (
-      <Container key={index}>
-        <Header style={styles.header}>
-          <Swiper showsButtons height={285} showsPagination={false} width={380}>
-            {this.props.listEstablishment.map((item, i) =>
-
-              <View key={i} style={styles.slide1}>
-                {this.props.listEstablishment[i].image.map((item, index) =>
-                <Image
-                  key={index}
-                  style={styles.image}
-                  source={{uri: this.props.listEstablishment[i].image[index].image}}
-                  // source={item.image}
-                  >
-                  {/* <Text>{this.props.listEstablishment[i].image[index].image}</Text> */}
-                  <Body style={styles.body}>
-                    <Left>
-
-                      <Button transparent onPress={() => this.popRoute()}>
-                        <Icon style={{ color: '#fff' }} name="arrow-round-back" />
-                      </Button>
-                    </Left>
-                    <Right style={styles.headerRight}>
-                      <Button transparent >
-                        <Icon style={styles.fontIconHeart} name="heart" />
-                      </Button>
-                      <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
-                        <Icon style={{ color: '#fff' }} name="md-more" />
-                      </Button>
-                    </Right>
-                  </Body>
-                </Image>
-                )}
-              </View>
-            )}
-
-            </Swiper>
+      <Container>
+        <Header searchBar style={{ backgroundColor: '#ffa726' }}>
+            <Left>
+              <Button transparent onPress={() => this.popRoute()}>
+                <Icon style={{ color: 'dimgray' }} name="arrow-round-back" />
+              </Button>
+            </Left>
+            <Right style={styles.headerRight}>
+              <Button transparent >
+                <Icon style={styles.fontIconHeart} name="heart" />
+              </Button>
+              <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
+                <Icon style={{ color: 'dimgray' }} name="md-more" />
+              </Button>
+            </Right>
         </Header>
-        <Grid  style={{ alignItems: 'center', maxHeight: 50 }}>
+        <Grid style={styles.gridSwiper}>
+          <Swiper
+            showsButtons
+            height={285}
+            showsPagination={false}
+            scrollEnabled={false}
+            automaticallyAdjustContentInsets={true}
+            style={
+              { padding: 0,
+                margin: 0}
+              }>
+            {this.props.listEstablishment[this.props.index].image.map((item, i) =>
+             <View key={i} style={styles.slide1}>
+               <Image
+                 key={index}
+                 style={styles.image}
+                 source={{uri: item.image}}
+                 >
+                 </Image>
+                 {console.log(item.image)}
+               </View>
+             )}
+             </Swiper>
+        </Grid>
+        <Grid  style={styles.gridCircle}>
           <Row style={{ height: 50 }}>
             <Button style={styles.buttonMaps} transparent onPress={() => this.pushRoute('singlemap', index)}>
               <Thumbnail style={{ backgroundColor: 'orange', alignItems: 'center', justifyContent: 'center' }}>
@@ -118,7 +121,7 @@ class Single extends Component {
             </Button>
           </Row>
         </Grid>
-        <Content scrollEnabled={false}>
+        <Content scrollEnabled={false} style={styles.contentDescription}>
           <Grid style={styles.gridDescription}>
             <Row>
               <H3>{this.props.listEstablishment[index].name}</H3>
@@ -155,9 +158,7 @@ class Single extends Component {
               </Button>
             </Row>
             <Row>
-
               <Right>
-
                 { activeFab ? (
                   <Text style={styles.fontFooter}>Te encuentras en "{this.props.listEstablishment[index].name}" a traves de Que Hacer? Merida</Text>
                 ):(
@@ -203,7 +204,6 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  name: state.user.name,
   index: state.listEstablishment.selectedEstablishment,
   listEstablishment: state.listEstablishment.results,
 });

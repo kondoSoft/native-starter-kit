@@ -19,17 +19,18 @@ export function printEstablishment(index:number):Action {
     payload: index,
   }
 }
-export function printEstablishmentClassified(index:number):Action {
-  return {
-    type: PRINT_ESTABLISHMENT_CLASSIFIED,
-    payload: index,
-  }
-}
-export function printEstablishmentType(index:number, type_id:number):Action{
+// export function printEstablishmentClassified(index:number):Action {
+//   return {
+//     type: PRINT_ESTABLISHMENT_CLASSIFIED,
+//     payload: index,
+//   }
+// }
+export function printEstablishmentType(type_id:number, zone_id:number):Action{
+  console.log(type_id, zone_id);
   return{
     type: PRINT_ESTABLISHMENT_TYPE,
-    index: index,
     type_id: type_id,
+    zone_id: zone_id,
   }
 }
 
@@ -47,23 +48,23 @@ export function fetchEstablishment(index:number):Action{
     .catch(err => console.log(err))
   }
 }
-export function fetchEstablishmentClassified(index:number):Action{
+// export function fetchEstablishmentClassified(index:number):Action{
+//   return dispatch => {
+//     return fetch('http://138.68.2.137/establishment/?classified_id=' + index,{
+//       method: 'GET',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//       }
+//     })
+//     .then(res => res.json())
+//     .then(res => dispatch(printEstablishmentClassified(res)))
+//     .catch(err => console.log(err))
+//   }
+// }
+export function fetchEstablishmentType(type_id:number, zone_id:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/establishment/?classified_id=' + index,{
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(res => res.json())
-    .then(res => dispatch(printEstablishmentClassified(res)))
-    .catch(err => console.log(err))
-  }
-}
-export function fetchEstablishmentType(index:number, type_id:number):Action{
-  return dispatch => {
-    return fetch('http://138.68.2.137/establishment/?type_id=' + type_id + '&zone_id=' + index,{
+    return fetch('http://138.68.2.137/establishment/?type_id=' + type_id + '&zone_id=' + zone_id,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

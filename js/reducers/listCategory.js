@@ -25,12 +25,12 @@ export default function (state:State = initialState, action:Action): State {
     };
   }
 
-  else if (action.type === PK_ZONE) {
-    return {
-      ...state,
-      results: action.payload
-    }
-  }
+  // else if (action.type === PK_ZONE) {
+  //   return {
+  //     ...state,
+  //     results: action.payload
+  //   }
+  // }
 
   return state;
 }

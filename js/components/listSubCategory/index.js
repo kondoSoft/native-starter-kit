@@ -3,8 +3,8 @@ import { TouchableOpacity, Image, View } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail, ListItem  } from 'native-base';
-import { setEstablishment } from '../../actions/listEstablishment';
-import { fetchPKClassifieds } from '../../actions/listType';
+import { setType } from '../../actions/listType';
+import { fetchEstablishmentType } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
@@ -22,7 +22,7 @@ class ListSubCategory extends Component {
 
   static propTypes = {
 
-    setEstablishment: React.PropTypes.func,
+    setType: React.PropTypes.func,
     listTypeClassifieds: React.PropTypes.arrayOf(React.PropTypes.object),
     listEstablishment: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
@@ -44,19 +44,19 @@ class ListSubCategory extends Component {
 
   }
   pushRoute(route, index) {
-    this.props.setEstablishment(index);
-    // this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index], type_id)
+    this.props.setType(index);
+    // console.log(index);
+    console.log(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id);
+    this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
 
   }
 
   render() {
-    console.log(this.props);
-    const listTypeClassifieds = Object.keys(this.props.listEstablishment)
     return (
       <Container>
         <Content style= {styles.content}>
-          {/* { this.props.list[i] == this.props.list[0] ?  ( */}
+
             {this.props.listTypeClassifieds.map((item, i) =>
             <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
               <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
@@ -66,7 +66,6 @@ class ListSubCategory extends Component {
             </ListItem>
           )}
 
-        {/* }) */}
         </Content>
       </Container>
 
@@ -75,8 +74,8 @@ class ListSubCategory extends Component {
 }
 function bindAction(dispatch) {
   return {
-    setEstablishment: index => dispatch(setEstablishment(index)),
-    fetchPKClassifieds: index => dispatch(fetchPKClassifieds(index)),
+    setType: index => dispatch(setType(index)),
+    fetchEstablishmentType: (type_id, zone_id) => dispatch(fetchEstablishmentType(type_id, zone_id)),
     openDrawer: () => dispatch(openDrawer()),
     replaceAtIndex: (index, route, key) => dispatch(replaceAtIndex(index, route, key)),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
@@ -85,9 +84,12 @@ function bindAction(dispatch) {
 }
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  listEstablishment: state.listEstablishment.results,
+  // listEstablishment: state.listEstablishment.results,
+  listCategory: state.listZone.selectedPKCategory,
   list: state.listZone.results,
   listTypeClassifieds: state.listTypeClassifieds.results,
+  setZone: state.listZone.selectedZone,
+  listZone: state.listZone.results,
 
 });
 
