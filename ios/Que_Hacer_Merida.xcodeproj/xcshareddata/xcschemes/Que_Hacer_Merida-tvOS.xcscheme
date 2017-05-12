@@ -31,7 +31,7 @@
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
                BuildableName = "Que_Hacer_Merida-tvOS.app"
                BlueprintName = "Que_Hacer_Merida-tvOS"
-               ReferencedContainer = "container:Que_Hacer_Merida.xcodeproj">
+               ReferencedContainer = "container:Que Hacer Merida.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
                BuildableName = "Que_Hacer_Merida-tvOSTests.xctest"
                BlueprintName = "Que_Hacer_Merida-tvOSTests"
-               ReferencedContainer = "container:Que_Hacer_Merida.xcodeproj">
+               ReferencedContainer = "container:Que Hacer Merida.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,7 +63,7 @@
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
                BuildableName = "Que_Hacer_Merida-tvOSTests.xctest"
                BlueprintName = "Que_Hacer_Merida-tvOSTests"
-               ReferencedContainer = "container:Que_Hacer_Merida.xcodeproj">
+               ReferencedContainer = "container:Que Hacer Merida.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -73,7 +73,7 @@
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
             BuildableName = "Que_Hacer_Merida-tvOS.app"
             BlueprintName = "Que_Hacer_Merida-tvOS"
-            ReferencedContainer = "container:Que_Hacer_Merida.xcodeproj">
+            ReferencedContainer = "container:Que Hacer Merida.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,7 +96,7 @@
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
             BuildableName = "Que_Hacer_Merida-tvOS.app"
             BlueprintName = "Que_Hacer_Merida-tvOS"
-            ReferencedContainer = "container:Que_Hacer_Merida.xcodeproj">
+            ReferencedContainer = "container:Que Hacer Merida.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -115,7 +115,7 @@
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
             BuildableName = "Que_Hacer_Merida-tvOS.app"
             BlueprintName = "Que_Hacer_Merida-tvOS"
-            ReferencedContainer = "container:Que_Hacer_Merida.xcodeproj">
+            ReferencedContainer = "container:Que Hacer Merida.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -16,7 +16,7 @@ import Favorites from './components/favorites/';
 import Establishments from './components/establishments/';
 import SingleMap from './components/singleMap';
 import Single from './components/single';
-// import SplashPage from './components/splashscreen/';
+import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import SubCategory from './components/subCategory';
 // import MainMenu from './components/mainMenu';
