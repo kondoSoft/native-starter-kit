@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,7 +20,6 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
@@ -51,6 +50,9 @@
 		559C492E973848FAB96D0DD2 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 343C1B9A28864C72A9DC5C22 /* Ionicons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		62C59CDB48484EEC9A954192 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EF0AE074A1C46C98687E763 /* Rubik-BoldItalic.ttf */; };
+		6A32547A1EC69E18006A7FE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A3254791EC69E18006A7FE7 /* LaunchScreen.storyboard */; };
+		6A3254A31EC69FE3006A7FE7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
+		6AB7DB131EC698AD00E3F890 /* splashscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AB7DB121EC698AD00E3F890 /* splashscreen.png */; };
 		7FB8C260444344DD925555BB /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 697F5795A1794FA08BC4D706 /* Skia.ttf */; };
 		813BEBB7EDA24E44ADB5B2EC /* Andale Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B379F4033C4D490B9FFED11F /* Andale Mono.ttf */; };
 		816DDEDAA9E048229B15C1E8 /* SanFrancisco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9181E74E52E84127AF808FF7 /* SanFrancisco.ttf */; };
@@ -301,7 +303,6 @@
 		13B07F961A680F5B00A75B9A /* Que_Hacer_Merida.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Que_Hacer_Merida.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Que_Hacer_Merida/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Que_Hacer_Merida/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Que_Hacer_Merida/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Que_Hacer_Merida/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Que_Hacer_Merida/main.m; sourceTree = "<group>"; };
@@ -321,6 +322,8 @@
 		4DCBB12483D943F695CF8F48 /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		697F5795A1794FA08BC4D706 /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
+		6A3254791EC69E18006A7FE7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6AB7DB121EC698AD00E3F890 /* splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashscreen.png; sourceTree = "<group>"; };
 		6BF9CCDC1D9B4B8C88096AD7 /* Georgia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Georgia.ttf; path = "../node_modules/native-base/Fonts/Georgia.ttf"; sourceTree = "<group>"; };
 		7443714EF78243A0A3CC2BC4 /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -487,8 +490,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				6A3254791EC69E18006A7FE7 /* LaunchScreen.storyboard */,
 			);
 			name = Que_Hacer_Merida;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 		FEFCE130986540FE8A6E7115 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6AB7DB121EC698AD00E3F890 /* splashscreen.png */,
 				B379F4033C4D490B9FFED11F /* Andale Mono.ttf */,
 				D27CB9EEE2054FCCA397C340 /* Arial Black.ttf */,
 				2ADF7DD234674D13BC5D8C0A /* Arial.ttf */,
@@ -747,8 +751,8 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Que Hacer Merida" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Que_Hacer_Merida" */;
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1027,7 +1031,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				813BEBB7EDA24E44ADB5B2EC /* Andale Mono.ttf in Resources */,
 				1ADF3CA553154D5EB6344B45 /* Arial Black.ttf in Resources */,
 				48C6A05EE7C2473BBCFA5EBE /* Arial.ttf in Resources */,
@@ -1035,6 +1038,7 @@
 				FB8AEE9B518E4675A5B45149 /* Courier New.ttf in Resources */,
 				8393C5857DA44739BE791BB2 /* Entypo.ttf in Resources */,
 				0A9EEB40C84E47D2B193D860 /* EvilIcons.ttf in Resources */,
+				6AB7DB131EC698AD00E3F890 /* splashscreen.png in Resources */,
 				912B638A65934BD6B272D0D2 /* FontAwesome.ttf in Resources */,
 				9EF088D2A665487E8B301DAF /* Foundation.ttf in Resources */,
 				E375E7E37A0D4288946A0974 /* Georgia.ttf in Resources */,
@@ -1050,9 +1054,11 @@
 				A35146C4441549B49054DF0F /* Rubik-Bold.ttf in Resources */,
 				62C59CDB48484EEC9A954192 /* Rubik-BoldItalic.ttf in Resources */,
 				8EFF44287DEC4E76A3CE66A7 /* Rubik-Italic.ttf in Resources */,
+				6A32547A1EC69E18006A7FE7 /* LaunchScreen.storyboard in Resources */,
 				9C04552B74AC4228907481E0 /* Rubik-Light.ttf in Resources */,
 				5240985FF5E4420CB5083FF0 /* Rubik-LightItalic.ttf in Resources */,
 				202B0515419340DBA7985B91 /* Rubik-Medium.ttf in Resources */,
+				6A3254A31EC69FE3006A7FE7 /* Info.plist in Resources */,
 				D8B6311290E34053BA1DF7DD /* Rubik-MediumItalic.ttf in Resources */,
 				4BC2D462E66F42F4AB2DDA43 /* Rubik-Regular.ttf in Resources */,
 				816DDEDAA9E048229B15C1E8 /* SanFrancisco.ttf in Resources */,
@@ -1163,18 +1169,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = Que_Hacer_Merida;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1232,6 +1226,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = JU5Q9F8CVN;
 				INFOPLIST_FILE = Que_Hacer_Merida/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1252,6 +1247,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JU5Q9F8CVN;
 				INFOPLIST_FILE = Que_Hacer_Merida/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1496,7 +1492,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Que Hacer Merida" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Que_Hacer_Merida" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

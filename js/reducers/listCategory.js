@@ -1,7 +1,9 @@
 
 import type { Action } from '../actions/types';
 import { SET_CATEGORY, PRINT_CLASSIFIEDS } from '../actions/listCategory';
-import { PK_ZONE } from '../actions/listZone'
+// import { PK_ZONE } from '../actions/listZone'
+import { RESET_STATE } from '../actions/listZone'
+
 
 
 export type State = {
@@ -23,6 +25,11 @@ export default function (state:State = initialState, action:Action): State {
       ...state,
       selectedCategory: action.payload,
     };
+  }else if (action.type === RESET_STATE) {
+    return {
+      ...state,
+      initialState
+    }
   }
 
   // else if (action.type === PK_ZONE) {

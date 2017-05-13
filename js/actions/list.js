@@ -5,6 +5,8 @@ export const SET_INDEX = 'SET_INDEX';
 export const PRINT_CATEGORY = 'PRINT_CATEGORY';
 export const PRINT_ADVERTISING = 'PRINT_ADVERTISING';
 export const PRINT_VIDEO = 'PRINT_VIDEO';
+export const RESET_STATE  = 'RESET_STATE';
+
 
 export function setIndex(index:number):Action {
   return {
@@ -28,6 +30,11 @@ export function printVideo(index:number):Action{
   return {
     type: PRINT_VIDEO,
     payload: index,
+  }
+}
+export function resetState():Action{
+  return {
+    type: RESET_STATE,
   }
 }
 

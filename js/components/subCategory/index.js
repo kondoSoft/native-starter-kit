@@ -6,6 +6,8 @@ import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item,
 import ListSubCategory from '../listSubCategory'
 import { openDrawer } from '../../actions/drawer';
 import { setZone } from '../../actions/listZone';
+import { resetState } from '../../actions/list';
+
 import styles from './style';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
@@ -31,6 +33,7 @@ class SubCategory extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+    this.props.resetState()
   }
 
   render() {
@@ -69,6 +72,7 @@ class SubCategory extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
+    resetState: () => dispatch(resetState()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
