@@ -9,12 +9,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@remobile/react-native-splashscreen": "^1.0.7",
     "color": "^0.11.3",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "native-base": "2.0.12",
     "react": "15.4.2",
-    "react-native": "0.41.2",
+    "react-native": "0.40.0",
     "react-native-code-push": "1.17.0-beta",
     "react-native-easy-grid": "0.1.8",
     "react-native-maps": "^0.13.1",
@@ -27,6 +28,7 @@
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "^0.5.0",
     "remote-redux-devtools-on-debugger": "^0.7.0",
+    "rn-splash-screen": "^4.0.0",
     "whatwg-fetch": "^1.1.1"
   },
   "devDependencies": {

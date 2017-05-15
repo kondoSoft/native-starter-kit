@@ -86,7 +86,7 @@ class Home extends Component {
               </Button>
             </Right>
           </Header>
-          <Grid style={{ maxHeight: 60, flex: 1 }}>
+          <Grid style={{ maxHeight: 62, flex: 1 }}>
               <Row>
                 <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
               </Row>

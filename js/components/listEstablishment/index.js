@@ -58,17 +58,20 @@ class ListEstablishment extends Component {
               </TouchableOpacity>
               <Body>
                 <CardItem style={styles.cardText}>
-                  <TouchableOpacity
-                    onPress={() => this.pushRoute('single', i)}
-                    >
-                    <Text style={styles.textDescription}>{this.props.listEstablishment[i].description.substring(0,100)+ "..."}</Text>
-                  </TouchableOpacity>
-                  <Right style={styles.iconFav}>
+                  <Body style={{ flex: 1, flexDirection: 'row'}}>
+                    <TouchableOpacity
+                      // style={{ flex: 1 }}
+                      onPress={() => this.pushRoute('single', i)}
+                      >
+                      <Text style={styles.textDescription}>{this.props.listEstablishment[i].description.substring(0,120)+ "..."}</Text>
+                    </TouchableOpacity>
+                  </Body>
+
                     <Button transparent textStyle={{color: '#87838B'}}>
                       <Icon style={styles.fontIcon} name="heart" />
                       {/* <Text style={styles.textIconFav} >{this.props.listEstablishment[i].favorites}</Text> */}
                     </Button>
-                  </Right>
+
                 </CardItem>
               </Body>
             </CardItem>

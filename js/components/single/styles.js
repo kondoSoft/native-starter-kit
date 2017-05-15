@@ -1,8 +1,10 @@
 import { Dimensions } from 'react-native';
-const React = require('react-native');
 
-const { StyleSheet } = React;
+import { Platform, StyleSheet, React } from 'react-native';
+
 const { width, height } = Dimensions.get('window');
+
+
 
 export default {
   swiper:{
@@ -14,20 +16,39 @@ export default {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9DD6EB',
-    // height: 285,
+    ...Platform.select({
+      android: {
+        maxHeight: 300,
+      },
+    }),
+    // maxHeight: (Platform.OS === 'ios') ? 285 : 300,
   },
   image:{
     flex: 1,
+    ...Platform.select({
+      android: {
+        top: 0,
+      },
+    }),
     width,
     // resizeMode: 'cover',
-    height: 280,
+    maxHeight: (Platform.OS === 'ios') ? 280 : 299,
   },
-
   gridCircle:{
     flex: 1,
     alignItems: 'center',
-    maxHeight: 50
+    maxHeight: 70,
+  },
+  thumbnailMaps:{
+    // flex: 1,
+    backgroundColor: 'orange',
+    alignItems: 'center',
+    justifyContent: 'center' ,
+    ...Platform.select({
+      android: {
+        bottom: 5,
+    },
+  }),
   },
   contentDescription:{
     flex: 3,
@@ -45,7 +66,10 @@ export default {
   },
   buttonMaps:{
     justifyContent: 'center',
-    bottom: 25,
+    top: (Platform.OS === 'ios') ? 20 : 0,
+    bottom: (Platform.OS === 'ios') ? 0 : 30,
+    height: 70,
+    paddingTop: (Platform.OS === 'andoird') ? 0 : 6,
   },
   gridSwiper:{
     flex: 1,
@@ -54,7 +78,7 @@ export default {
     shadowOffset: {width: 0, height: 7},
     shadowOpacity: 1,
     shadowRadius: 1,
-    maxHeight: 280,
+    // maxHeight: 280,
     // width: 430,
   },
 

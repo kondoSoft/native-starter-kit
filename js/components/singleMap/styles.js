@@ -83,7 +83,7 @@ export default {
     left: 0,
     right: 0,
     bottom: 0,
-    height: 300,
+    height: 250,
     width,
     shadowColor: 'dimgray',
     shadowOffset: {width: 0, height: 7},

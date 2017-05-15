@@ -8,30 +8,22 @@ import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import Swiper from 'react-native-swiper';
+import { Platform } from 'react-native';
+
 const {
   reset,
   popRoute,
   pushRoute,
 } = actions;
 
-const cards = [
-  {
-   text: 'Card One',
-   name: 'One',
-   image: require('../../../assets/img/Negocios/lugar.png'),
-  },
-  {
-   text: 'Card One',
-   name: 'One',
-   image: require('../../../assets/img/Negocios/hotel_1.png'),
-  },
-];
+
 class Single extends Component {
 
   constructor() {
     super();
        this.state = {
-           active: false
+           active: false,
+           heightSwiper: '',
        };
     this.handleClick = this.handleClick.bind(this)
    }
@@ -56,6 +48,18 @@ class Single extends Component {
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
+  componentWillMount(){
+    if(Platform.OS === 'android'){
+      this.setState({
+        heightSwiper: 300,
+        widthSwiper: 370,
+      })
+    }else{
+      this.setState({
+        heightSwiper: 330,
+      })
+    }
+  }
 
   handleClick(index){
     Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
@@ -67,6 +71,9 @@ class Single extends Component {
     });
   };
   render() {
+
+    console.log(this.state);
+
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     // console.log(nativeEvent.layout.height);
@@ -90,12 +97,14 @@ class Single extends Component {
         <Grid style={styles.gridSwiper}>
           <Swiper
             showsButtons
-            height={280}
+            height={this.state.heightSwiper}
+            width={this.state.widthSwiper}
             showsPagination={false}
             scrollEnabled={false}
             automaticallyAdjustContentInsets={true}
             style={
-              { padding: 0,
+              {
+                padding: 0,
                 margin: 0,
               }
               }>
@@ -112,16 +121,16 @@ class Single extends Component {
              </Swiper>
         </Grid>
         <Grid  style={styles.gridCircle}>
-          <Row style={{ height: 50 }}>
+          <Row>
             <Button style={styles.buttonMaps} transparent onPress={() => this.pushRoute('singlemap', index)}>
-              <Thumbnail style={{ backgroundColor: 'orange', alignItems: 'center', justifyContent: 'center' }}>
+              <Thumbnail source={{ uri: 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h='}} style={styles.thumbnailMaps}>
                 <Icon style={{ fontSize: 22, color: 'dimgray', bottom: 4}} name="md-pin" />
                 <Text style={{ fontSize: 12, color: 'dimgray', bottom: 6 }}>Mapa</Text>
               </Thumbnail>
             </Button>
           </Row>
         </Grid>
-        <Content scrollEnabled={false} style={styles.contentDescription}>
+        <Content scrollEnabled={true} style={styles.contentDescription}>
           <Grid style={styles.gridDescription}>
             <Row>
               <H3>{this.props.listEstablishment[index].name}</H3>
@@ -150,9 +159,9 @@ class Single extends Component {
               <Button style={styles.buttonSocial} transparent>
                 <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
               </Button>
-              <Button style={styles.buttonSocial} transparent>
+              {/* <Button style={styles.buttonSocial} transparent>
                 <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
-              </Button>
+              </Button> */}
               <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
                 <Icon style={styles.iconFooter} name="globe"></Icon>
               </Button>
@@ -177,15 +186,15 @@ class Single extends Component {
               onPress={() => this.setState({ active: !this.state.active })}
           >
               <Icon name="md-share" />
-              <Button style={styles.buttonW}>
+              {/* <Button style={styles.buttonW}>
                   <Icon name="logo-whatsapp" />
-              </Button>
+              </Button> */}
               <Button style={styles.buttonF}>
                   <Icon name="logo-facebook" />
               </Button>
-              <Button style={styles.buttonM}>
+              {/* <Button style={styles.buttonM}>
                   <Icon name="mail" />
-              </Button>
+              </Button> */}
           </Fab>
       </Container>
     );

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 48;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -65,6 +64,7 @@
 		9EA26905AECC4CDAA79DEFF6 /* Microsoft Sans Serif.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F71C99D0BAB840A8BF55B399 /* Microsoft Sans Serif.ttf */; };
 		9EF088D2A665487E8B301DAF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31E0755A176C4ACDA1741736 /* Foundation.ttf */; };
 		A35146C4441549B49054DF0F /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FFBF54426D8642199FD35B5C /* Rubik-Bold.ttf */; };
+		BAF7CE1CE11A4A0192A524A1 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11E75A1FA684452A924A5AE0 /* OFL.txt */; };
 		C65BEE1D34EA420BBEAEE695 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7443714EF78243A0A3CC2BC4 /* Rubik-Black.ttf */; };
 		D8B6311290E34053BA1DF7DD /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B858677EA23B4B838BBA6E82 /* Rubik-MediumItalic.ttf */; };
 		D95B26EA3308422CB19EC864 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D1957B0C7407C957AF1EE /* libCodePush.a */; };
@@ -75,6 +75,7 @@
 		F7518268514F4EC19C640CD7 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA91B27EA3245D28E9FC916 /* Roboto_medium.ttf */; };
 		FB8AEE9B518E4675A5B45149 /* Courier New.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12AA1055768746708EEEC38C /* Courier New.ttf */; };
 		FD56C60109BE4F5FAD520B08 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E3AB0CF0DBC4598B59D6A29 /* Zocial.ttf */; };
+		4F8C1D0DA99C4FBA94130F3E /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF8718683EC4C15A5F2CEB9 /* libRCTSplashScreen.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +298,7 @@
 		05068324DB5545CFBC4FE175 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BlackItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
 		0E3AB0CF0DBC4598B59D6A29 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		0FF40B8A387243CC8C85B301 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		11E75A1FA684452A924A5AE0 /* OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OFL.txt; path = "../node_modules/native-base/Fonts/OFL.txt"; sourceTree = "<group>"; };
 		12AA1055768746708EEEC38C /* Courier New.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Courier New.ttf"; path = "../node_modules/native-base/Fonts/Courier New.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -348,6 +350,8 @@
 		D6338EF8182746B2BF134A4B /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 		F71C99D0BAB840A8BF55B399 /* Microsoft Sans Serif.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Microsoft Sans Serif.ttf"; path = "../node_modules/native-base/Fonts/Microsoft Sans Serif.ttf"; sourceTree = "<group>"; };
 		FFBF54426D8642199FD35B5C /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		19561FBF4F594F469A21BE73 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "RCTSplashScreen.xcodeproj"; path = "../node_modules/rn-splash-screen/ios/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		0DF8718683EC4C15A5F2CEB9 /* libRCTSplashScreen.a */ = {isa = PBXFileReference; name = "libRCTSplashScreen.a"; path = "libRCTSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +381,7 @@
 				D95B26EA3308422CB19EC864 /* libCodePush.a in Frameworks */,
 				0C1E3EA856224960A9086945 /* libz.tbd in Frameworks */,
 				382DF255727649289E1E886A /* libAirMaps.a in Frameworks */,
+				4F8C1D0DA99C4FBA94130F3E /* libRCTSplashScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +574,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				96B3C95712FE492B89C2018C /* CodePush.xcodeproj */,
 				18C9C69FC1D54362AE4E4B34 /* AirMaps.xcodeproj */,
+				19561FBF4F594F469A21BE73 /* RCTSplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -645,6 +651,7 @@
 				697F5795A1794FA08BC4D706 /* Skia.ttf */,
 				D5D62D82092748DDB6B5CC34 /* Times New Roman.ttf */,
 				0E3AB0CF0DBC4598B59D6A29 /* Zocial.ttf */,
+				11E75A1FA684452A924A5AE0 /* OFL.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -730,7 +737,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 730;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -1068,6 +1075,7 @@
 				7FB8C260444344DD925555BB /* Skia.ttf in Resources */,
 				06B34C50A9364ED880C4AB8C /* Times New Roman.ttf in Resources */,
 				FD56C60109BE4F5FAD520B08 /* Zocial.ttf in Resources */,
+				BAF7CE1CE11A4A0192A524A1 /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,6 +1193,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1208,6 +1217,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1227,6 +1237,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = JU5Q9F8CVN;
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				INFOPLIST_FILE = Que_Hacer_Merida/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1280,6 +1291,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1309,6 +1321,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1341,6 +1354,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Que_Hacer_Merida-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1365,6 +1379,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

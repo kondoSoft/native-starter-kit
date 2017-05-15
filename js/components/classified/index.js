@@ -43,6 +43,9 @@ class Classified extends Component {
     randomIndex = Math.floor(Math.random()*advertising.length)
     return randomIndex
   }
+  componentWillMount(){
+    this.props.fetchAdvertising()
+  }
 
 
   render() {

@@ -21,6 +21,7 @@ import SideBar from './components/sideBar';
 import SubCategory from './components/subCategory';
 // import MainMenu from './components/mainMenu';
 import { statusBarColor } from './themes/base-theme';
+import SplashScreen from "rn-splash-screen";
 
 const {
   popRoute,
@@ -43,6 +44,7 @@ class AppNavigator extends Component {
   }
 
   componentDidMount() {
+    SplashScreen.hide();
     BackAndroid.addEventListener('hardwareBackPress', () => {
       const routes = this.props.navigation.routes;
 

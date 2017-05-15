@@ -8,6 +8,7 @@ import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import markerMerida from '../../../assets/img/marker-merida.png';
+import { Platform } from 'react-native';
 
 const {
   reset,
@@ -34,7 +35,9 @@ class SingleMap extends Component {
            longitudeDelta: LONGITUDE_DELTA,
           },
           active: false,
-         }
+          heightSwiper: '',
+          widthSwiper: '',
+        }
    }
 
   static propTypes = {
@@ -51,6 +54,18 @@ class SingleMap extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+  }
+  componentWillMount(){
+    if(Platform.OS === 'android'){
+      this.setState({
+        heightSwiper: 250,
+        widthSwiper: 370
+      })
+    }else{
+      this.setState({
+        heightSwiper: 330
+      })
+    }
   }
 
   render() {
@@ -74,7 +89,7 @@ class SingleMap extends Component {
             </Button>
           </Right>
         </Header>
-        <Grid>
+        <Grid style={{ flex: 1 }}>
           <Row>
             <View style={styles.container}>
               <MapView
@@ -128,15 +143,15 @@ class SingleMap extends Component {
               onPress={() => this.setState({ active: !this.state.active })}
           >
               <Icon name="md-share" />
-              <Button style={styles.buttonW}>
+              {/* <Button style={styles.buttonW}>
                   <Icon name="logo-whatsapp" />
-              </Button>
+              </Button> */}
               <Button style={styles.buttonF}>
                   <Icon name="logo-facebook" />
               </Button>
-              <Button style={styles.buttonM}>
+              {/* <Button style={styles.buttonM}>
                   <Icon name="mail" />
-              </Button>
+              </Button> */}
           </Fab>
       </Container>
     );

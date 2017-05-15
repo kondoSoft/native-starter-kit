@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Content, Text, List, ListItem, Icon, Thumbnail, View } from 'native-base';
 
-import { setIndex } from '../../actions/list';
+import { setIndex, resetState } from '../../actions/list';
 import navigateTo from '../../actions/sideBarNav';
 import myTheme from '../../themes/base-theme';
 
@@ -14,10 +14,12 @@ class SideBar extends Component {
   static propTypes = {
     setIndex: React.PropTypes.func,
     navigateTo: React.PropTypes.func,
+    resetState: React.PropTypes.func,
   }
 
   navigateTo(route) {
     this.props.navigateTo(route, 'home');
+    this.props.resetState()
   }
 
   render() {
@@ -46,12 +48,14 @@ class SideBar extends Component {
 function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
+    resetState: () => dispatch(resetState()),    
     navigateTo: (route, homeRoute) => dispatch(navigateTo(route, homeRoute)),
   };
 }
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
+
 });
 
 export default connect(mapStateToProps, bindAction)(SideBar);
