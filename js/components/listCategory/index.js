@@ -38,7 +38,7 @@ class ListCategory extends Component {
 
   }
   componentWillMount(){
-    this.props.fetchClassifieds()
+    // this.props.fetchClassifieds()
     // this.props.fetchEstablishmentClassified()
   }
 
@@ -51,7 +51,7 @@ class ListCategory extends Component {
   render() {
     return (
       <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
-        <View style={styles.slide} showsVerticalScrollIndicator={false}>
+        <View style={styles.slide} >
             <Row style={styles.row}>
               {this.props.listCategory.map((item, i) =>
               <Col key={i} style={{

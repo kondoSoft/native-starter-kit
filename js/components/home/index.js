@@ -70,7 +70,7 @@ class Home extends Component {
    }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.fetchClassifieds());
     var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>

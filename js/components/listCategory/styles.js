@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 const React = require('react-native');
 
 const { StyleSheet } = React;
@@ -19,7 +19,7 @@ export default {
   slide: {
     flex: 1,
     backgroundColor: 'transparent',
-    height,
+    height: (Platform.OS === 'ios') ? 1100 : height ,
   },
 
   row:{
