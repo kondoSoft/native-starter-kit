@@ -27,7 +27,7 @@ class Establishments extends Component {
   }
 
   render() {
-    
+
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -51,11 +51,9 @@ class Establishments extends Component {
             </Button>
           </Right>
         </Header>
-        <Content padder scrollEnabled={false} style={styles.content}>
+        <Content scrollEnabled={true} style={styles.content}>
           <ListEstablishment/>
         </Content>
-        {/* <Footer style={{backgroundColor: 'lightgray', height: 50}}/> */}
-
       </Container>
     );
   }

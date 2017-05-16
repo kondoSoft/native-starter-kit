@@ -8,7 +8,7 @@ import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import markerMerida from '../../../assets/img/marker-merida.png';
-import { Platform } from 'react-native';
+
 
 const {
   reset,
@@ -35,8 +35,7 @@ class SingleMap extends Component {
            longitudeDelta: LONGITUDE_DELTA,
           },
           active: false,
-          heightSwiper: '',
-          widthSwiper: '',
+
         }
    }
 
@@ -56,16 +55,7 @@ class SingleMap extends Component {
     this.props.popRoute(this.props.navigation.key);
   }
   componentWillMount(){
-    if(Platform.OS === 'android'){
-      this.setState({
-        heightSwiper: 250,
-        widthSwiper: 370
-      })
-    }else{
-      this.setState({
-        heightSwiper: 330
-      })
-    }
+
   }
 
   render() {
@@ -89,52 +79,52 @@ class SingleMap extends Component {
             </Button>
           </Right>
         </Header>
-        <Grid style={{ flex: 1 }}>
+        <Grid style={{ flex: 1,
+          shadowColor: 'dimgray',
+          shadowOffset: {width: 0, height: 7},
+          shadowOpacity: 1,
+          shadowRadius: 1,}}>
+         <View style={styles.container}>
+            <MapView
+              provider={this.props.provider}
+              style={styles.map}
+              initialRegion={this.props.listEstablishment[id].coor}
+            >
+              <MapView.Marker
+                title={this.props.listEstablishment[id].name}
+                key={this.props.listEstablishment[id].id}
+                coordinate={this.props.listEstablishment[id].coor}
+                image={markerMerida}
+              />
+            </MapView>
+          </View>
+        </Grid>
+        {/* <Content scrollEnabled={false}> */}
+        <Grid style={styles.gridDescription}>
+          <Row style={styles.rowDescription}>
+            <H3>{this.props.listEstablishment[id].name}</H3>
+          </Row>
+          <Row style={styles.rowMain}>
+            <Icon style={styles.iconGray} name="md-pin" />
+            <Text style={styles.textRow}>{this.props.listEstablishment[id].address}</Text>
+          </Row>
+          <Row style={styles.rowDescription}>
+            <Col style={styles.colDescription}>
+              <Icon style={styles.iconGray} name="md-call" />
+              <Text style={styles.textRow}>{this.props.listEstablishment[id].phone}</Text>
+            </Col>
+          </Row>
           <Row>
-            <View style={styles.container}>
-              <MapView
-                provider={this.props.provider}
-                style={styles.map}
-                initialRegion={this.props.listEstablishment[id].coor}
-              >
-
-                  <MapView.Marker
-                    title={this.props.listEstablishment[id].name}
-                    key={this.props.listEstablishment[id].id}
-                    coordinate={this.props.listEstablishment[id].coor}
-                    image={markerMerida}
-                  />
-
-              </MapView>
-            </View>
+            <Right>
+              { activeFab ? (
+                <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[id].name}" a traves de Que Hacer? Merida</Text>
+              ):(
+                <Text></Text>
+              )}
+            </Right>
           </Row>
         </Grid>
-        <Content scrollEnabled={false}>
-          <Grid style={styles.gridDescription}>
-            <Row style={styles.rowDescription}>
-              <H3>{this.props.listEstablishment[id].name}</H3>
-            </Row>
-            <Row style={styles.rowMain}>
-              <Icon style={styles.iconGray} name="md-pin" />
-              <Text style={styles.textRow}>{this.props.listEstablishment[id].address}</Text>
-            </Row>
-            <Row style={styles.rowDescription}>
-              <Col style={styles.colDescription}>
-                <Icon style={styles.iconGray} name="md-call" />
-                <Text style={styles.textRow}>{this.props.listEstablishment[id].phone}</Text>
-              </Col>
-            </Row>
-            <Row>
-              <Right>
-                { activeFab ? (
-                  <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[id].name}" a traves de Que Hacer? Merida</Text>
-                ):(
-                  <Text></Text>
-                )}
-              </Right>
-            </Row>
-          </Grid>
-        </Content>
+        {/* </Content> */}
         <Fab
               active={this.state.active}
               direction="up"

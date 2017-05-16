@@ -74,7 +74,7 @@ class Classified extends Component {
               <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
             </Row>
         </Grid>
-        <Content padder scrollEnabled={true} style={styles.content}>
+        <Content scrollEnabled={true} style={styles.content}>
           <ListCategory />
         </Content>
       </Container>

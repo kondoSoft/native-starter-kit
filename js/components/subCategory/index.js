@@ -61,7 +61,7 @@ class SubCategory extends Component {
             <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad3.png')} />
           </Row>
         </Grid>
-        <Content padder scrollEnabled={false} style={styles.content}>
+        <Content padder scrollEnabled={true} style={styles.content}>
           <ListSubCategory/>
         </Content>
       </Container>

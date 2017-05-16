@@ -68,7 +68,7 @@ class BlankPage extends Component {
               <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
             </Row>
         </Grid>
-        <Content padder scrollEnabled={false} style={{ paddingLeft: 5 }}>
+        <Content padder scrollEnabled={true} style={{ paddingLeft: 5 }}>
           <ListZone />
         </Content>
       </Container>

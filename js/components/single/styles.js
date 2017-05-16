@@ -7,13 +7,9 @@ const { width, height } = Dimensions.get('window');
 
 
 export default {
-  swiper:{
-    flex: 1,
 
-  },
   slide1: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     ...Platform.select({
@@ -21,7 +17,11 @@ export default {
         maxHeight: 300,
       },
     }),
+
     // maxHeight: (Platform.OS === 'ios') ? 285 : 300,
+  },
+  swiper:{
+    flex: 1,
   },
   image:{
     flex: 1,
@@ -30,14 +30,15 @@ export default {
         top: 0,
       },
     }),
+    // bottom: 25,
     width,
     // resizeMode: 'cover',
-    maxHeight: (Platform.OS === 'ios') ? 280 : 299,
+    // height: (Platform.OS === 'ios') ? 180 : 299, //alto de imagen
   },
   gridCircle:{
     flex: 1,
     alignItems: 'center',
-    maxHeight: 70,
+    maxHeight: (Platform.OS === 'ios') ? 25 : 70,
   },
   thumbnailMaps:{
     // flex: 1,
@@ -48,6 +49,7 @@ export default {
       android: {
         bottom: 5,
     },
+    // bottom: 10,
   }),
   },
   contentDescription:{
@@ -66,30 +68,27 @@ export default {
   },
   buttonMaps:{
     justifyContent: 'center',
-    top: (Platform.OS === 'ios') ? 20 : 0,
+    top: (Platform.OS === 'ios') ? 0 : 0,
     bottom: (Platform.OS === 'ios') ? 0 : 30,
-    height: 70,
-    paddingTop: (Platform.OS === 'andoird') ? 0 : 6,
+    height: (Platform.OS === 'ios') ? 0 : 70,
+    paddingTop: (Platform.OS === 'andoird') ? 0 : 0,
   },
-  gridSwiper:{
-    flex: 1,
-    flexDirection: 'column',
-    shadowColor: 'dimgray',
-    shadowOffset: {width: 0, height: 7},
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    // maxHeight: 280,
-    // width: 430,
-  },
-
   gridDescription:{
-
+    flex: 1,
     padding: 15,
   },
   colDescription:{
+    flex: 1,
     flexDirection: 'row',
   },
+  rowDescriptionData:{
+    flex: 1,
+    borderBottomWidth: 2,
+    borderBottomColor: 'darkgray',
+    marginTop: 5,
+  },
   rowDescription:{
+    flex: 5,
     borderBottomWidth: 2,
     borderBottomColor: 'darkgray',
     marginTop: 5,
@@ -126,7 +125,7 @@ export default {
     marginLeft: 20,
     marginRight: 20,
     paddingRight: 50,
-    marginTop: 15,
+    marginTop: 4,
   },
   fab:{
     backgroundColor: '#5067FF',
@@ -147,6 +146,14 @@ export default {
   buttonSocial:{
     padding: 0,
 
+  },
+  rowDescriptionSocial:{
+    flex:1,
+    borderBottomWidth: 2,
+    borderBottomColor: 'darkgray',
+    margin: 0,
+    padding: 0,
+    paddingBottom: 10,
   },
 
 };
