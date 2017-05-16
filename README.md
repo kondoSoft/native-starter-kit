@@ -100,3 +100,18 @@ Es el menú desplegable que aparece desde el lado derecho de la pantalla. Contie
 Se accede al menú a través del icono ubicado a la derecha del header.
 
 ![DRAWER](./assets/src/Maquetado/Drawner.png)
+
+
+
+## INSTRUCCIONES DE CONTRUCCION DE APK RELEASE Y DEBUG
+
+### APK Release
+```
+react-native bundle --platform android --dev false --entry-file index.android.js \
+ --bundle-output android/app/src/main/assets/index.android.bundle \
+ --assets-dest android/app/src/main/res/
+```
+### APK Debug
+```
+node ./node_modules/react-native/local-cli/cli.js bundle --platform android --dev false --reset-cache --entry-file index.android.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
+```
