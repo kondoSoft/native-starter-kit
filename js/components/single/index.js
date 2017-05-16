@@ -1,39 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Image, Linking } from 'react-native'
+import { Image, Linking, Dimensions } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import Swiper from 'react-native-swiper';
+import { Platform } from 'react-native';
+const { width, height } = Dimensions.get('window');
 const {
   reset,
   popRoute,
   pushRoute,
 } = actions;
 
-const cards = [
-  {
-   text: 'Card One',
-   name: 'One',
-   image: require('../../../assets/img/Negocios/lugar.png'),
-  },
-  {
-   text: 'Card One',
-   name: 'One',
-   image: require('../../../assets/img/Negocios/hotel_1.png'),
-  },
-];
+
 class Single extends Component {
 
   constructor() {
     super();
        this.state = {
-           active: false
+           active: false,
+           heightSwiper: '',
        };
     this.handleClick = this.handleClick.bind(this)
+    this.handleClickInsta = this.handleClickInsta.bind(this)
+    this.handleClickFace = this.handleClickFace.bind(this)
+
    }
   static propTypes = {
     setEstablishment: React.PropTypes.func,
@@ -56,6 +51,19 @@ class Single extends Component {
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
+  componentWillMount(){
+    if(Platform.OS === 'android'){
+      this.setState({
+        heightSwiper: 300,
+        widthSwiper: 370,
+      })
+    }else{
+      this.setState({
+        heightSwiper: 200,
+        widthSwiper: width,
+      })
+    }
+  }
 
   handleClick(index){
     Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
@@ -66,12 +74,33 @@ class Single extends Component {
       }
     });
   };
+  handleClickFace(index){
+    Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.listEstablishment[index].facebook);
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
+      }
+    });
+  };
+  handleClickInsta(index){
+    Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.listEstablishment[index].instagram);
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
+      }
+    });
+  };
   render() {
+
+    console.log(this.state);
+
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     // console.log(nativeEvent.layout.height);
     return (
-      <Container>
+      <Container scrollEnabled={true}>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
             <Left>
               <Button transparent onPress={() => this.popRoute()}>
@@ -87,88 +116,82 @@ class Single extends Component {
               </Button>
             </Right>
         </Header>
-        <Grid style={styles.gridSwiper}>
-          <Swiper
-            showsButtons
-            height={285}
-            showsPagination={false}
-            scrollEnabled={false}
-            automaticallyAdjustContentInsets={true}
-            style={
-              { padding: 0,
-                margin: 0}
-              }>
-            {this.props.listEstablishment[this.props.index].image.map((item, i) =>
-             <View key={i} style={styles.slide1}>
-               <Image
-                 key={index}
-                 style={styles.image}
-                 source={{uri: item.image}}
-                 >
-                 </Image>
-                 {console.log(item.image)}
-               </View>
-             )}
-             </Swiper>
-        </Grid>
+        <Swiper
+          showsButtons
+          height={this.state.heightSwiper}
+          horizontal={true}
+          // width={this.state.widthSwiper}
+          showsPagination={false}
+          scrollEnabled={true}
+          // style={{ flex: 1}}
+        >
+          {this.props.listEstablishment[this.props.index].image.map((item, i) =>
+           <View key={i} style={styles.slide1}>
+             <Image
+               key={index}
+               style={styles.image}
+               source={{uri: item.image}}
+               resizeMode='stretch'
+               >
+               </Image>
+             </View>
+           )}
+        </Swiper>
         <Grid  style={styles.gridCircle}>
-          <Row style={{ height: 50 }}>
+          <Row>
             <Button style={styles.buttonMaps} transparent onPress={() => this.pushRoute('singlemap', index)}>
-              <Thumbnail style={{ backgroundColor: 'orange', alignItems: 'center', justifyContent: 'center' }}>
+              <Thumbnail source={{ uri: 'https://placeholdit.imgix.net/~text?txtsize=14&txt=145%C3%97125&w=145&h='}} style={styles.thumbnailMaps}>
                 <Icon style={{ fontSize: 22, color: 'dimgray', bottom: 4}} name="md-pin" />
                 <Text style={{ fontSize: 12, color: 'dimgray', bottom: 6 }}>Mapa</Text>
               </Thumbnail>
             </Button>
           </Row>
         </Grid>
-        <Content scrollEnabled={false} style={styles.contentDescription}>
-          <Grid style={styles.gridDescription}>
-            <Row>
-              <H3>{this.props.listEstablishment[index].name}</H3>
-            </Row>
-            <Row style={styles.rowDescription}>
-              <Text style={styles.fontText}>{this.props.listEstablishment[index].description}</Text>
-            </Row>
-            <Row style={styles.rowMain}>
-              <Icon style={styles.iconGray} name="md-pin" />
-              <Text style={styles.textRow}>{this.props.listEstablishment[index].address}</Text>
-            </Row>
-            <Row style={styles.rowDescription}>
-              <Col style={styles.colDescription}>
-                <Icon style={styles.iconGray} name="md-call" />
-                <Text style={styles.textRow}>{this.props.listEstablishment[index].phone}</Text>
-              </Col>
-              <Col style={styles.colDescription}>
-                <Icon style={styles.iconGray} name="clock"/>
-                <Text style={styles.textRow}>{this.props.listEstablishment[index].horary}</Text>
-              </Col>
-            </Row>
-            <Row style={styles.rowDescription}>
-              <Button style={styles.buttonSocial} transparent>
-                <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
-              </Button>
-              <Button style={styles.buttonSocial} transparent>
-                <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
-              </Button>
-              <Button style={styles.buttonSocial} transparent>
-                <Icon style={styles.iconFooter} name="logo-whatsapp"></Icon>
-              </Button>
-              <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
-                <Icon style={styles.iconFooter} name="globe"></Icon>
-              </Button>
-            </Row>
-            <Row>
-              <Right>
-                { activeFab ? (
-                  <Text style={styles.fontFooter}>Te encuentras en "{this.props.listEstablishment[index].name}" a traves de Que Hacer? Merida</Text>
-                ):(
-                  <Text></Text>
-                )}
-              </Right>
+        <Content scrollEnabled={true}>
 
-            </Row>
-          </Grid>
-        </Content>
+        <Grid style={styles.gridDescription}>
+          <Row>
+            <H3>{this.props.listEstablishment[index].name}</H3>
+          </Row>
+          <Row style={styles.rowDescription}>
+            <Text style={styles.fontText}>{this.props.listEstablishment[index].description}</Text>
+          </Row>
+          <Row style={styles.rowMain}>
+            <Icon style={styles.iconGray} name="md-pin" />
+            <Text style={styles.textRow}>{this.props.listEstablishment[index].address}</Text>
+          </Row>
+          <Row style={styles.rowDescriptionData}>
+            <Col style={styles.colDescription}>
+              <Icon style={styles.iconGray} name="md-call" />
+              <Text style={styles.textRow}>{this.props.listEstablishment[index].phone}</Text>
+            </Col>
+            <Col style={styles.colDescription}>
+              <Icon style={styles.iconGray} name="clock"/>
+              <Text style={styles.textRow}>{this.props.listEstablishment[index].horary}</Text>
+            </Col>
+          </Row>
+          <Row style={styles.rowDescriptionSocial}>
+            <Button style={styles.buttonSocial} transparent onPress={() => this.handleClickFace(index)}>
+              <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
+            </Button>
+            <Button style={styles.buttonSocial} transparent onPress={() => this.handleClickInsta(index)}>
+              <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
+            </Button>
+            <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
+              <Icon style={styles.iconFooter} name="globe"></Icon>
+            </Button>
+          </Row>
+          <Row>
+            <Right>
+              { activeFab ? (
+                <Text style={styles.fontFooter}>Te encuentras en "{this.props.listEstablishment[index].name}" a traves de Que Hacer? Merida</Text>
+              ):(
+                <Text></Text>
+              )}
+            </Right>
+          </Row>
+        </Grid>
+      </Content>
         <Fab
               active={this.state.active}
               direction="up"
@@ -177,14 +200,8 @@ class Single extends Component {
               onPress={() => this.setState({ active: !this.state.active })}
           >
               <Icon name="md-share" />
-              <Button style={styles.buttonW}>
-                  <Icon name="logo-whatsapp" />
-              </Button>
               <Button style={styles.buttonF}>
                   <Icon name="logo-facebook" />
-              </Button>
-              <Button style={styles.buttonM}>
-                  <Icon name="mail" />
               </Button>
           </Fab>
       </Container>

@@ -16,11 +16,12 @@ import Favorites from './components/favorites/';
 import Establishments from './components/establishments/';
 import SingleMap from './components/singleMap';
 import Single from './components/single';
-// import SplashPage from './components/splashscreen/';
+import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import SubCategory from './components/subCategory';
 // import MainMenu from './components/mainMenu';
 import { statusBarColor } from './themes/base-theme';
+import SplashScreen from "rn-splash-screen";
 
 const {
   popRoute,
@@ -43,6 +44,7 @@ class AppNavigator extends Component {
   }
 
   componentDidMount() {
+    SplashScreen.hide();
     BackAndroid.addEventListener('hardwareBackPress', () => {
       const routes = this.props.navigation.routes;
 

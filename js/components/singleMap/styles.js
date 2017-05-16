@@ -13,7 +13,12 @@ export default {
     justifyContent: 'center',
     bottom: 8,
   },
+  container:{
+
+    flex: 1,
+  },
   gridDescription:{
+    flex: 1,
     padding: 15,
   },
   colDescription:{
@@ -83,12 +88,9 @@ export default {
     left: 0,
     right: 0,
     bottom: 0,
-    height: 300,
-    width,
-    shadowColor: 'dimgray',
-    shadowOffset: {width: 0, height: 7},
-    shadowOpacity: 0.8,
-    shadowRadius: 0.8,
+    // height: 250,
+    // width,
+
   },
   bubble: {
     backgroundColor: 'rgba(255,255,255,0.7)',

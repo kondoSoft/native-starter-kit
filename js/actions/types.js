@@ -17,6 +17,9 @@ export type Action =
     | { type: 'PK_CLASSIFIED'}
     | { type: 'SEARCH_NAME'}
     | { type: 'PRINT_ESTABLISHMENT_TYPE'}
+    | { type: 'PRINT_VIDEO'}
+    | { type: 'RESET_STATE'}
+
 
 
 export type Dispatch = (action:Action | Array<Action>) => any;

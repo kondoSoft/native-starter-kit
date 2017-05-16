@@ -9,19 +9,22 @@ export default {
   },
 
   card:{
+    flex: 1,
     borderWidth: 0,
     shadowColor: 'transparent',
     paddingBottom: 0,
-    height: 70,
+    height: 85,
+    flexDirection: 'column',
   },
   textHeader:{
+    flex: 1,
     fontSize: 13,
     top: 2,
-    right: 5,
   },
   thumbnail:{
-    width: 55,
-    height: 55,
+    flex: 1,
+    // width: 55,
+    // height: 55,
     bottom: 14,
     right: 5,
     borderWidth: 1,
@@ -29,39 +32,55 @@ export default {
     // marginBottom: 10,
   },
   header:{
+    flex: 1,
     paddingLeft: 75,
-    paddingBottom: 7,
+    paddingBottom: 0,
     paddingTop: 0,
     backgroundColor: 'transparent',
+    maxHeight:30,
+
+  },
+
+  bodyText:{
+    flex: 1,
+    paddingTop: 0,
+    backgroundColor: 'transparent',
+    paddingBottom: 0,
+    height: 55,
   },
   cardText:{
-    paddingTop: 0,
+    flex: 1,
+    flexDirection: 'row',
+    padding: 0,
+    // paddingTop: 0,
     borderBottomWidth: 2,
     borderColor: 'lightgray',
-    paddingBottom: 0,
+    // paddingBottom: 0,
     bottom: 5,
     paddingRight: 0,
     height: 40
   },
-  bodyText:{
-    paddingTop: 0,
-    backgroundColor: 'transparent',
-    paddingBottom: 0,
-    height: 45,
-  },
   textDescription:{
+    flex: 1,
     fontSize: 10,
-    right: 15,
-    width: 230,
-    top: 2,
+    lineHeight: 10,
+    top: 3,
+    maxHeight: 40,
+    // paddingLeft: 0,
+    // right: 15,
+    // width: 230,
+    // bottom: 5,
     color: 'gray',
   },
   textIconFav:{
     fontSize: 11,
-    marginLeft: 2,
+    // marginLeft: 2,
   },
   fontIcon: {
     fontSize: 15,
+  },
+  iconFav:{
+    flex: 1,
   },
 
 };

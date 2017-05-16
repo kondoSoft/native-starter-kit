@@ -1,31 +1,56 @@
 import { Dimensions } from 'react-native';
-const React = require('react-native');
 
-const { StyleSheet } = React;
+import { Platform, StyleSheet, React } from 'react-native';
+
 const { width, height } = Dimensions.get('window');
 
+
+
 export default {
-  swiper:{
-    flex: 1,
-  },
+
   slide1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9DD6EB',
-    height: 285,
+    ...Platform.select({
+      android: {
+        maxHeight: 300,
+      },
+    }),
+
+    // maxHeight: (Platform.OS === 'ios') ? 285 : 300,
+  },
+  swiper:{
+    flex: 1,
   },
   image:{
     flex: 1,
+    ...Platform.select({
+      android: {
+        top: 0,
+      },
+    }),
+    // bottom: 25,
     width,
-    resizeMode: 'cover',
-    height: 300,
+    // resizeMode: 'cover',
+    // height: (Platform.OS === 'ios') ? 180 : 299, //alto de imagen
   },
-
   gridCircle:{
     flex: 1,
     alignItems: 'center',
-    maxHeight: 50
+    maxHeight: (Platform.OS === 'ios') ? 25 : 70,
+  },
+  thumbnailMaps:{
+    // flex: 1,
+    backgroundColor: 'orange',
+    alignItems: 'center',
+    justifyContent: 'center' ,
+    ...Platform.select({
+      android: {
+        bottom: 5,
+    },
+    // bottom: 10,
+  }),
   },
   contentDescription:{
     flex: 3,
@@ -43,25 +68,27 @@ export default {
   },
   buttonMaps:{
     justifyContent: 'center',
-    bottom: 25,
+    top: (Platform.OS === 'ios') ? 0 : 0,
+    bottom: (Platform.OS === 'ios') ? 0 : 30,
+    height: (Platform.OS === 'ios') ? 0 : 70,
+    paddingTop: (Platform.OS === 'andoird') ? 0 : 0,
   },
-  gridSwiper:{
-    shadowColor: 'dimgray',
-    shadowOffset: {width: 0, height: 7},
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    maxHeight: 285,
-    width: 430,
-  },
-
   gridDescription:{
-
+    flex: 1,
     padding: 15,
   },
   colDescription:{
+    flex: 1,
     flexDirection: 'row',
   },
+  rowDescriptionData:{
+    flex: 1,
+    borderBottomWidth: 2,
+    borderBottomColor: 'darkgray',
+    marginTop: 5,
+  },
   rowDescription:{
+    flex: 5,
     borderBottomWidth: 2,
     borderBottomColor: 'darkgray',
     marginTop: 5,
@@ -98,7 +125,7 @@ export default {
     marginLeft: 20,
     marginRight: 20,
     paddingRight: 50,
-    marginTop: 15,
+    marginTop: 4,
   },
   fab:{
     backgroundColor: '#5067FF',
@@ -119,6 +146,14 @@ export default {
   buttonSocial:{
     padding: 0,
 
+  },
+  rowDescriptionSocial:{
+    flex:1,
+    borderBottomWidth: 2,
+    borderBottomColor: 'darkgray',
+    margin: 0,
+    padding: 0,
+    paddingBottom: 10,
   },
 
 };

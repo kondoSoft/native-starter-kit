@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 const React = require('react-native');
 
 const { StyleSheet } = React;
@@ -18,38 +18,57 @@ export default {
   },
   slide: {
     flex: 1,
-    backgroundColor: 'transparent',
-    height,
-  },
-
-  row:{
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
     flexWrap: 'wrap',
-    height: 100,
+    // alignItems: 'center',
+    justifyContent: 'space-around',
+    // backgroundColor: 'blue',
+    // backgroundColor: 'transparent',
+    // height: 3000,
   },
-  touchableOpacity:{
-    flex: 1,
-    alignItems: 'center',
 
+  // row:{
+  //   flex: 1,
+  //   backgroundColor: 'yellow',
+  //   flexDirection: 'row',
+  //   // justifyContent: 'space-around',
+  //   // alignItems: 'center',
+  //   flexWrap: 'wrap',
+  //   height: 100,
+  // },
+  col:{
+    width: 100,
+    height: 100,
+    shadowColor: 'dimgray',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
   thumbnail:{
-    width: 110,
-    height: 90,
+    flex: 1,
+    width: 100,
+    // height: 90,
+    // flexDirection: 'column',
     marginTop: 10,
     marginBottom: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+  touchableOpacity:{
+    flex: 1,
+    // width: 100,
+    alignItems: 'center',
+    // flexDirection: 'row',
 
   },
+
   text:{
-    fontSize: 14,
+    fontSize: 12,
     color: 'white',
     shadowColor: 'black',
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
-    shadowRadius: 3,
+    shadowRadius: 1,
     bottom: 2,
   },
   // paginationStyle:{
