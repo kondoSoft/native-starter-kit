@@ -102,7 +102,6 @@ Se accede al menú a través del icono ubicado a la derecha del header.
 ![DRAWER](./assets/src/Maquetado/Drawner.png)
 
 
-
 ## INSTRUCCIONES DE CONTRUCCION DE APK RELEASE Y DEBUG
 
 ### APK Release

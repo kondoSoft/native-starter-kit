@@ -13,6 +13,7 @@ export function setEstablishment(index:number):Action {
   };
 }
 export function printEstablishment(index:number):Action {
+  console.log(index);
   return {
     type: PRINT_ESTABLISHMENT,
     payload: index,
@@ -43,7 +44,6 @@ export function fetchEstablishmentTypeG(type_id:number, zone_id:number):Action{
   }
 }
 export function fetchEstablishmentType(type_id:number):Action{
-  console.log(type_id);
   return dispatch => {
     return fetch('http://138.68.2.137/establishment/?type_id=' + type_id,{
       method: 'GET',

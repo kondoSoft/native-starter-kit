@@ -51,9 +51,13 @@ export default function (state:State = initialState, action:Action): State {
     }
   }
   else if (action.type === PRINT_ESTABLISHMENT) {
+    // if(action.type_id.results !== []){
+    //     var returns = action.type_id.results
+    // }
+    console.log(action.payload);
     return {
       ...state,
-      results: action.type_id.results
+      results: action.payload.results
     }
   }
   else if (action.type === PRINT_ESTABLISHMENT_TYPE) {

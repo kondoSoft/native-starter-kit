@@ -36,10 +36,8 @@ class ListSubCategory extends Component {
 
   pushRoute(route, index) {
     this.props.setType(index);
-    // if(this.props.listZone[this.props.setZone] == undefined){
-    //   this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id)
-    // console.log(this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id));
-    if(this.props.listZone[this.props.setZone == undefined]){
+
+    if(this.props.listZone[this.props.setZone] == undefined){
       this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
     }else{
       this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
@@ -48,11 +46,10 @@ class ListSubCategory extends Component {
   }
 
   render() {
-    console.log(this.props);
+
     return (
       <Container>
         <Content style= {styles.content}>
-
             {this.props.listTypeClassifieds.map((item, i) =>
             <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
               <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
