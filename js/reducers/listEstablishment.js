@@ -53,17 +53,9 @@ export default function (state:State = initialState, action:Action): State {
   else if (action.type === PRINT_ESTABLISHMENT) {
     return {
       ...state,
-      results: action.payload.results,
+      results: action.type_id.results
     }
   }
-  // else if (action.type === PRINT_ESTABLISHMENT_CLASSIFIED) {
-  //
-  //   return {
-  //     ...state,
-  //     results: action.payload.results,
-  //
-  //   }
-  // }
   else if (action.type === PRINT_ESTABLISHMENT_TYPE) {
     return {
       ...state,

@@ -34,25 +34,21 @@ class ListSubCategory extends Component {
     }),
   }
 
-  componentWillMount(){
-
-
-  }
-  componentDidMount(){
-
-
-  }
   pushRoute(route, index) {
     this.props.setType(index);
-    if(this.props.listZone[this.props.setZone] == undefined){
-      this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id)
+    // if(this.props.listZone[this.props.setZone] == undefined){
+    //   this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id)
+    // console.log(this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id));
+    if(this.props.listZone[this.props.setZone == undefined]){
+      this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
     }else{
-      this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
+      this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
     }
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
+    console.log(this.props);
     return (
       <Container>
         <Content style= {styles.content}>
@@ -75,8 +71,8 @@ class ListSubCategory extends Component {
 function bindAction(dispatch) {
   return {
     setType: index => dispatch(setType(index)),
-    fetchEstablishmentType: (type_id, zone_id) => dispatch(fetchEstablishmentType(type_id, zone_id)),
-    fetchEstablishmentTypeG: (type_id) => dispatch(fetchEstablishmentTypeG(type_id)),
+    fetchEstablishmentType: type_id => dispatch(fetchEstablishmentType(type_id)),
+    fetchEstablishmentTypeG: (type_id, zone_id) => dispatch(fetchEstablishmentTypeG(type_id, zone_id)),
     openDrawer: () => dispatch(openDrawer()),
     replaceAtIndex: (index, route, key) => dispatch(replaceAtIndex(index, route, key)),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),

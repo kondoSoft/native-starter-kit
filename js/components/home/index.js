@@ -7,7 +7,7 @@ import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, But
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchCategory, fetchAdvertising, fetchVideo } from '../../actions/list';
-import { fetchClassifieds } from '../../actions/listCategory';
+import { fetchClassifiedsCategory } from '../../actions/listCategory';
 
 import { fetchSearch } from '../../actions/search';
 
@@ -54,7 +54,7 @@ class Home extends Component {
   }
   pushRouteC(route, index) {
     this.props.setIndex(index);
-    this.props.fetchClassifieds(index)
+    this.props.fetchClassifiedsCategory(this.props.list[index].id)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
@@ -70,7 +70,6 @@ class Home extends Component {
    }
 
   render() {
-    // console.log(this.props);
     var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>
@@ -107,7 +106,7 @@ class Home extends Component {
               <Card key={i} style={{ flex: 1 }}>
                 <CardItem style={styles.cardItem}>
                   { this.props.list[i] == this.props.list[0] ?  (
-                    <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
+                    <TouchableOpacity onPress={() => this.pushRouteC('blankPage', i)} >
 
                       <Body style={{ flex: 1, alignItems: 'center'}}>
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
@@ -147,7 +146,7 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
-    fetchClassifieds: index => dispatch(fetchClassifieds(index)),
+    fetchClassifiedsCategory: index => dispatch(fetchClassifiedsCategory(index)),
     fetchVideo: index => dispatch(fetchVideo(index)),
     fetchSearch: name => dispatch(fetchSearch(name)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),

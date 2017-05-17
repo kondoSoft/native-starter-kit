@@ -49,6 +49,8 @@ class ListCategory extends Component {
   }
 
   render() {
+    console.log(this.props);
+    // console.log(this.props.list[index].id);
     return (
       //<Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
         <Grid style={styles.slide} >
@@ -88,6 +90,7 @@ const mapStateToProps = state => ({
   listCategory: state.listZone.selectedPKCategory,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
+  list: state.list.list,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);

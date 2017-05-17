@@ -93,9 +93,6 @@ class Single extends Component {
     });
   };
   render() {
-
-    console.log(this.state);
-
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
     // console.log(nativeEvent.layout.height);

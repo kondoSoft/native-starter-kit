@@ -84,7 +84,6 @@ export function fetchVideo(index:number):Action{
 }
 
 export function sendMail(name, phone, email):Action{
-  console.log(name, phone, email)
   return dispatch => {
     return fetch('http://192.168.1.69:8000/contact_email/',{
       method: 'POST',
