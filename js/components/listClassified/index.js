@@ -20,7 +20,7 @@ const {
 
 } = actions;
 
-class ListCategory extends Component {
+class ListClassified extends Component {
 
   static propTypes = {
     listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
@@ -50,20 +50,34 @@ class ListCategory extends Component {
 
   render() {
     return (
-        <Grid style={styles.slide} >
+      <Swiper
+        showsButtons
+        horizontal={true}
+        showsPagination={false}
+        scrollEnabled={true}
+      >
+        <View style={styles.slide1}>
+          <Grid style={styles.slide} >
               {this.props.listCategory.map((item, i) =>
-              <Col key={i} style={styles.col}
-                >
-                  <TouchableOpacity style={styles.touchableOpacity}
-                    onPress={() => this.pushRoute('subCategory', i)}
-                    >
-                      <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                        <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                      </Thumbnail>
-                  </TouchableOpacity>
-              </Col>
+              <Row key={i}>
+                <Col  style={styles.col}>
+                    <TouchableOpacity style={styles.touchableOpacity}
+                      onPress={() => this.pushRoute('subCategory', i)}
+                      >
+                        <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
+                          <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
+                        </Thumbnail>
+                    </TouchableOpacity>
+                </Col>
+              </Row>
+
               )}
-        </Grid>
+          </Grid>
+        </View>
+        <View>
+
+        </View>
+      </Swiper>
     );
   }
 }
@@ -87,4 +101,4 @@ const mapStateToProps = state => ({
   list: state.list.list,
 });
 
-export default connect(mapStateToProps, bindAction)(ListCategory);
+export default connect(mapStateToProps, bindAction)(ListClassified);

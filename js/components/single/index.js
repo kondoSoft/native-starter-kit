@@ -97,7 +97,8 @@ class Single extends Component {
     const { props: { name, index, list } } = this;
     // console.log(nativeEvent.layout.height);
     return (
-      <Container scrollEnabled={true}>
+      // <Container scrollEnabled={true}>
+        <Container>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
             <Left>
               <Button transparent onPress={() => this.popRoute()}>
@@ -117,10 +118,8 @@ class Single extends Component {
           showsButtons
           height={this.state.heightSwiper}
           horizontal={true}
-          // width={this.state.widthSwiper}
           showsPagination={false}
           scrollEnabled={true}
-          // style={{ flex: 1}}
         >
           {this.props.listEstablishment[this.props.index].image.map((item, i) =>
            <View key={i} style={styles.slide1}>
