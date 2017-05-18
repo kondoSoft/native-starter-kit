@@ -93,7 +93,7 @@ class Home extends Component {
           <Content padder scrollEnabled={true} style={styles.contentHome}>
             <Grid style={styles.videoGrid}>
               <Row style={styles.videoRow}>
-                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>VIDEO VIRAL DE LA SEMANA</Text>
+                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text>
                 <WebView
                   source={{ uri: this.props.video[0].url }}
                   style={styles.webView}
