@@ -50,6 +50,7 @@ class Classified extends Component {
 
 
   render() {
+    var randomIndex = this.getRandomIndex()
     const { props: { name, index, listCategory } } = this;
     return (
       <Container style={styles.container}>

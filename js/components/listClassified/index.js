@@ -20,6 +20,51 @@ const {
 
 } = actions;
 
+function OpenRow(props){
+  props.listCategory.map((item, i) => {
+    i++
+    return item
+  })
+  return (
+
+      <Row key={i} style={{ backgroundColor:'blue'}} />
+
+  )
+}
+
+
+function ColItem(props){
+
+
+    var items = props.listCategory.map((data, i) => {
+      console.log(data.logo);
+      return (
+        <Thumbnail style={styles.thumbnail} square source={{uri: data.logo }}>
+          {/* <Text style={styles.text}>{data[i].name}</Text> */}
+        </Thumbnail>
+      )
+    })
+
+}
+  // return (
+  //
+  //
+  //        <Col  style={styles.col}>
+  //         <TouchableOpacity style={styles.touchableOpacity}
+  //             onPress={() => this.pushRoute('subCategory', i)}
+  //           >
+  //           <Thumbnail style={styles.thumbnail} square source={{uri: props.listCategory[i].logo }}>
+  //             <Text style={styles.text}>{props.listCategory[i].name}</Text>
+  //           </Thumbnail>
+  //         </TouchableOpacity>
+  //        </Col>
+  //      )
+  //     })
+  //   )
+
+
+
+
 class ListClassified extends Component {
 
   static propTypes = {
@@ -36,6 +81,8 @@ class ListClassified extends Component {
   constructor(props) {
     super(props);
 
+    this.listRow = this.listRow.bind(this)
+
   }
   componentWillMount(){
     // this.props.fetchClassifieds()
@@ -47,8 +94,21 @@ class ListClassified extends Component {
     this.props.fetchPKClassifieds(this.props.listCategory[index].id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
+  listRow(column){
+    var list = this.props.listCategory
+    list.map((item, i) => {
+      i++
+
+      console.log('>, ', item);
+      if (i%3 == 0){
+        console.log('division');
+      }
+    })
+  }
+
 
   render() {
+    // this.listRow(3)
     return (
       <Swiper
         showsButtons
@@ -58,21 +118,25 @@ class ListClassified extends Component {
       >
         <View style={styles.slide1}>
           <Grid style={styles.slide} >
-              {this.props.listCategory.map((item, i) =>
-              <Row key={i}>
-                <Col  style={styles.col}>
-                    <TouchableOpacity style={styles.touchableOpacity}
-                      onPress={() => this.pushRoute('subCategory', i)}
-                      >
-                        <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                          <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                        </Thumbnail>
-                    </TouchableOpacity>
-                </Col>
-              </Row>
-
-              )}
+            {/* <OpenRow /> */}
+            <ColItem listCategory={this.props.listCategory}/>
           </Grid>
+              {/* {this.props.listCategory.map((item, i) =>
+
+                <Row key={i}>
+                  <Col  style={styles.col}>
+                      <TouchableOpacity style={styles.touchableOpacity}
+                        onPress={() => this.pushRoute('subCategory', i)}
+                        >
+                          <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
+                            <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
+                          </Thumbnail>
+                      </TouchableOpacity>
+                  </Col>
+                </Row>
+
+            )} */}
+
         </View>
         <View>
 
