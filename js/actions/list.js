@@ -85,7 +85,7 @@ export function fetchVideo(index:number):Action{
 
 export function sendMail(name, phone, email):Action{
   return dispatch => {
-    return fetch('http://192.168.1.69:8000/contact_email/',{
+    return fetch('http://138.68.2.137/contact_email/',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -97,7 +97,8 @@ export function sendMail(name, phone, email):Action{
         email: email,
       })
     })
-    .then(res => res.json())
+    .then(res => {console.log(res.json())
+      res.json()})
     // .then(res => dispatch(printVideo(res)))
     .catch(err => console.log(err))
   }
