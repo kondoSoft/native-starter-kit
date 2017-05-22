@@ -5,7 +5,7 @@ export const SET_INDEX = 'SET_INDEX';
 export const PRINT_CATEGORY = 'PRINT_CATEGORY';
 export const PRINT_ADVERTISING = 'PRINT_ADVERTISING';
 export const PRINT_VIDEO = 'PRINT_VIDEO';
-export const RESET_STATE  = 'RESET_STATE';
+export const SUCCESS_MAIL  = 'RESET_STATE';
 
 
 export function setIndex(index:number):Action {
@@ -32,9 +32,10 @@ export function printVideo(index:number):Action{
     payload: index,
   }
 }
-export function resetState():Action{
+export function successMail(message):Action{
   return {
-    type: RESET_STATE,
+    type: SUCCESS_MAIL,
+    payload: message,
   }
 }
 
@@ -97,9 +98,9 @@ export function sendMail(name, phone, email):Action{
         email: email,
       })
     })
-    .then(res => {console.log(res.json())
-      res.json()})
-    // .then(res => dispatch(printVideo(res)))
+    .then(res => {res.json()
+    console.log('api', res);})
+    .then(res => dispatch(successMail(res)))
     .catch(err => console.log(err))
   }
 }

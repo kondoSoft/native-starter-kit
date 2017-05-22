@@ -19,7 +19,7 @@ class SideBar extends Component {
 
   navigateTo(route) {
     this.props.navigateTo(route, 'home');
-    this.props.resetState()
+    // this.props.resetState()
   }
 
   render() {
@@ -48,7 +48,7 @@ class SideBar extends Component {
 function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
-    resetState: () => dispatch(resetState()),    
+    // resetState: () => dispatch(resetState()),
     navigateTo: (route, homeRoute) => dispatch(navigateTo(route, homeRoute)),
   };
 }

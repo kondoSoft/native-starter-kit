@@ -62,7 +62,6 @@ class ContactUs extends Component {
    }
 
   render() {
-
     return (
       <Container>
         <Header style={styles.header}>
@@ -83,7 +82,11 @@ class ContactUs extends Component {
               <H3 style={{ textAlign: 'center' }}>Deseas anunciar tu negocio?</H3>
             </Row>
             <Row>
-              <Text style={styles.textDescription}>Enviano tus datos y en breve nos pondremos en contacto</Text>
+              {/* <Text style={styles.textDescription}>Enviano tus datos y en breve nos pondremos en contacto</Text> */}
+              {/* {(this.props.messageSuccess.status) ? <Text style={{ backgroundColor: 'green'}}>Mensaje Enviado</Text> : <Text>Problemas al enviar el mensaje</Text>} */}
+              {/* <Text>{this.props.messageSuccess.status}</Text> */}
+              {/* {console.log(this.props.messageSuccess)} */}
+              {/* <Text>{this.props.messageSuccess}</Text> */}
             </Row>
 
           </Grid>
@@ -127,6 +130,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
+  messageSuccess: state.list.messageSuccess
 });
 
 

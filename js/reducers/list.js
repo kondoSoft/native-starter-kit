@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, RESET_STATE} from '../actions/list';
+import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL} from '../actions/list';
 
 export type State = {
     list: string
@@ -22,7 +22,8 @@ const initialState = {
   videoSelected: [
     "name": "",
     "url": "",
-  ]
+  ],
+  messageSuccess: {},
 };
 
 export default function (state:State = initialState, action:Action): State {
@@ -47,6 +48,11 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       videoSelected: action.payload.results
+    }
+  }else if (action.type === SUCCESS_MAIL) {
+    return {
+      ...state,
+      messageSuccess: action.payload
     }
   }
 
