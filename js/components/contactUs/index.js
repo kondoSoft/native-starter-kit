@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Image } from 'react-native'
 import { Container, Header, Content, Text, Button, Icon, Item, Input, Form, Left, Right, H3 } from 'native-base';
-import ListEstablishment from '../listEstablishment'
 import { openDrawer } from '../../actions/drawer';
 import styles from './style';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import { sendMail } from '../../actions/list';
 const {
   reset,
   popRoute,
@@ -17,7 +17,10 @@ class ContactUs extends Component {
   constructor() {
     super();
        this.state = {
-           active: false
+           active: false,
+           nameC: '',
+           phoneC: '',
+           mailC: '',
        };
    }
   static propTypes = {
@@ -33,7 +36,33 @@ class ContactUs extends Component {
     this.props.popRoute(this.props.navigation.key);
   }
 
+  handleName(event) {
+    this.setState({nameC: event.nativeEvent.text});
+   }
+  handlePhone(event) {
+    const expreg = /\d/
+    this.setState({phoneC: event.nativeEvent.text});
+    if(expreg.test(this.state.phoneC)){
+      console.log('es valido');
+    }
+    else{
+      console.log('no es valido aun');
+    }
+  }
+  handleEmail(event) {
+    const expreg = /(\w+)@(\w+)\.([A-Za-z]+)/;
+
+    this.setState({mailC: event.nativeEvent.text});
+    if(expreg.test(this.state.mailC)){
+
+      console.log('es valido');
+    }else{
+      console.log('no es valido aun');
+    }
+   }
+
   render() {
+
     return (
       <Container>
         <Header style={styles.header}>
@@ -62,17 +91,21 @@ class ContactUs extends Component {
             <Form style={styles.form}>
               <Item style={styles.item}>
                 <Icon style={styles.icon} active name="md-contact"/>
-                <Input style={styles.input} placeholder="Nombre" />
+                <Input style={styles.input} onChange={event => this.handleName(event)} placeholder="Nombre" />
               </Item>
               <Item style={styles.item}>
                 <Icon style={styles.icon} active name="logo-whatsapp"/>
-                <Input style={styles.input} placeholder="Telefono(Whatsapp)" />
+                <Input style={styles.input}
+                    maxLength={10}
+                    onChange={event => this.handlePhone(event)}
+                    placeholder="Telefono(Whatsapp)"
+                  />
               </Item>
               <Item style={styles.item}>
                 <Icon style={styles.icon} active name="ios-mail"/>
-                <Input style={styles.input} placeholder="Correo electronico" />
+                <Input style={styles.input}  onChange={event => this.handleEmail(event)} placeholder="Correo electronico" />
               </Item>
-              <Button style={styles.button} block info>
+              <Button style={styles.button} block info onPress={() => this.props.sendMail(this.state.nameC, this.state.phoneC, this.state.mailC)}>
                   <Text style={styles.textButton} >ENVIAR</Text>
               </Button>
             </Form>
@@ -87,6 +120,7 @@ function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
+    sendMail: (name, phone, email) => dispatch(sendMail(name, phone, email)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
 }

@@ -38,7 +38,7 @@ class ListCategory extends Component {
 
   }
   componentWillMount(){
-    this.props.fetchClassifieds()
+    // this.props.fetchClassifieds()
     // this.props.fetchEstablishmentClassified()
   }
 
@@ -50,31 +50,20 @@ class ListCategory extends Component {
 
   render() {
     return (
-      <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
-        <View style={styles.slide} showsVerticalScrollIndicator={false}>
-            <Row style={styles.row}>
+        <Grid style={styles.slide} >
               {this.props.listCategory.map((item, i) =>
-              <Col key={i} style={{
-                width: 115,
-                shadowColor: 'dimgray',
-                shadowOffset: {width: 0, height: 0},
-                shadowOpacity: 1,
-                shadowRadius: 1, }}
+              <Col key={i} style={styles.col}
                 >
                   <TouchableOpacity style={styles.touchableOpacity}
-                    // onPress={()=>(this.routeCondition(i))}
                     onPress={() => this.pushRoute('subCategory', i)}
-
                     >
                       <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
                         <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
                       </Thumbnail>
-                    </TouchableOpacity>
+                  </TouchableOpacity>
               </Col>
               )}
-            </Row>
-        </View>
-      </Image>
+        </Grid>
     );
   }
 }
@@ -95,6 +84,7 @@ const mapStateToProps = state => ({
   listCategory: state.listZone.selectedPKCategory,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
+  list: state.list.list,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);

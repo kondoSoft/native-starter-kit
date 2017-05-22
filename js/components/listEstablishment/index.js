@@ -3,9 +3,8 @@ import { TouchableOpacity, Image, View } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
-import { setEstablishment, fetchEstablishment, fetchEstablishmentClassified } from '../../actions/listEstablishment';
+import { setEstablishment } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
-
 import styles from './styles'
 
 
@@ -31,8 +30,7 @@ class ListEstablishment extends Component {
   }
 
   componentWillMount(){
-    // this.props.fetchEstablishment()
-    // this.props.fetchEstablishmentClassified()
+
   }
   pushRoute(route, index) {
     this.props.setEstablishment(index)
@@ -60,17 +58,20 @@ class ListEstablishment extends Component {
               </TouchableOpacity>
               <Body>
                 <CardItem style={styles.cardText}>
-                  <TouchableOpacity
-                    onPress={() => this.pushRoute('single', i)}
-                    >
-                    <Text style={styles.textDescription}>{this.props.listEstablishment[i].description.substring(0,100)+ "..."}</Text>
-                  </TouchableOpacity>
-                  <Right style={styles.iconFav}>
+                  <Body style={{ flex: 1, flexDirection: 'row'}}>
+                    <TouchableOpacity
+                      // style={{ flex: 1 }}
+                      onPress={() => this.pushRoute('single', i)}
+                      >
+                      <Text style={styles.textDescription}>{this.props.listEstablishment[i].description.substring(0,120)+ "..."}</Text>
+                    </TouchableOpacity>
+                  </Body>
+
                     <Button transparent textStyle={{color: '#87838B'}}>
                       <Icon style={styles.fontIcon} name="heart" />
                       {/* <Text style={styles.textIconFav} >{this.props.listEstablishment[i].favorites}</Text> */}
                     </Button>
-                  </Right>
+
                 </CardItem>
               </Body>
             </CardItem>
@@ -85,8 +86,6 @@ class ListEstablishment extends Component {
 function bindAction(dispatch) {
   return {
     setEstablishment: index => dispatch(setEstablishment(index)),
-    fetchEstablishment: index => dispatch(fetchEstablishment(index)),
-    fetchEstablishmentClassified: index => dispatch(fetchEstablishmentClassified(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),

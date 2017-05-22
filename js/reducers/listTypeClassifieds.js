@@ -1,6 +1,7 @@
 
 import type { Action } from '../actions/types';
 import { SET_TYPE, PK_CLASSIFIED } from '../actions/listType';
+import { RESET_STATE } from '../actions/list'
 
 export type State = {
     results: string
@@ -8,7 +9,7 @@ export type State = {
 
 const initialState = {
   results: [
-    
+
   ],
   selectedType: undefined,
 };
@@ -24,6 +25,11 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       results: action.payload
+    }
+  }else if (action.type === RESET_STATE) {
+    return {
+      ...state,
+      initialState
     }
   }
   return state;

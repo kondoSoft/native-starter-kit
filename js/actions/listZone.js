@@ -19,10 +19,10 @@ export function printZone(res){
   }
 }
 
-export function pk_zone(pk){
+export function pk_zone(id){
   return {
     type: PK_ZONE,
-    payload: pk,
+    payload: id,
   }
 }
 

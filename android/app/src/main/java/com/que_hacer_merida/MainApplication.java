@@ -6,11 +6,13 @@ import android.util.Log;
 import com.facebook.react.ReactApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.microsoft.codepush.react.CodePush;
+import com.mehcode.reactnative.splashscreen.SplashScreenPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.mehcode.reactnative.splashscreen.SplashScreenPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     }
 
     @Override
-    public boolean getUseDeveloperSupport() {
+    protected boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
 
@@ -34,7 +36,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new MapsPackage(),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
+            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
+          new SplashScreenPackage()
+
       );
     }
   };

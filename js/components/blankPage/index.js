@@ -9,6 +9,8 @@ import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import { fetchAdvertising } from '../../actions/list';
+
 
 const {
   reset,
@@ -29,7 +31,11 @@ class BlankPage extends Component {
       key: React.PropTypes.string,
     }),
   }
+  componentWillMount(){
 
+    this.props.fetchAdvertising()
+
+  }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
@@ -57,12 +63,12 @@ class BlankPage extends Component {
             </Button>
           </Right>
         </Header>
-        <Grid style={{ maxHeight: 60 }}>
-          <Row style={{height: 60}}>
-            <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad.png')} />
-          </Row>
+        <Grid style={{ maxHeight: 62, flex: 1 }}>
+            <Row>
+              <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
+            </Row>
         </Grid>
-        <Content padder scrollEnabled={false} style={{ paddingLeft: 5 }}>
+        <Content padder scrollEnabled={true} style={{ paddingLeft: 5 }}>
           <ListZone />
         </Content>
       </Container>
@@ -75,6 +81,7 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
   };
 }
 
@@ -83,6 +90,7 @@ const mapStateToProps = state => ({
   name: state.user.name,
   index: state.list.selectedIndex,
   list: state.list.list,
+  advertising: state.list.advertising,
 });
 
 

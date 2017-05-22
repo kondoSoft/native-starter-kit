@@ -9,6 +9,7 @@ import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import markerMerida from '../../../assets/img/marker-merida.png';
 
+
 const {
   reset,
   popRoute,
@@ -34,7 +35,8 @@ class SingleMap extends Component {
            longitudeDelta: LONGITUDE_DELTA,
           },
           active: false,
-         }
+
+        }
    }
 
   static propTypes = {
@@ -51,6 +53,9 @@ class SingleMap extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+  }
+  componentWillMount(){
+
   }
 
   render() {
@@ -74,52 +79,52 @@ class SingleMap extends Component {
             </Button>
           </Right>
         </Header>
-        <Grid>
+        <Grid style={{ flex: 1,
+          shadowColor: 'dimgray',
+          shadowOffset: {width: 0, height: 7},
+          shadowOpacity: 1,
+          shadowRadius: 1,}}>
+         <View style={styles.container}>
+            <MapView
+              provider={this.props.provider}
+              style={styles.map}
+              initialRegion={this.props.listEstablishment[id].coor}
+            >
+              <MapView.Marker
+                title={this.props.listEstablishment[id].name}
+                key={this.props.listEstablishment[id].id}
+                coordinate={this.props.listEstablishment[id].coor}
+                image={markerMerida}
+              />
+            </MapView>
+          </View>
+        </Grid>
+        {/* <Content scrollEnabled={false}> */}
+        <Grid style={styles.gridDescription}>
+          <Row style={styles.rowDescription}>
+            <H3>{this.props.listEstablishment[id].name}</H3>
+          </Row>
+          <Row style={styles.rowMain}>
+            <Icon style={styles.iconGray} name="md-pin" />
+            <Text style={styles.textRow}>{this.props.listEstablishment[id].address}</Text>
+          </Row>
+          <Row style={styles.rowDescription}>
+            <Col style={styles.colDescription}>
+              <Icon style={styles.iconGray} name="md-call" />
+              <Text style={styles.textRow}>{this.props.listEstablishment[id].phone}</Text>
+            </Col>
+          </Row>
           <Row>
-            <View style={styles.container}>
-              <MapView
-                provider={this.props.provider}
-                style={styles.map}
-                initialRegion={this.props.listEstablishment[id].coor}
-              >
-
-                  <MapView.Marker
-                    title={this.props.listEstablishment[id].name}
-                    key={this.props.listEstablishment[id].id}
-                    coordinate={this.props.listEstablishment[id].coor}
-                    image={markerMerida}
-                  />
-
-              </MapView>
-            </View>
+            <Right>
+              { activeFab ? (
+                <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[id].name}" a traves de Que Hacer? Merida</Text>
+              ):(
+                <Text></Text>
+              )}
+            </Right>
           </Row>
         </Grid>
-        <Content scrollEnabled={false}>
-          <Grid style={styles.gridDescription}>
-            <Row style={styles.rowDescription}>
-              <H3>{this.props.listEstablishment[id].name}</H3>
-            </Row>
-            <Row style={styles.rowMain}>
-              <Icon style={styles.iconGray} name="md-pin" />
-              <Text style={styles.textRow}>{this.props.listEstablishment[id].address}</Text>
-            </Row>
-            <Row style={styles.rowDescription}>
-              <Col style={styles.colDescription}>
-                <Icon style={styles.iconGray} name="md-call" />
-                <Text style={styles.textRow}>{this.props.listEstablishment[id].phone}</Text>
-              </Col>
-            </Row>
-            <Row>
-              <Right>
-                { activeFab ? (
-                  <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[id].name}" a traves de Que Hacer? Merida</Text>
-                ):(
-                  <Text></Text>
-                )}
-              </Right>
-            </Row>
-          </Grid>
-        </Content>
+        {/* </Content> */}
         <Fab
               active={this.state.active}
               direction="up"
@@ -128,15 +133,15 @@ class SingleMap extends Component {
               onPress={() => this.setState({ active: !this.state.active })}
           >
               <Icon name="md-share" />
-              <Button style={styles.buttonW}>
+              {/* <Button style={styles.buttonW}>
                   <Icon name="logo-whatsapp" />
-              </Button>
+              </Button> */}
               <Button style={styles.buttonF}>
                   <Icon name="logo-facebook" />
               </Button>
-              <Button style={styles.buttonM}>
+              {/* <Button style={styles.buttonM}>
                   <Icon name="mail" />
-              </Button>
+              </Button> */}
           </Fab>
       </Container>
     );

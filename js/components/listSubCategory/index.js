@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail, ListItem  } from 'native-base';
 import { setType } from '../../actions/listType';
-import { fetchEstablishmentType } from '../../actions/listEstablishment';
+import { fetchEstablishmentType, fetchEstablishmentTypeG } from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
@@ -34,29 +34,22 @@ class ListSubCategory extends Component {
     }),
   }
 
-  componentWillMount(){
-    // this.props.fetchPKClassifieds()
-    // console.log(this.props.listTypeClassifieds);
-
-  }
-  componentDidMount(){
-
-
-  }
   pushRoute(route, index) {
     this.props.setType(index);
-    // console.log(index);
-    console.log(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id);
-    this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
-    this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
 
+    if(this.props.listZone[this.props.setZone] == undefined){
+      this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
+    }else{
+      this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
+    }
+    this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
+
     return (
       <Container>
         <Content style= {styles.content}>
-
             {this.props.listTypeClassifieds.map((item, i) =>
             <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
               <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
@@ -75,7 +68,8 @@ class ListSubCategory extends Component {
 function bindAction(dispatch) {
   return {
     setType: index => dispatch(setType(index)),
-    fetchEstablishmentType: (type_id, zone_id) => dispatch(fetchEstablishmentType(type_id, zone_id)),
+    fetchEstablishmentType: type_id => dispatch(fetchEstablishmentType(type_id)),
+    fetchEstablishmentTypeG: (type_id, zone_id) => dispatch(fetchEstablishmentTypeG(type_id, zone_id)),
     openDrawer: () => dispatch(openDrawer()),
     replaceAtIndex: (index, route, key) => dispatch(replaceAtIndex(index, route, key)),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),

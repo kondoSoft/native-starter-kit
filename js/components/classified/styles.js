@@ -8,7 +8,7 @@ export default {
   content: {
     padding: 0,
     flex: 1,
-    height,
+    height: 100,
   },
   imagePub:{
     flex: 1,

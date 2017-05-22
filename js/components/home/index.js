@@ -6,7 +6,9 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, Button, Item, Icon, Input, Left, Body, Right } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
-import { setIndex, fetchCategory, fetchAdvertising } from '../../actions/list';
+import { setIndex, fetchCategory, fetchAdvertising, fetchVideo } from '../../actions/list';
+import { fetchClassifiedsCategory } from '../../actions/listCategory';
+
 import { fetchSearch } from '../../actions/search';
 
 import styles from './styles';
@@ -14,6 +16,7 @@ import styles from './styles';
 const {
   reset,
   pushRoute,
+  pushRouteC,
 
 } = actions;
 
@@ -37,17 +40,21 @@ class Home extends Component {
     this.state = {value: ''};
     this.getRandomIndex = this.getRandomIndex.bind(this)
     this.handleChange = this.handleChange.bind(this)
-
   }
   componentWillMount(){
     this.props.fetchCategory()
     this.props.fetchAdvertising()
-
+    this.props.fetchVideo()
   }
 
   pushRoute(route, index, value) {
     this.props.setIndex(index);
     this.props.fetchSearch(value);
+    this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
+  }
+  pushRouteC(route, index) {
+    this.props.setIndex(index);
+    this.props.fetchClassifiedsCategory(this.props.list[index].id)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
@@ -63,7 +70,6 @@ class Home extends Component {
    }
 
   render() {
-
     var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>
@@ -79,7 +85,7 @@ class Home extends Component {
               </Button>
             </Right>
           </Header>
-          <Grid style={{ maxHeight: 60, flex: 1 }}>
+          <Grid style={{ maxHeight: 62, flex: 1 }}>
               <Row>
                 <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
               </Row>
@@ -87,9 +93,9 @@ class Home extends Component {
           <Content padder scrollEnabled={true} style={styles.contentHome}>
             <Grid style={styles.videoGrid}>
               <Row style={styles.videoRow}>
-                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>VIDEO VIRAL DE LA SEMANA</Text>
+                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text>
                 <WebView
-                  source={{ uri: 'https://www.youtube.com/embed/v7MGUNV8MxU' }}
+                  source={{ uri: this.props.video[0].url }}
                   style={styles.webView}
                   javaScriptEnabled={true}
                 />
@@ -100,7 +106,7 @@ class Home extends Component {
               <Card key={i} style={{ flex: 1 }}>
                 <CardItem style={styles.cardItem}>
                   { this.props.list[i] == this.props.list[0] ?  (
-                    <TouchableOpacity onPress={() => this.pushRoute('blankPage', i)} >
+                    <TouchableOpacity onPress={() => this.pushRouteC('blankPage', i)} >
 
                       <Body style={{ flex: 1, alignItems: 'center'}}>
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
@@ -109,7 +115,7 @@ class Home extends Component {
                       </Body>
                     </TouchableOpacity>
                   ) : (
-                    <TouchableOpacity onPress={() => this.pushRoute('classified', i)} >
+                    <TouchableOpacity onPress={() => this.pushRouteC('classified', i)} >
                       <Body style={{  flex: 1, alignItems: 'center' }}>
 
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
@@ -140,6 +146,8 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
+    fetchClassifiedsCategory: index => dispatch(fetchClassifiedsCategory(index)),
+    fetchVideo: index => dispatch(fetchVideo(index)),
     fetchSearch: name => dispatch(fetchSearch(name)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     openDrawer: () => dispatch(openDrawer()),
@@ -151,6 +159,7 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   list: state.list.list,
   advertising: state.list.advertising,
+  video: state.list.videoSelected,
   navigation: state.cardNavigation,
   listSearch: state.search.results,
 });
