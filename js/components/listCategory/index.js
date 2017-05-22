@@ -50,9 +50,7 @@ class ListCategory extends Component {
 
   render() {
     return (
-      //<Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
         <Grid style={styles.slide} >
-            {/* <Row style={styles.row}> */}
               {this.props.listCategory.map((item, i) =>
               <Col key={i} style={styles.col}
                 >
@@ -65,9 +63,7 @@ class ListCategory extends Component {
                   </TouchableOpacity>
               </Col>
               )}
-            {/* </Row> */}
         </Grid>
-      //</Image>
     );
   }
 }
@@ -88,6 +84,7 @@ const mapStateToProps = state => ({
   listCategory: state.listZone.selectedPKCategory,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
+  list: state.list.list,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);

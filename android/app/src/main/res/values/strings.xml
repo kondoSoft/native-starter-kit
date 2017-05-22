@@ -1,4 +1,4 @@
 <resources>
-    <string name="reactNativeCodePush_androidDeploymentKey" moduleConfig="true"></string>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey"></string>
     <string name="app_name">Que Hacer Mérida?</string>
 </resources>

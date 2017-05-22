@@ -36,7 +36,7 @@ class ListZone extends Component {
 
   pushRoute(route, index) {
     this.props.setZone(index);
-    this.props.fetchPkZone(index + 1);
+    // this.props.fetchPkZone(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 

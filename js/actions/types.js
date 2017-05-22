@@ -19,6 +19,7 @@ export type Action =
     | { type: 'PRINT_ESTABLISHMENT_TYPE'}
     | { type: 'PRINT_VIDEO'}
     | { type: 'RESET_STATE'}
+    | { type: 'PRINT_CLASSIFIEDS_CATEGORY'}
 
 
 

@@ -9,7 +9,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@remobile/react-native-splashscreen": "^1.0.7",
     "color": "^0.11.3",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",

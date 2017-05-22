@@ -3,7 +3,7 @@ import type { Action } from './types';
 
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const PRINT_CLASSIFIEDS = 'PRINT_CLASSIFIEDS';
-
+export const PRINT_CLASSIFIEDS_CATEGORY = 'PRINT_CLASSIFIEDS_CATEGORY';
 
 export function setIndex(index:number):Action {
   return {
@@ -15,6 +15,12 @@ export function setIndex(index:number):Action {
 export function printClassifieds(index:number):Action {
   return {
     type: PRINT_CLASSIFIEDS,
+    payload: index,
+  };
+}
+export function printClassifiedsCategory(index:number):Action {
+  return {
+    type: PRINT_CLASSIFIEDS_CATEGORY,
     payload: index,
   };
 }
@@ -31,6 +37,37 @@ export function fetchClassifieds(index:number):Action{
     })
     .then(res => res.json())
     .then(res => dispatch(printClassifieds(res)))
+    .catch(err => console.log(err))
+  }
+}
+
+// export function fetchClassifiedsCategory(index:number):Action{
+//   console.log(index);
+//   return dispatch => {
+//     return fetch('http://138.68.2.137/classifieds/?category_id=' + index,{
+//       method: 'GET',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//       }
+//     })
+//     .then(res => res.json())
+//     .then(res => dispatch(printClassifiedsCategory(res)))
+//     .catch(err => console.log(err))
+//   }
+// }
+export function fetchClassifiedsCategory(index:number):Action{
+
+  return dispatch => {
+    return fetch('http://138.68.2.137/classifieds/?category_id=' + index,{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(res => dispatch(printClassifiedsCategory(res)))
     .catch(err => console.log(err))
   }
 }

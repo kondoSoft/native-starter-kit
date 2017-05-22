@@ -1,7 +1,7 @@
 
 import type { Action } from '../actions/types';
 import { SET_ZONE, PRINT_ZONE, PK_ZONE } from '../actions/listZone';
-import { PRINT_CLASSIFIEDS } from '../actions/listCategory';
+import { PRINT_CLASSIFIEDS, PRINT_CLASSIFIEDS_CATEGORY } from '../actions/listCategory';
 
 
 export type State = {
@@ -14,7 +14,7 @@ const initialState = {
       "id": 1,
       "name_zone": "Zona Norte",
       "state": 1,
-      "image": "http://127.0.0.1:8000/category_zone/norte_CrBLvNe.png",
+      "image": "",
     },
   ],
   selectedZone: undefined,
@@ -35,6 +35,7 @@ export default function (state:State = initialState, action:Action): State {
     }
   }
   else if (action.type == PK_ZONE) {
+
     return {
       ...state,
       selectedPKCategory: action.payload,
@@ -44,6 +45,12 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       selectedPKCategory: action.payload.results,
+    }
+  }
+  else if (action.type === PRINT_CLASSIFIEDS_CATEGORY){
+    return {
+      ...state,
+      selectedPKCategory: action.payload.results
     }
   }
   return state;
