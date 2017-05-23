@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, ActivityIndicator} from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Image } from 'react-native'
 import { Container, Header, Content, Text, Button, Icon, Item, Input, Form, Left, Right, H3 } from 'native-base';
@@ -12,7 +12,11 @@ const {
   popRoute,
 } = actions;
 
+// type State = { loading: boolean; };
+
 class ContactUs extends Component {
+
+
 
   constructor() {
     super();
@@ -21,6 +25,8 @@ class ContactUs extends Component {
            nameC: '',
            phoneC: '',
            mailC: '',
+           styleMail: {},
+           loading: true,
        };
    }
   static propTypes = {
@@ -60,8 +66,18 @@ class ContactUs extends Component {
       console.log('no es valido aun');
     }
    }
+   componentWillReceiveProps(nextProps){
+
+     if (nextProps.messageSuccess.ok == true){
+       this.setState({styleMail: styles.textSuccess})
+     }else{
+       this.setState({styleMail: styles.textFailure})
+      }
+     }
+
 
   render() {
+
     return (
       <Container>
         <Header style={styles.header}>
@@ -82,36 +98,37 @@ class ContactUs extends Component {
               <H3 style={{ textAlign: 'center' }}>Deseas anunciar tu negocio?</H3>
             </Row>
             <Row>
-              {/* <Text style={styles.textDescription}>Enviano tus datos y en breve nos pondremos en contacto</Text> */}
-              {/* {(this.props.messageSuccess.status) ? <Text style={{ backgroundColor: 'green'}}>Mensaje Enviado</Text> : <Text>Problemas al enviar el mensaje</Text>} */}
-              {/* <Text>{this.props.messageSuccess.status}</Text> */}
-              {/* {console.log(this.props.messageSuccess)} */}
-              {/* <Text>{this.props.messageSuccess}</Text> */}
+              <Text style={styles.textDescription}>Enviano tus datos y en breve nos pondremos en contacto</Text>
+            </Row>
+            <Row>
+              <Text style={this.state.styleMail} >{this.props.messageSuccess.statusText}</Text>
             </Row>
 
           </Grid>
 
-            <Form style={styles.form}>
-              <Item style={styles.item}>
-                <Icon style={styles.icon} active name="md-contact"/>
-                <Input style={styles.input} onChange={event => this.handleName(event)} placeholder="Nombre" />
-              </Item>
-              <Item style={styles.item}>
-                <Icon style={styles.icon} active name="logo-whatsapp"/>
-                <Input style={styles.input}
-                    maxLength={10}
-                    onChange={event => this.handlePhone(event)}
-                    placeholder="Telefono(Whatsapp)"
-                  />
-              </Item>
-              <Item style={styles.item}>
-                <Icon style={styles.icon} active name="ios-mail"/>
-                <Input style={styles.input}  onChange={event => this.handleEmail(event)} placeholder="Correo electronico" />
-              </Item>
-              <Button style={styles.button} block info onPress={() => this.props.sendMail(this.state.nameC, this.state.phoneC, this.state.mailC)}>
-                  <Text style={styles.textButton} >ENVIAR</Text>
-              </Button>
-            </Form>
+
+          <Form style={styles.form}>
+            <Item style={styles.item}>
+              <Icon style={styles.icon} active name="md-contact"/>
+              <Input style={styles.input} onChange={event => this.handleName(event)} placeholder="Nombre" />
+            </Item>
+            <Item style={styles.item}>
+              <Icon style={styles.icon} active name="logo-whatsapp"/>
+              <Input style={styles.input}
+                  maxLength={10}
+                  onChange={event => this.handlePhone(event)}
+                  placeholder="Telefono(Whatsapp)"
+                  keyboardType={'phone-pad'}
+                />
+            </Item>
+            <Item style={styles.item}>
+              <Icon style={styles.icon} active name="ios-mail"/>
+              <Input style={styles.input}  keyboardType={'email-address'} onChange={event => this.handleEmail(event)} placeholder="Correo electronico" />
+            </Item>
+            <Button style={styles.button} block info onPress={() => this.props.sendMail(this.state.nameC, this.state.phoneC, this.state.mailC)}>
+                <Text style={styles.textButton} >ENVIAR</Text>
+            </Button>
+          </Form>
 
         </Content>
       </Container>
