@@ -41,7 +41,7 @@ class Establishments extends Component {
           </Left>
           <Body>
             {/* <Title>{list[index]}</Title> */}
-            <Title>Lista</Title>
+            <Title>{this.props.listTypeClassifieds[this.props.selectedType].type_classifieds}</Title>
           </Body>
 
           <Right>
@@ -71,6 +71,8 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
   index: state.list.selectedIndex,
+  listTypeClassifieds: state.listTypeClassifieds.results,
+  selectedType: state.listTypeClassifieds.selectedType
 
 });
 

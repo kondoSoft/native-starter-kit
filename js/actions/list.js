@@ -5,7 +5,9 @@ export const SET_INDEX = 'SET_INDEX';
 export const PRINT_CATEGORY = 'PRINT_CATEGORY';
 export const PRINT_ADVERTISING = 'PRINT_ADVERTISING';
 export const PRINT_VIDEO = 'PRINT_VIDEO';
-export const SUCCESS_MAIL  = 'RESET_STATE';
+export const SUCCESS_MAIL  = 'SUCCESS_MAIL';
+export const LOADING_TRUE = 'LOADING_TRUE';
+export const RESET_STATE = 'RESET_STATE';
 
 
 export function setIndex(index:number):Action {
@@ -86,7 +88,7 @@ export function fetchVideo(index:number):Action{
 
 export function sendMail(name, phone, email):Action{
   return dispatch => {
-    return fetch('http://192.168.1.74:8000/contact_email/',{
+    return fetch('http://138.68.2.137/contact_email/',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -101,5 +103,18 @@ export function sendMail(name, phone, email):Action{
     .then(res => {return res.json()})
     .then(res => dispatch(successMail(res)))
     .catch(err => console.log(err))
+  }
+}
+
+export function setLoadingTrue(){
+  return {
+    type: LOADING_TRUE,
+    payload: true,
+  }
+}
+
+export function resetState(){
+  return {
+    type: RESET_STATE,
   }
 }

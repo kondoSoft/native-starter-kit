@@ -41,7 +41,6 @@ class ListZone extends Component {
   }
 
   render() {
-
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
           <StatusBar barStyle='light-content'/>

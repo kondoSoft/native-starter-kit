@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL} from '../actions/list';
+import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL, LOADING_TRUE, RESET_STATE} from '../actions/list';
 
 export type State = {
     list: string
@@ -24,6 +24,7 @@ const initialState = {
     "url": "",
   ],
   messageSuccess: {},
+  loading: false,
 };
 
 export default function (state:State = initialState, action:Action): State {
@@ -52,9 +53,22 @@ export default function (state:State = initialState, action:Action): State {
   }else if (action.type === SUCCESS_MAIL) {
     return {
       ...state,
-      messageSuccess: action.payload
+      messageSuccess: action.payload,
+      loading: false
+    }
+  }else if (action.type === LOADING_TRUE) {
+    return {
+      ...state,
+      loading: true
     }
   }
+  else if (action.type === RESET_STATE) {
+    return {
+      ...state,
+      messageSuccess: {}
+    }
+  }
+
 
   return state;
 }

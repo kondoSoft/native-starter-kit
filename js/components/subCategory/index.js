@@ -20,7 +20,9 @@ class SubCategory extends Component {
   static propTypes = {
     name: React.PropTypes.string,
     setZone: React.PropTypes.func,
+    selectedCategory: React.PropTypes.number,
     index: React.PropTypes.number,
+    listTypeClassifieds: React.PropTypes.arrayOf(React.PropTypes.object),
     list: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
@@ -35,7 +37,6 @@ class SubCategory extends Component {
   }
 
   render() {
-
     const { props: { name, index } } = this;
     return (
       <Container style={styles.container}>
@@ -46,7 +47,7 @@ class SubCategory extends Component {
             </Button>
           </Left>
           <Body>
-            <Title></Title>
+            <Title>{this.props.listCategory[this.props.selectedCategory].name}</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.props.openDrawer}>
@@ -77,8 +78,10 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
+  listCategory: state.listZone.selectedPKCategory,
   name: state.user.name,
   index: state.list.selectedIndex,
+  selectedCategory: state.listCategory.selectedCategory,
 
 });
 

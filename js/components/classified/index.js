@@ -21,6 +21,7 @@ class Classified extends Component {
     name: React.PropTypes.string,
     advertising: React.PropTypes.arrayOf(React.PropTypes.object),
     listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
+    list: React.PropTypes.arrayOf(React.PropTypes.object),
     index: React.PropTypes.number,
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
@@ -50,6 +51,7 @@ class Classified extends Component {
 
 
   render() {
+    // console.log(this.props.listZone[this.props.selectedZone]);
     var randomIndex = this.getRandomIndex()
     const { props: { name, index, listCategory } } = this;
     return (
@@ -61,11 +63,10 @@ class Classified extends Component {
             </Button>
           </Left>
           <Body>
-            <Title></Title>
+            {/* this.props.listZone[this.props.selectedZone] */}
+            {(this.props.list[index].category_name) == this.props.list[1].category_name ? <Title>{this.props.list[index].category_name}</Title> : <Title>{this.props.listZone[this.props.selectedZone].name_zone}</Title>}
           </Body>
-
           <Right>
-
             <Button transparent onPress={this.props.openDrawer}>
               <Icon style={{color: 'dimgray'}} name="md-more" />
             </Button>
@@ -100,7 +101,10 @@ const mapStateToProps = state => ({
   advertising: state.list.advertising,
   name: state.user.name,
   index: state.list.selectedIndex,
+  list: state.list.list,
   listCategory: state.listCategory.results,
+  listZone: state.listZone.results,
+  selectedZone: state.listZone.selectedZone
 });
 
 
