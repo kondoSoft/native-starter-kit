@@ -53,7 +53,7 @@ class BlankPage extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>{this.props.list[index].name}</Title>
+            <Title>{this.props.list[index].category_name}</Title>
           </Body>
 
           <Right>

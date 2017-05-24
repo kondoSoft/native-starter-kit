@@ -122,14 +122,14 @@ export default {
     maxWidth: 270,
   },
   fontText:{
-    fontSize: 10,
+    fontSize: 12,
     paddingBottom: 7,
     color: 'dimgray',
   },
   textRow:{
     marginTop: 2,
     marginLeft: 5,
-    fontSize: 11,
+    fontSize: 12,
     color: 'dimgray'
   },
   iconGray:{

@@ -199,7 +199,7 @@ class Single extends Component {
               <Button style={styles.buttonF}>
                   <Icon name="logo-facebook" />
               </Button>
-          </Fab>
+        </Fab>
       </Container>
     );
   }

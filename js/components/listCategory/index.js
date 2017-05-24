@@ -49,6 +49,7 @@ class ListCategory extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
         <Grid style={styles.slide} >
               {this.props.listCategory.map((item, i) =>

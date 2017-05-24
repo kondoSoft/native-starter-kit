@@ -8,6 +8,14 @@ export default {
   content:{
     backgroundColor: '#fff',
   },
+  centering: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8,
+  },
+  gray: {
+   backgroundColor: '#cccccc',
+ },
   header:{
     backgroundColor: '#ffa726',
     shadowColor: 'dimgray',
@@ -41,7 +49,7 @@ export default {
   },
   input:{
     left: 35,
-    
+
   },
   button:{
     marginTop: 30,
@@ -55,4 +63,16 @@ export default {
     fontSize: 20,
     fontWeight: 'bold',
   },
+  textSuccess:{
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 20,
+    color: 'green'
+  },
+  textFailure:{
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop: 20,
+    color: 'red'
+  }
 };

@@ -6,7 +6,6 @@ import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item,
 import ListSubCategory from '../listSubCategory'
 import { openDrawer } from '../../actions/drawer';
 import { setZone } from '../../actions/listZone';
-import { resetState } from '../../actions/list';
 
 import styles from './style';
 import { Grid, Row, Col } from 'react-native-easy-grid';
@@ -21,7 +20,9 @@ class SubCategory extends Component {
   static propTypes = {
     name: React.PropTypes.string,
     setZone: React.PropTypes.func,
+    selectedCategory: React.PropTypes.number,
     index: React.PropTypes.number,
+    listTypeClassifieds: React.PropTypes.arrayOf(React.PropTypes.object),
     list: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
@@ -33,11 +34,9 @@ class SubCategory extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-    this.props.resetState()
   }
 
   render() {
-
     const { props: { name, index } } = this;
     return (
       <Container style={styles.container}>
@@ -48,7 +47,7 @@ class SubCategory extends Component {
             </Button>
           </Left>
           <Body>
-            <Title></Title>
+            <Title>{this.props.listCategory[this.props.selectedCategory].name}</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.props.openDrawer}>
@@ -72,7 +71,6 @@ class SubCategory extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
-    resetState: () => dispatch(resetState()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
@@ -80,8 +78,10 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
+  listCategory: state.listZone.selectedPKCategory,
   name: state.user.name,
   index: state.list.selectedIndex,
+  selectedCategory: state.listCategory.selectedCategory,
 
 });
 

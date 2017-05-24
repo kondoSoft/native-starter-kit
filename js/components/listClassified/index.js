@@ -94,17 +94,17 @@ class ListClassified extends Component {
     this.props.fetchPKClassifieds(this.props.listCategory[index].id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
-  listRow(column){
-    var list = this.props.listCategory
-    list.map((item, i) => {
-      i++
-
-      console.log('>, ', item);
-      if (i%3 == 0){
-        console.log('division');
-      }
-    })
-  }
+  // listRow(column){
+  //   var list = this.props.listCategory
+  //   list.map((item, i) => {
+  //     i++
+  //
+  //     console.log('>, ', item);
+  //     if (i%3 == 0){
+  //       console.log('division');
+  //     }
+  //   })
+  // }
 
 
   render() {
