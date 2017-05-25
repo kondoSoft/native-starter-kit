@@ -38,7 +38,7 @@ class ContactUs extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-    this.props.resetState()
+    this.props.resetState();
   }
 
   handleName(event) {

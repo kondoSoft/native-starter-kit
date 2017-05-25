@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 const React = require('react-native');
 
 const { StyleSheet } = React;
@@ -18,18 +18,21 @@ export default {
   },
   textHeader:{
     flex: 1,
-    fontSize: 13,
+    fontSize: (Platform.OS === 'ios') ? 13 : 14,
     top: 2,
   },
   thumbnail:{
     flex: 1,
-    // width: 55,
-    // height: 55,
-    bottom: 14,
-    right: 5,
-    borderWidth: 1,
-    borderColor: 'lightgray',
-    // marginBottom: 10,
+    bottom:(Platform.OS === 'ios') ? 14 : 9,
+    width: (Platform.OS === 'ios') ? 55 : 60,
+    height: 55,
+    // bottom: 14,
+    right: 3,
+    ...Platform.select({
+      android: {
+        maxHeight: 65,
+      },
+    }),
   },
   header:{
     flex: 1,
@@ -38,15 +41,28 @@ export default {
     paddingTop: 0,
     backgroundColor: 'transparent',
     maxHeight:30,
+    // elevation: 0,
+    // ...Platform.select({
+    //   android: {
+    //     backgroundColor: 'blue',
+    //   },
+    // }),
 
   },
 
   bodyText:{
-    flex: 1,
+    flex: 3,
     paddingTop: 0,
+
     backgroundColor: 'transparent',
     paddingBottom: 0,
-    height: 55,
+    ...Platform.select({
+      android: {
+        paddingLeft: 12,
+      },
+    }),
+
+
   },
   cardText:{
     flex: 1,
@@ -58,18 +74,16 @@ export default {
     // paddingBottom: 0,
     bottom: 5,
     paddingRight: 0,
-    height: 40
+    // height: 10
+    // backgroundColor: 'blue',
+
   },
   textDescription:{
     flex: 1,
-    fontSize: 10,
-    lineHeight: 10,
-    top: 3,
-    maxHeight: 40,
-    // paddingLeft: 0,
-    // right: 15,
-    // width: 230,
-    // bottom: 5,
+    fontSize: (Platform.OS === 'ios') ? 10 : 14,
+    lineHeight: 11,
+    top: 4,
+    // maxHeight: 40,
     color: 'gray',
   },
   textIconFav:{

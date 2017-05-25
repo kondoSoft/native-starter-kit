@@ -64,7 +64,7 @@ class Classified extends Component {
           </Left>
           <Body>
             {/* this.props.listZone[this.props.selectedZone] */}
-            {(this.props.list[index].category_name) == this.props.list[1].category_name ? <Title>{this.props.list[index].category_name}</Title> : <Title>{this.props.listZone[this.props.selectedZone].name_zone}</Title>}
+            {(this.props.list[index].category_name) == this.props.list[1].category_name ? <Title>{this.props.list[index].category_name}</Title> : (this.props.listZone[this.props.selectedZone])== undefined ? <Title></Title>:<Title>{this.props.listZone[this.props.selectedZone].name_zone}</Title>}
           </Body>
           <Right>
             <Button transparent onPress={this.props.openDrawer}>
