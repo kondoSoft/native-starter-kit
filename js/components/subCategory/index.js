@@ -47,7 +47,7 @@ class SubCategory extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>{this.props.listCategory[this.props.selectedCategory].name}</Title>
+            {(this.props.listCategory[this.props.selectedCategory])== undefined ? <Title></Title> : <Title>{this.props.listCategory[this.props.selectedCategory].name}</Title>}
           </Body>
           <Right>
             <Button transparent onPress={this.props.openDrawer}>

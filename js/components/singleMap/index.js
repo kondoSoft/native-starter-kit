@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MapView from 'react-native-maps';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Image, TouchableOpacity, Dimensions } from 'react-native'
+import { Image, TouchableOpacity, Dimensions, Linking, Platform } from 'react-native'
 import { Container, Header, Content, Fab, Text,Thumbnail, Button, Icon, Item, Input, Left, Right, Body, H3, View } from 'native-base';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
@@ -37,6 +37,7 @@ class SingleMap extends Component {
           active: false,
 
         }
+      this.handleMaps = this.handleMaps.bind(this)
    }
 
   static propTypes = {
@@ -56,6 +57,18 @@ class SingleMap extends Component {
   }
   componentWillMount(){
 
+  }
+  handleMaps(id){
+
+    var lat = this.props.listEstablishment[id].coor.latitude
+    var long = this.props.listEstablishment[id].coor.longitude
+    if(Platform.OS === 'ios'){
+      var url = 'http://maps.apple.com/maps?daddr=' + lat + ',' + long
+    }else{
+      var url = 'http://maps.google.com/maps?daddr=' + lat + ',' + long
+    }
+
+    Linking.openURL(url);
   }
 
   render() {
@@ -95,6 +108,7 @@ class SingleMap extends Component {
                 key={this.props.listEstablishment[id].id}
                 coordinate={this.props.listEstablishment[id].coor}
                 image={markerMerida}
+                onPress={() => this.handleMaps(id)}
               />
             </MapView>
           </View>

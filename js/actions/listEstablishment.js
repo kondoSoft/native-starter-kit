@@ -13,7 +13,6 @@ export function setEstablishment(index:number):Action {
   };
 }
 export function printEstablishment(index:number):Action {
-  console.log(index);
   return {
     type: PRINT_ESTABLISHMENT,
     payload: index,

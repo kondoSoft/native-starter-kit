@@ -26,11 +26,12 @@ export default function (state:State = initialState, action:Action): State {
       ...state,
       results: action.payload
     }
-  }else if (action.type === RESET_STATE) {
-    return {
-      ...state,
-      initialState
-    }
   }
+  // else if (action.type === RESET_STATE) {
+  //   return {
+  //     ...state,
+  //     results:[],
+  //   }
+  // }
   return state;
 }

@@ -9,7 +9,7 @@ import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-import { fetchAdvertising } from '../../actions/list';
+import { fetchAdvertising, resetState } from '../../actions/list';
 
 
 const {
@@ -38,6 +38,7 @@ class BlankPage extends Component {
   }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+    this.props.resetState()
   }
 
   render() {
@@ -82,6 +83,8 @@ function bindAction(dispatch) {
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
+    resetState: () => dispatch(resetState()),
+
   };
 }
 

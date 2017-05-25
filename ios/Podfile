@@ -6,6 +6,7 @@ platform :ios, '8.0'
 # Change 'AirMapsExplorer' to match the target in your Xcode project.
 target 'Que_Hacer_Merida' do
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push', :subspecs => ['Core']
 
   pod 'React', path: '../node_modules/react-native', :subspecs => [
     'Core',

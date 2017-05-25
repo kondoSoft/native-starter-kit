@@ -75,7 +75,7 @@ class Single extends Component {
     });
   };
   handleClickFace(index){
-    Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
+    Linking.canOpenURL(this.props.listEstablishment[index].facebook).then(supported => {
       if (supported) {
         Linking.openURL(this.props.listEstablishment[index].facebook);
       } else {
@@ -84,7 +84,7 @@ class Single extends Component {
     });
   };
   handleClickInsta(index){
-    Linking.canOpenURL(this.props.listEstablishment[index].web).then(supported => {
+    Linking.canOpenURL(this.props.listEstablishment[index].instagram).then(supported => {
       if (supported) {
         Linking.openURL(this.props.listEstablishment[index].instagram);
       } else {
@@ -93,9 +93,32 @@ class Single extends Component {
     });
   };
   render() {
+
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
-    // console.log(nativeEvent.layout.height);
+    console.log(this.props.listEstablishment)
+
+    let iconFace = null;
+    if(this.props.listEstablishment[index].facebook) {
+      iconFace = <Button style={styles.buttonSocial} transparent onPress={() => this.handleClickFace(index)}>
+        <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
+      </Button>
+    }
+
+    let iconInsta = null
+    if(this.props.listEstablishment[index].instagram){
+      iconInsta = <Button style={styles.buttonSocial} transparent onPress={() => this.handleClickInsta(index)}>
+        <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
+      </Button>
+    }
+    let iconWeb = null
+    console.log(this.props.listEstablishment[index].web);
+    if(this.props.listEstablishment[index].web){
+      iconWeb = <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
+        <Icon style={styles.iconFooter} name="globe"></Icon>
+      </Button>
+    }
+
     return (
       // <Container scrollEnabled={true}>
         <Container>
@@ -167,15 +190,10 @@ class Single extends Component {
             </Col>
           </Row>
           <Row style={styles.rowDescriptionSocial}>
-            <Button style={styles.buttonSocial} transparent onPress={() => this.handleClickFace(index)}>
-              <Icon style={styles.iconFooter} name="logo-facebook"></Icon>
-            </Button>
-            <Button style={styles.buttonSocial} transparent onPress={() => this.handleClickInsta(index)}>
-              <Icon style={styles.iconFooter} name="logo-instagram"></Icon>
-            </Button>
-            <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
-              <Icon style={styles.iconFooter} name="globe"></Icon>
-            </Button>
+            {iconFace}
+            {iconInsta}
+            {iconWeb}
+
           </Row>
           <Row>
             <Right>

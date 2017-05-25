@@ -9,6 +9,7 @@ import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchCategory, fetchAdvertising, fetchVideo } from '../../actions/list';
 import { fetchClassifiedsCategory } from '../../actions/listCategory';
 
+
 import { fetchSearch } from '../../actions/search';
 
 import styles from './styles';
@@ -19,6 +20,7 @@ const {
   pushRouteC,
 
 } = actions;
+
 
 class Home extends Component {
 
@@ -45,6 +47,7 @@ class Home extends Component {
     this.props.fetchCategory()
     this.props.fetchAdvertising()
     this.props.fetchVideo()
+
   }
 
   pushRoute(route, index, value) {
@@ -70,6 +73,7 @@ class Home extends Component {
    }
 
   render() {
+
     var randomIndex = this.getRandomIndex()
     return (
       <Container style={styles.container}>

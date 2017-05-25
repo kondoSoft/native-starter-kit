@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
+
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles'
 
@@ -29,9 +30,6 @@ class ListEstablishment extends Component {
     }),
   }
 
-  componentWillMount(){
-
-  }
   pushRoute(route, index) {
     this.props.setEstablishment(index)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
@@ -39,7 +37,6 @@ class ListEstablishment extends Component {
 
   render() {
     return (
-      <Container>
         <Content style= {styles.content}>
           {this.props.listEstablishment.map((item, i) =>
           <Card  key={i} style={styles.card}>
@@ -78,8 +75,6 @@ class ListEstablishment extends Component {
           </Card>
         )}
         </Content>
-      </Container>
-
     );
   }
 }
