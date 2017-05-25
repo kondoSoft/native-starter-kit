@@ -51,9 +51,8 @@ export default {
   },
 
   bodyText:{
-    flex: 3,
+    flex: (Platform.OS === 'ios') ? 1 : 3,
     paddingTop: 0,
-
     backgroundColor: 'transparent',
     paddingBottom: 0,
     ...Platform.select({
@@ -72,7 +71,7 @@ export default {
     borderBottomWidth: 2,
     borderColor: 'lightgray',
     // paddingBottom: 0,
-    bottom: 5,
+    bottom: (Platform.OS === 'ios') ? 3 : 5,
     paddingRight: 0,
     // height: 10
     // backgroundColor: 'blue',
@@ -81,8 +80,8 @@ export default {
   textDescription:{
     flex: 1,
     fontSize: (Platform.OS === 'ios') ? 10 : 14,
-    lineHeight: 11,
-    top: 4,
+    lineHeight:(Platform.OS === 'ios') ? 10 : 11,
+    top: (Platform.OS === 'ios') ? 0 : 4,
     // maxHeight: 40,
     color: 'gray',
   },
