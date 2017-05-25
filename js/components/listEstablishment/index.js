@@ -36,7 +36,6 @@ class ListEstablishment extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
         <Content style= {styles.content}>
           {this.props.listEstablishment.map((item, i) =>
