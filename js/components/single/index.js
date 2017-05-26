@@ -92,6 +92,16 @@ class Single extends Component {
       }
     });
   };
+  goToURL(url){
+    Linking.canOpenURL(url).then(supported => {
+      if(supported){
+          Linking.openURL(url)
+        }else{
+          alert('Hay un error, por favor contactanos...')
+        }
+      });
+
+  }
   render() {
 
     const activeFab = this.state.active;
@@ -214,9 +224,24 @@ class Single extends Component {
               onPress={() => this.setState({ active: !this.state.active })}
           >
               <Icon name="md-share" />
-              <Button style={styles.buttonF}>
-                  <Icon name="logo-facebook" />
-              </Button>
+              { this.props.listEstablishment[index].web ? (
+                <Button style={styles.buttonF}>
+                    <Icon name="logo-facebook"
+                    onPress={()=> this.goToURL(`https://www.facebook.com/sharer/sharer.php?u=${this.props.listEstablishment[index].web}`)} />
+                </Button>
+              ):(
+                <Text></Text>
+              )}
+              <Icon name="md-share" />
+              { this.props.listEstablishment[index].web ? (
+                <Button style={styles.buttonF}>
+                    <Icon name="logo-twitter"
+                    onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].web} #quehacermerida`)} />
+                </Button>
+              ):(
+                <Text></Text>
+              )}
+
         </Fab>
       </Container>
     );
