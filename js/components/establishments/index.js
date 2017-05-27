@@ -27,7 +27,8 @@ class Establishments extends Component {
   }
 
   render() {
-
+    console.log(this.props.listTypeClassifieds);
+    console.log(this.props.nameSearch);
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -41,8 +42,8 @@ class Establishments extends Component {
           </Left>
           <Body>
             {/* <Title>{list[index]}</Title> */}
-
-            {(this.props.nameSearch) == null ? <Title>{this.props.listTypeClassifieds[this.props.selectedType].type_classifieds}</Title>:<Title>{this.props.nameSearch}</Title>  }
+{/* {this.props.listTypeClassifieds[this.props.selectedType].type_classifieds} */}
+            {(this.props.nameSearch) == null ? <Title></Title>:<Title>{this.props.nameSearch}</Title>  }
 
           </Body>
 
@@ -54,7 +55,8 @@ class Establishments extends Component {
           </Right>
         </Header>
         <Content scrollEnabled={true} style={styles.content}>
-          <ListEstablishment/>
+           <ListEstablishment/>
+
         </Content>
       </Container>
     );
