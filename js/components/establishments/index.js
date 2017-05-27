@@ -4,6 +4,7 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
 import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListEstablishment from '../listEstablishment'
+import {resetNameSearch} from '../../actions/listEstablishment'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 
@@ -24,11 +25,10 @@ class Establishments extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+    this.props.resetNameSearch()
   }
 
   render() {
-    console.log(this.props.listTypeClassifieds);
-    console.log(this.props.nameSearch);
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -66,6 +66,7 @@ class Establishments extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
+    resetNameSearch: () => dispatch(resetNameSearch()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };

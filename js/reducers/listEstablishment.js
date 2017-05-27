@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_ESTABLISHMENT, PRINT_ESTABLISHMENT, PRINT_ESTABLISHMENT_CLASSIFIED, PRINT_ESTABLISHMENT_TYPE } from '../actions/listEstablishment';
+import { SET_ESTABLISHMENT, PRINT_ESTABLISHMENT, PRINT_ESTABLISHMENT_CLASSIFIED, PRINT_ESTABLISHMENT_TYPE, RESET_NAME_SEARCH } from '../actions/listEstablishment';
 import { SEARCH_NAME } from '../actions/search';
 import { RESET_STATE } from '../actions/list'
 
@@ -70,6 +70,13 @@ export default function (state:State = initialState, action:Action): State {
       name: action.name
     }
   }
+  else if (action.type === RESET_NAME_SEARCH) {
+    return {
+      ...state,
+      name: null,
+    }
+  }
+
   else if (action.type === RESET_STATE) {
     return {
       ...state,
