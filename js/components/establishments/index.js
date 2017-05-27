@@ -41,7 +41,9 @@ class Establishments extends Component {
           </Left>
           <Body>
             {/* <Title>{list[index]}</Title> */}
-            <Title>{this.props.listTypeClassifieds[this.props.selectedType].type_classifieds}</Title>
+
+            {(this.props.nameSearch) == null ? <Title>{this.props.listTypeClassifieds[this.props.selectedType].type_classifieds}</Title>:<Title>{this.props.nameSearch}</Title>  }
+
           </Body>
 
           <Right>
@@ -72,7 +74,8 @@ const mapStateToProps = state => ({
   name: state.user.name,
   index: state.list.selectedIndex,
   listTypeClassifieds: state.listTypeClassifieds.results,
-  selectedType: state.listTypeClassifieds.selectedType
+  selectedType: state.listTypeClassifieds.selectedType,
+  nameSearch: state.listEstablishment.name
 
 });
 

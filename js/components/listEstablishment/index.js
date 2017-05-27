@@ -22,6 +22,7 @@ class ListEstablishment extends Component {
 
     setEstablishment: React.PropTypes.func,
     listEstablishment: React.PropTypes.arrayOf(React.PropTypes.object),
+    // bookmarks:React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
     reset: React.PropTypes.func,
@@ -89,6 +90,7 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   listEstablishment: state.listEstablishment.results,
+  bookmarks:state.bookmarks.space
 });
 
 export default connect(mapStateToProps, bindAction)(ListEstablishment);

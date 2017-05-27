@@ -40,6 +40,7 @@ const initialState = {
      "image": []
     }
   ],
+  name: null,
   selectedEstablishment: undefined,
 };
 
@@ -65,7 +66,8 @@ export default function (state:State = initialState, action:Action): State {
   else if (action.type === SEARCH_NAME) {
     return {
       ...state,
-      results: action.payload.results
+      results: action.payload.results,
+      name: action.name
     }
   }
   else if (action.type === RESET_STATE) {
@@ -99,7 +101,8 @@ export default function (state:State = initialState, action:Action): State {
          "owner": "admin",
          "image": []
         }
-      ]
+      ],
+      name: null,
     }
   }
 

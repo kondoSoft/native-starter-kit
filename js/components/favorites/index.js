@@ -40,7 +40,7 @@ class Favorites extends Component {
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
   componentWillMount(){
-    this.props.fetchEstablishment()
+    // this.props.fetchEstablishment()
   }
 
   render() {

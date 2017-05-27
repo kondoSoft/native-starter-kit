@@ -9,6 +9,7 @@ import listZone from './listZone';
 import listCategory from './listCategory';
 import listEstablishment from './listEstablishment';
 import listTypeClassifieds from './listTypeClassifieds';
+import bookmarks from './bookmarks';
 import search from './search';
 
 export default combineReducers({
@@ -22,5 +23,6 @@ export default combineReducers({
   listTypeClassifieds,
   cardNavigation,
   search,
+  bookmarks,
 
 });
