@@ -10,7 +10,7 @@ export default {
 
 
   // Button
-  btnFontFamily: (Platform.OS === 'ios') ? 'HelveticaNeue' : 'Roboto_medium',
+  btnFontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'HelveticaNeue',
   btnDisabledBg: '#b5b5b5',
   btnDisabledClr: '#f1f1f1',
 
@@ -88,7 +88,7 @@ export default {
 
 
   // Font
-  fontFamily: (Platform.OS === 'ios') ? 'HelveticaNeue' : 'Roboto',
+  fontFamily: (Platform.OS === 'ios') ? 'Roboto' : 'HelveticaNeue',
   fontSizeBase: 15,
 
   get fontSizeH1() {
@@ -118,7 +118,7 @@ export default {
   toolbarDefaultBg: (Platform.OS === 'ios') ? '#F8F8F8' : '#4179F7',
   toolbarHeight: (Platform.OS === 'ios') ? 64 : 56,
   toolbarIconSize: (Platform.OS === 'ios') ? 20 : 22,
-  toolbarInputColor: '#CECDD2',
+  toolbarInputColor: '#eee',
   toolbarInverseBg: '#222',
   toolbarTextColor: (Platform.OS === 'ios') ? '#000' : '#fff',
   get statusBarColor() {

@@ -38,7 +38,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    CodePush.sync({ updateDialog: true, installMode: CodePush.InstallMode.IMMEDIATE },
+    CodePush.sync({
+      deploymentKey: "WjqrKF0EV-qTO5eiSxFMKn0Ybyrq4JtTBt5sG" ,
+      updateDialog: true,
+      installMode: CodePush.InstallMode.IMMEDIATE },
       (status) => {
         switch (status) {
           case CodePush.SyncStatus.DOWNLOADING_PACKAGE:

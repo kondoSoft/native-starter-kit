@@ -2,59 +2,75 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from 'native-base';
-
+import { Dimensions } from 'react-native'
+import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left,Thumbnail, Right, Body, Footer } from 'native-base';
+import Classified from '../classified'
+import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
+import { Grid, Row, Col } from 'react-native-easy-grid';
+import { fetchAdvertising, resetState } from '../../actions/list';
+
 
 const {
+  reset,
   popRoute,
 } = actions;
+
 
 class BlankPage extends Component {
 
   static propTypes = {
     name: React.PropTypes.string,
     index: React.PropTypes.number,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
+    list: React.PropTypes.arrayOf(React.PropTypes.object),
     openDrawer: React.PropTypes.func,
     popRoute: React.PropTypes.func,
+    reset: React.PropTypes.func,
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
     }),
   }
+  componentWillMount(){
 
+    this.props.fetchAdvertising()
+
+  }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+    this.props.resetState()
   }
 
   render() {
     const { props: { name, index, list } } = this;
-
+    const { width, height } = Dimensions.get('window')
     return (
+
       <Container style={styles.container}>
-        <Header>
+        <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
             <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="ios-arrow-back" />
+              <Icon style={{color: 'dimgray'}} name="arrow-round-back" />
             </Button>
           </Left>
-
           <Body>
-            <Title>{(name) ? this.props.name : 'Blank Page'}</Title>
+            <Title>{this.props.list[index].category_name}</Title>
           </Body>
 
           <Right>
+
             <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="ios-menu" />
+              <Icon style={{color: 'dimgray'}} name="md-more" />
             </Button>
           </Right>
         </Header>
-
-        <Content padder>
-          <Text>
-            {(!isNaN(index)) ? list[index] : 'Create Something Awesome . . .'}
-          </Text>
+        <Grid style={{ maxHeight: 62, flex: 1 }}>
+            <Row>
+              <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
+            </Row>
+        </Grid>
+        <Content padder scrollEnabled={true} style={{ paddingLeft: 5 }}>
+          <ListZone />
         </Content>
       </Container>
     );
@@ -65,6 +81,10 @@ function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
+    reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
+    resetState: () => dispatch(resetState()),
+
   };
 }
 
@@ -73,6 +93,7 @@ const mapStateToProps = state => ({
   name: state.user.name,
   index: state.list.selectedIndex,
   list: state.list.list,
+  advertising: state.list.advertising,
 });
 
 

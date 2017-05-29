@@ -7,12 +7,23 @@ import { actions } from 'react-native-navigation-redux-helpers';
 
 import { closeDrawer } from './actions/drawer';
 
-import Login from './components/login/';
+// import Login from './components/login/';
 import Home from './components/home/';
 import BlankPage from './components/blankPage';
+import ContactUs from './components/contactUs';
+import Classified from './components/classified/';
+import Favorites from './components/favorites/';
+import Establishments from './components/establishments/';
+import SingleMap from './components/singleMap';
+import Single from './components/single';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
+import SubCategory from './components/subCategory';
+import Bookmarks from './components/bookmarks';
+
+// import MainMenu from './components/mainMenu';
 import { statusBarColor } from './themes/base-theme';
+import SplashScreen from "rn-splash-screen";
 
 const {
   popRoute,
@@ -35,10 +46,11 @@ class AppNavigator extends Component {
   }
 
   componentDidMount() {
+    SplashScreen.hide();
     BackAndroid.addEventListener('hardwareBackPress', () => {
       const routes = this.props.navigation.routes;
 
-      if (routes[routes.length - 1].key === 'home' || routes[routes.length - 1].key === 'login') {
+      if (routes[routes.length - 1].key === 'home') {
         return false;
       }
 
@@ -75,14 +87,30 @@ class AppNavigator extends Component {
     switch (props.scene.route.key) {
       case 'splashscreen':
         return <SplashPage />;
-      case 'login':
-        return <Login />;
+      // case 'login':
+      //   return <Login />;
       case 'home':
         return <Home />;
       case 'blankPage':
         return <BlankPage />;
+      case 'classified':
+        return <Classified />;
+      case 'establishments':
+        return <Establishments />;
+      case 'single':
+        return <Single />;
+      case 'singlemap':
+        return <SingleMap />;
+      case 'contactus':
+        return <ContactUs />;
+      case 'favorites':
+        return <Favorites />;
+      case 'subCategory':
+        return <SubCategory />;
+      case 'bookmarks':
+        return <Bookmarks />;
       default :
-        return <Login />;
+        return <Home />;
     }
   }
 

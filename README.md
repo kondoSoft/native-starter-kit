@@ -1,169 +1,116 @@
 
-## Native Starter Kit v6.0.0
+# ¿Qué hacer? Mérida
+Es una aplicación móvil exclusiva para habitantes de la ciudad de Mérida, Yucatán; así como también a visitantes de otros estados y turistas extranjeros. La aplicación tiene como objetivo facilitar la búsqueda y ubicación de diversos sitios, negocios o servicios que la ciudad ofrece.
 
-### A Starter Kit for [React Native](https://facebook.github.io/react-native/docs/getting-started.html) + [NativeBase](http://nativebase.io/) + [Navigation Experimental](https://facebook.github.io/react-native/docs/navigation.html#navigationexperimental) + [Redux](http://redux.js.org) + [CodePush](https://github.com/Microsoft/react-native-code-push) Apps (iOS & Android)
+### Características:
 
-*Brought to you by [StrapMobile](http://strapmobile.com/)*
+- Búsqueda por zona o por categorías
+- Información del lugar: descripción, dirección, teléfono, horario y redes sociales
+- Guardar lugares favoritos
+- Mapa de localización GPS
+- Opción de compartir el lugar por redes sociales
+- Servicio de publicidad dentro de la aplicación
+- Incorporar un negocio a la aplicación
+- Video viral de Internet
 
-[![Join the chat at https://gitter.im/start-react/native-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/start-react/native-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+### Descripción y navegación
+A continuación se describirán las diferentes páginas que componen la aplicación, su navegación y los elementos contenidos en ellas. Casi todas las pantallas se componen de un header, donde se puede encontrar el botón de retroceso, título de la pantalla, un icono o barra de búsqueda; y un icono de menú para acceder a la lista de lugares favoritos, información sobre la app, ayuda y contacto. Algunas pantallas incluyen un banner publicitario debajo del header.
 
-![Native-Starter-Kit](/Screenshots/logo.png)
 
+### SPLASH SCREEN
+Página de bienvenida que se muestra durante unos segundos al abrir la aplicación, para luego desaparecer y mostrar la página de inicio.
 
-#### A simple starter project for [React Native](https://facebook.github.io/react-native/docs/getting-started.html) + [NativeBase](http://nativebase.io/) + [Navigation Experimental](https://facebook.github.io/react-native/docs/navigation.html#navigationexperimental) + [Redux](http://redux.js.org) + [CodePush](https://github.com/Microsoft/react-native-code-push) apps on iOS and Android.
+![SPLASHSCREEN](./assets/src/Maquetado/SPLASH.png)
 
-No need of reinventing the wheel. To have immediately something to continue building on, it would be best to start from some starter kit for getting React Native - based applications off the ground in a hurry.
 
-This is a starter kit that you can install on the fly to get the basic plumping of React Native with NativeBase, Redux and CodePush.
+### HOME/PÁGINA DE INICIO
+Página principal de la aplicación, contiene las principales opciones de búsqueda. La primera consiste en una búsqueda directa usando la barra de búsqueda en la parte superior. Aquí, el usuario puede ingresar el nombre del lugar que busca o palabras clave de lo que se desea localizar; inmediatamente aparecerá una lista de **RESULTADOS**.
 
-*Find out more [Free React JS Themes](http://www.startreact.com/) and [React Native Themes](http://www.startreact.com/).*
+El usuario también puede realizar una búsqueda por **ZONA** o por **CATEGORÍAS GENERALES**, cuyos botones se encuentran al centro de la página. Explorando estas dos opciones, el usuario puede conocer las distintas categorías con las que cuenta la aplicación y así encontrar todo lo que busca en un solo lugar.
+Además de las opciones de búsqueda, también puede encontrarse un reproductor de video, el cual muestra distintos videos virales alojados en la plataforma de YouTube; estos pueden reproducirse sin salir de la aplicación.
 
-# Content
+En caso de que el usuario esté interesado en promocionar su negocio en la app, puede encontrar el botón “Anúnciate aquí” al pie de la página; este sirve de enlace a la página de **CONTACTANOS**.
 
--	[Screens](#screens)
--	[Technologies](#technologies)
--	[Get Started](#get-started)
+![INICIO](./assets/src/Maquetado/INICIO.png)
 
+### CATEGORÍA POR ZONAS
+Se accede a esta página a través de la página de **INICIO**. Muestra las principales zonas de la ciudad, de manera que todos los resultados mostrados serán exclusivos de la zona escogida, sin importar su categoría. Ordenados en retícula, cada botón posee nombre y una imagen característica.
+Al escoger una **ZONA**, el usuario es dirigido a la pantalla de categorías dentro de la misma.
 
-## Screens
+![ZONAS](./assets/src/Maquetado/ZONAS.png)
 
- ![ios-demo](/Screenshots/iOS/demo.gif)
+### ZONA
+Después de escoger una zona, aquí se muestran las categorías disponibles para iniciar la búsqueda dentro de la misma. Estas están ordenadas en retícula, dividas por dos sliders. Cada botón de zona contiene nombre e imagen de ejemplo. Al seleccionar una categoría, algunas mostraran directamente los lugares contenidos en ellas; sin embargo, otras contienen SUBCATEGORÍAS relacionadas.
 
-## Technologies
-*Technologies used in Native Starter Kit*
+![CATEGORIA_ZONAS](./assets/src/Maquetado/CATEGORIA1.png)
 
-### [React Native](https://github.com/facebook/react-native)
-React Native helps in making the development work easier and allowing the developers to focus on the core app features in every new release. It is the fastest-developing mobile app development that essentially permits you to create an isolated product with often outcomes.
+### SUBCATEGORÍAS DE ZONA
+Se accede a estas al escoger algunas de las categorías de una **ZONA**. Las subcategorías están ordenadas en forma de lista y dirigen al usuario a la lista de **RESULTADOS**. A diferencia de las páginas anteriores, estás no contienen banner publicitario.
 
-**The hymn of React Native — learn once, write anywhere.**
+![SUBCATEGORIA_ZONA](./assets/src/Maquetado/Deportes.png)
 
-React Native takes charge of the view controllers and programatically generates native views using javascript. This means that you can have all the speed and power of a native application, with the ease of development that comes with React.
+### CATEGORÍAS GENERALES
+Se accede a esta página desde la página de **INICIO**. Contiene las categorías que aplican a cualquier zona de Mérida y muestran directamente la lista de **RESULTADOS** con los lugares etiquetados en estas categorías. Sin embargo, algunas contienen subcategorías para facilitar la búsqueda. A diferencia de las demás páginas, esta contiene dos banners publicitarios: uno debajo del header y otro al pie de la página.
 
+![GENERALES](./assets/src/Maquetado/GENERALES.png)
 
-### [NativeBase](http://nativebase.io/)
+### SUBCATEGORÍAS GENERALES
+Estas pertenecen a algunas de las categorías generales. Se muestran en forma de lista y dirigen al usuario a los **RESULTADOS** de la búsqueda.
 
-NativeBase is a free and open source framework from the team of [StrapMobile](http://strapmobile.com/).
+![SUBCATEGORIA](./assets/src/Maquetado/Clasificados.png)
 
-This framework enable developers to build high-quality mobile apps using React Native iOS and Android apps with a fusion of ES6. NativeBase builds a layer on top of React Native that provides you with basic set of components for mobile application development.
+### RESULTADOS
+Es aquí donde se muestran los resultados de una búsqueda realizada por el usuario.
+Si se usó la barra de búsqueda en la página de **INICIO**, se mostrarán los resultados globales que concuerden con las palabras clave que se introdujeron en el buscador.
+Si se realizó una búsqueda por **ZONA**, se mostrarán sólo los resultados ubicados en la zona escogida y en la categoría o subcategoría seleccionada.
+Si se realizó la búsqueda por categorías **GENERALES**, se mostrarán los resultados de cada categoría o subcategoría, sin importar la zona en la que se encuentre.
+Dependiendo la cantidad de resultados encontrados, estos se dividirán en sliders con 6 resultados en cada uno. Cada resultado contiene una imagen o foto del **LUGAR**, nombre, descripción breve y número de favoritos.
 
-The applications stack of components is built using native UI components and because of that, there are no compromises with the User Experience of the applications.  NativeBase is targeted specially on the look and feel, and UI interplay of your app.
+![RESULTADOS](./assets/src/Maquetado/RESULTADOS.png)
 
-NativeBase without a doubt fits in well with mobile applications which cut downs one huge part of your app The Front end.
+### LUGAR
+Esta página contiene la información del sitio seleccionado al realizar una búsqueda. Aquí resalta la imagen o fotografía del lugar en cuestión. Al centro de la pantalla, se encuentra el botón Mapa, que funciona de enlace hacia el mapa mostrando la localización del lugar.
+La información incluida consta de nombre del lugar, descripción breve, dirección, teléfono, horario de atención, y redes sociales *(Facebook, Twitter, Instagram, WhatsApp y sitio web)*. Los íconos de redes sociales, funcionan como enlaces directos a la red social de la empresa. Así mismo, el botón de compartir ubicado en la esquina derecha, permite compartir el sitio encontrado en las redes sociales del usuario (Facebook, Correo electrónico o WhatsApp). Una vez compartido el sitio en cualquier red social, debajo de la página aparecerá la frase *“Te encuentras en "{Nombre del lugar}" a través de  ¿Qué hacer? Mérida.”*
+Dentro del header, puede encontrarse un botón de favoritos. Al seleccionarlo, el lugar queda guardado en la lista de favoritos ubicada en el botón menú, así es posible volver a visitar la información del lugar sin tener que buscarlo de nuevo.
 
--	*[On GitHub](https://github.com/GeekyAnts/NativeBase)*
--	*[NativeBase Features](http://nativebase.io/documentation)*
--	*[NativeBase Components](http://nativebase.io/components)*
--	*[Docs](http://nativebase.io/documentation)*
--	*[Blogs](https://blog.nativebase.io/)*
+![LUGAR](./assets/src/Maquetado/LUGAR.png)
 
+### MAPA
+Muestra la ubicación exacta del sitio buscado, aquí sólo se muestra el nombre, dirección y teléfono del sitio. Si se comparte el lugar en cualquier red social, también aparecerá la frase *“Te encuentras en "{Nombre del lugar}" a través de  ¿Qué hacer? Mérida.”*
 
-### [Redux](http://redux.js.org)
+![MAPA](./assets/src/Maquetado/MAPA_COMPARTIDO.png)
 
-As the requirements for JavaScript single-page applications have become increasingly complicated, our code must manage more state than ever before. UI state is also increasing in complexity, as we need to manage the active route, the selected tab, whether to show a spinner or not, should pagination controls be displayed, and so on.
+### CONTACTO
+Esta página está destinada a aquellos interesados en incluir su negocio dentro de la aplicación o mostrar publicidad dentro de la misma. Contiene un pequeño formulario que solicita:
+- Nombre completo
+- Número teléfono *(de preferencia WhatsApp)*
+- Correo electrónico
+La información enviada será utilizada para ponerse en contacto con la persona y continuar así el proceso para añadir su negocio o publicidad a la aplicación.
 
-Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+![ANUNCIO](./assets/src/Maquetado/ANUNCIO.png)
 
-Redux attempts to make state mutations predictable by imposing certain restrictions on how and when updates can happen. These restrictions are reflected in the steps of three.
+### FAVORITOS
+Aquí se muestran los lugares guardados como favoritos por el usuario. Se accede a esta pantalla a través del menú.
 
--	The **state** of whole application is stored in an object tree within a single **store**.
--	The only way to mutate the state is to emit an **action**, an object describing what happened.
--	To specify how the state tree is transformed by actions, you write pure **reducers**.
+![FAVORITOS](./assets/src/Maquetado/Favoritos.png)
 
+### MENU DRAWER
+Es el menú desplegable que aparece desde el lado derecho de la pantalla. Contiene las opciones para ver Favoritos, un enlace directo al Home o página de Inicio y un enlace a la página de contacto.
+Se accede al menú a través del icono ubicado a la derecha del header.
 
-### [CodePush](https://github.com/Microsoft/react-native-code-push)
+![DRAWER](./assets/src/Maquetado/Drawner.png)
 
-React Native app is composed of JavaScript files, images, which are bundled together by the packager and distributed as part of a platform-specific binary (i.e. an .ipa or .apk file). Once the app is released, updating either the JavaScript code or image assets, requires you to recompile and redistribute the entire binary.
 
-The CodePush plugin helps get product improvements in front of your end users instantly, with the aid of preserving your javascript and images synchronized with updates you launch to the CodePush server. This way, your app gets the benefits of an offline mobile experience, as well as the "web-like" agility of side-loading updates as soon as they are available.
+## INSTRUCCIONES DE CONTRUCCION DE APK RELEASE Y DEBUG
 
-
-
-### [Navigation Experimental](https://facebook.github.io/react-native/docs/navigation.html#navigationexperimental)
-
-NavigationExperimental allows any view to act as a navigation view and using reducers to manipulate state at a top-level object.
-
-
-
-### [React Native Easy Grid](https://github.com/GeekyAnts/react-native-easy-grid)
-
-React Native Easy Grid is a open source package for grid layout from the team of [StrapMobile](http://strapmobile.com/).
-
-The layout system is an essential concept that needs to be mastered in order to create great layouts and UIs. [React Native](https://github.com/facebook/react-native) uses Flexbox to create the layouts, which is great when we need to accommodate our components and views in different screen sizes or even different devices. Flexbox is awesome but it could be tiresome for newbies.
-
-Easy Grid is very powerful and flexible layout system. No more worries about props of Flexbox such as alignItems, flexDirection, justifyContent, margin, padding, position, width etc. You can create any layout with all the available options that we have. Flexbox makes it look like percentages, however what actually is happening is just ratios. On the easier part, ratios are easier to represent than percentage/decimals. For this reason, the Easy Grid takes in ratios in place of percentage.
-Performance wise, Easy Grid is noteworthy and works as fine as Flexbox, not much of calculation.
-
-[More Examples](http://nativebase.io/components#layout) . . .
-
-
-### [React Native-NativeBase Seed](https://github.com/GeekyAnts/react-native-native-base-seed)
-
-React Native-NativeBase Seed is a basic configuration that every React Native app must have; brought to you by [StrapMobile](http://strapmobile.com/).
-
-This is open source and perfect for any newbie to start with React Native.
-
-This is a [React Native](https://github.com/facebook/react-native) Project with [NativeBase](http://nativebase.io/documentation), [Navigation Experimental](https://facebook.github.io/react-native/docs/navigation.html#navigationexperimental), [Redux](http://redux.js.org/), [CodePush](https://github.com/Microsoft/react-native-code-push), Router, Push Notification and other basic must-have libraries.
-
-
-## Get Started
-
-###1. System Requirements
-
-* Globally installed [node](https://nodejs.org/en/)
-
-* Globally installed [react-native CLI](https://facebook.github.io/react-native/docs/getting-started.html)
-
-* Install [CodePush](https://microsoft.github.io/code-push/) globally and get keys for your app.
-
-
-###2. Installation
-
-On the command prompt run the following commands
-
-```sh
-$ git clone https://github.com/start-react/native-starter-kit.git
-
-$ cd native-starter-kit/
-
-$ npm install
+### APK Release
 ```
-
-```sh
-$ react-native link
+react-native bundle --platform android --dev false --entry-file index.android.js \
+ --bundle-output android/app/src/main/assets/index.android.bundle \
+ --assets-dest android/app/src/main/res/
 ```
-
-[CodePush](https://github.com/Microsoft/react-native-code-push) plugin installation and key deployment.
-
-
-###3. Simulate for iOS
-
-**Method One**
-
-*	Open the project in XCode from **ios/NativeStarterKit.xcodeproj**
-
-*	Hit the play button.
-
-
-**Method Two**
-
-*	Run the following command in your terminal
-
-```sh
-$ react-native run-ios
+### APK Debug
 ```
-
-###4. Simulate for Android
-
-*	Make sure you have an **Android emulator** installed and running.
-
-*	Run the following command in your terminal
-
-```sh
-$ react-native run-android
+node ./node_modules/react-native/local-cli/cli.js bundle --platform android --dev false --reset-cache --entry-file index.android.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
 ```
-
-Note: If you are building Native Starter Kit for first time on your system, please follow Method One to simulate on iOS. (To link the CodePush plugin through Xcode for iOS)
-
-
-For apps with more advance designs, please visit **[StrapMobile](https://strapmobile.com/)**.
