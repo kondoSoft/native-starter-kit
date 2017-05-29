@@ -19,6 +19,7 @@ import Single from './components/single';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import SubCategory from './components/subCategory';
+import Bookmarks from './components/bookmarks';
 
 // import MainMenu from './components/mainMenu';
 import { statusBarColor } from './themes/base-theme';
@@ -106,6 +107,8 @@ class AppNavigator extends Component {
         return <Favorites />;
       case 'subCategory':
         return <SubCategory />;
+      case 'bookmarks':
+        return <Bookmarks />;
       default :
         return <Home />;
     }

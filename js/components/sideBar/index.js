@@ -16,9 +16,11 @@ class SideBar extends Component {
     navigateTo: React.PropTypes.func,
   }
 
-  navigateTo(route) {
+  navigateTo(route, reset) {
     this.props.navigateTo(route, 'home');
-    this.props.resetState()
+    if (reset) {
+      this.props.resetState()
+    }
   }
 
   render() {
@@ -27,15 +29,15 @@ class SideBar extends Component {
           <View style={styles.view} >
             <Thumbnail square style={styles.image} source={require('../../../assets/img/Menu-Imagen.png')} />
           </View>
-          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('home')} >
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('home', true)} >
             <Icon style={styles.icon} name="ios-home"/>
             <Text style={styles.text}>INICIO</Text>
           </ListItem>
-          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('contactus')} >
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('contactus', true)} >
             <Icon style={styles.icon} name="ios-mail"/>
             <Text style={styles.text}>CONTACTANOS</Text>
           </ListItem>
-          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('establishments')} >
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('bookmarks')} >
             <Icon style={styles.icon} name="ios-heart"/>
             <Text style={styles.text}>FAVORITOS</Text>
           </ListItem>

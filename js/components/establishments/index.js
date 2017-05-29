@@ -4,6 +4,7 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
 import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListEstablishment from '../listEstablishment'
+import {resetNameSearch} from '../../actions/listEstablishment'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 
@@ -24,10 +25,10 @@ class Establishments extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
+    this.props.resetNameSearch()
   }
 
   render() {
-
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -41,7 +42,9 @@ class Establishments extends Component {
           </Left>
           <Body>
             {/* <Title>{list[index]}</Title> */}
-            <Title>{this.props.listTypeClassifieds[this.props.selectedType].type_classifieds}</Title>
+{/* {this.props.listTypeClassifieds[this.props.selectedType].type_classifieds} */}
+            {(this.props.nameSearch) == null ? <Title></Title>:<Title>{this.props.nameSearch}</Title>  }
+
           </Body>
 
           <Right>
@@ -52,7 +55,8 @@ class Establishments extends Component {
           </Right>
         </Header>
         <Content scrollEnabled={true} style={styles.content}>
-          <ListEstablishment/>
+           <ListEstablishment/>
+
         </Content>
       </Container>
     );
@@ -62,6 +66,7 @@ class Establishments extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
+    resetNameSearch: () => dispatch(resetNameSearch()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
   };
@@ -72,7 +77,8 @@ const mapStateToProps = state => ({
   name: state.user.name,
   index: state.list.selectedIndex,
   listTypeClassifieds: state.listTypeClassifieds.results,
-  selectedType: state.listTypeClassifieds.selectedType
+  selectedType: state.listTypeClassifieds.selectedType,
+  nameSearch: state.listEstablishment.name
 
 });
 

@@ -4,6 +4,7 @@ import type { Action } from './types';
 export const SET_ESTABLISHMENT = 'SET_ESTABLISHMENT';
 export const PRINT_ESTABLISHMENT = 'PRINT_ESTABLISHMENT';
 export const PRINT_ESTABLISHMENT_TYPE = 'PRINT_ESTABLISHMENT_TYPE';
+export const RESET_NAME_SEARCH = 'RESET_NAME_SEARCH';
 
 
 export function setEstablishment(index:number):Action {
@@ -16,6 +17,11 @@ export function printEstablishment(index:number):Action {
   return {
     type: PRINT_ESTABLISHMENT,
     payload: index,
+  }
+}
+export function resetNameSearch():Action {
+  return {
+    type: RESET_NAME_SEARCH,
   }
 }
 export function printEstablishmentType(type_id:number, zone_id:number):Action{

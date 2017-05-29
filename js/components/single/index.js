@@ -140,7 +140,7 @@ class Single extends Component {
             </Left>
             <Right style={styles.headerRight}>
               <Button transparent >
-                <Icon style={styles.fontIconHeart} name="heart" />
+                <Icon style={styles.fontIconHeart} name="heart" onPress={()=>{console.log('a favoritos')}} />
               </Button>
               <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
                 <Icon style={{ color: 'dimgray' }} name="md-more" />
