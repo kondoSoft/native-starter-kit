@@ -151,20 +151,10 @@ export default {
     paddingRight: 50,
     marginTop: 4,
   },
-  fab:{
-    backgroundColor: '#5067FF',
 
-  },
-  buttonW:{
-    backgroundColor: '#34A34F',
-
-  },
   buttonF:{
     backgroundColor: '#3B5998',
-
-  },
-  buttonM:{
-    backgroundColor: '#DD5144',
+    color:'white',
 
   },
   buttonSocial:{
@@ -178,6 +168,7 @@ export default {
     margin: 0,
     padding: 0,
     paddingBottom: 10,
+
   },
 
 };

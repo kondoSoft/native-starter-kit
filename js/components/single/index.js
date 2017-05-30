@@ -9,6 +9,7 @@ import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import Swiper from 'react-native-swiper';
 import { Platform } from 'react-native';
+import ActionButton from 'react-native-action-button';
 const { width, height } = Dimensions.get('window');
 const {
   reset,
@@ -106,7 +107,6 @@ class Single extends Component {
 
     const activeFab = this.state.active;
     const { props: { name, index, list } } = this;
-    console.log(this.props.listEstablishment)
 
     let iconFace = null;
     if(this.props.listEstablishment[index].facebook) {
@@ -122,7 +122,6 @@ class Single extends Component {
       </Button>
     }
     let iconWeb = null
-    console.log(this.props.listEstablishment[index].web);
     if(this.props.listEstablishment[index].web){
       iconWeb = <Button style={styles.buttonSocial} transparent onPress={() => this.handleClick(index)}>
         <Icon style={styles.iconFooter} name="globe"></Icon>
@@ -216,33 +215,31 @@ class Single extends Component {
           </Row>
         </Grid>
       </Content>
-        <Fab
-              active={this.state.active}
-              direction="up"
-              style={styles.fab}
-              position="bottomRight"
-              onPress={() => this.setState({ active: !this.state.active })}
-          >
-              <Icon name="md-share" />
-              { this.props.listEstablishment[index].web ? (
-                <Button style={styles.buttonF}>
-                    <Icon name="logo-facebook"
-                    onPress={()=> this.goToURL(`https://www.facebook.com/sharer/sharer.php?u=${this.props.listEstablishment[index].web}`)} />
-                </Button>
-              ):(
-                <Text></Text>
-              )}
-              <Icon name="md-share" />
-              { this.props.listEstablishment[index].web ? (
-                <Button style={styles.buttonF}>
-                    <Icon name="logo-twitter"
-                    onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].web} #quehacermerida`)} />
-                </Button>
-              ):(
-                <Text></Text>
-              )}
+      {this.props.listEstablishment[index].web ? (
+        <ActionButton
+          active={this.state.active}
+          onPress={() => this.setState({ active: !this.state.active })}
+          buttonColor='#5067FF'
+          icon={<Icon name="md-share"
+          style={{ color: 'white'}}/>} >
+          <ActionButton.Item
+            buttonColor='#3B5998'
+            // title='facebook'
+            onPress={()=> this.goToURL(`https://www.facebook.com/sharer/sharer.php?u=${this.props.listEstablishment[index].web}`)} >
+            <Icon name="logo-facebook" style={styles.buttonF}/>
+          </ActionButton.Item>
+          <ActionButton.Item
+            buttonColor='#3B5998'
+            // title='facebook'
+            onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].web} #quehacermerida`)} >
+            <Icon name="logo-twitter" style={styles.buttonF}/>
+          </ActionButton.Item>
 
-        </Fab>
+        </ActionButton>
+        ):(
+          console.log("no hay web")
+        )}
+        
       </Container>
     );
   }

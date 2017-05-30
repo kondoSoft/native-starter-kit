@@ -65,22 +65,11 @@ export default {
     marginTop: 15,
     paddingRight: 50,
   },
-  fab:{
-    backgroundColor: '#5067FF',
-
-  },
-  buttonW:{
-    backgroundColor: '#34A34F',
-
-  },
   buttonF:{
     backgroundColor: '#3B5998',
-
+    color:'white',
   },
-  buttonM:{
-    backgroundColor: '#DD5144',
 
-  },
   map: {
     position: 'absolute',
     flex: 1,
