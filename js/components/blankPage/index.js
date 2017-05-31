@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Dimensions } from 'react-native'
+import { Dimensions, BackAndroid } from 'react-native'
 import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Left,Thumbnail, Right, Body, Footer } from 'native-base';
 import Classified from '../classified'
 import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-import { fetchAdvertising, resetState } from '../../actions/list';
+import { fetchAdvertising, resetState, resetStateBack } from '../../actions/list';
 
 
 const {
@@ -33,15 +33,31 @@ class BlankPage extends Component {
   }
   componentWillMount(){
 
+
     this.props.fetchAdvertising()
 
   }
+
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
     this.props.resetState()
+    console.log("Me ejecute")
+  }
+  // componentDidMount(){
+  //   BackAndroid.addEventListener("backPress", ()=>{
+  //     this.props.resetStateBack()
+  //   })
+  // }
+  componentWillUnmount(){
+
+    this.props.resetStateBack()
+    console.log("Me removi");
   }
 
+
+
   render() {
+
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
     return (
@@ -84,6 +100,7 @@ function bindAction(dispatch) {
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     resetState: () => dispatch(resetState()),
+    resetStateBack: () => dispatch(resetStateBack()),
 
   };
 }

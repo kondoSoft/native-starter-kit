@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Dimensions } from 'react-native'
+import { Dimensions, BackAndroid } from 'react-native'
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
 import ListClassified from '../listClassified'
@@ -38,7 +38,7 @@ class Classified extends Component {
   }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-
+    // console.log("Me ejecute en classified");
   }
   getRandomIndex(){
     const advertising = this.props.advertising
@@ -46,8 +46,16 @@ class Classified extends Component {
     return randomIndex
   }
   componentWillMount(){
+
     this.props.fetchAdvertising()
+
   }
+  // componentDidMount(){
+  //   console.log("estoy en classified");
+  //   BackAndroid.removeEventListener("backPress", ()=>{
+  //     this.props.popRoute(this.props.navigation.key)
+  //   })
+  // }
 
 
   render() {

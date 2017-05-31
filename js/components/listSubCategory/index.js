@@ -36,7 +36,7 @@ class ListSubCategory extends Component {
 
   pushRoute(route, index) {
     this.props.setType(index);
-
+    console.log(this.props.listZone[this.props.setZone]);
     if(this.props.listZone[this.props.setZone] == undefined){
       this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
     }else{

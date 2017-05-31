@@ -1,6 +1,7 @@
 
 import type { Action } from '../actions/types';
 import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL, LOADING_TRUE, RESET_STATE} from '../actions/list';
+import resetState from '../actions/list';
 
 export type State = {
     list: string
@@ -25,6 +26,7 @@ const initialState = {
   ],
   messageSuccess: {},
   loading: false,
+
 };
 
 export default function (state:State = initialState, action:Action): State {

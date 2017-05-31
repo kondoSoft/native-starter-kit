@@ -8,6 +8,7 @@ import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import markerMerida from '../../../assets/img/marker-merida.png';
+import ActionButton from 'react-native-action-button';
 
 
 const {
@@ -70,7 +71,16 @@ class SingleMap extends Component {
 
     Linking.openURL(url);
   }
+  goToURL(url){
+    Linking.canOpenURL(url).then(supported => {
+      if(supported){
+          Linking.openURL(url)
+        }else{
+          alert('Hay un error, por favor contactanos...')
+        }
+      });
 
+  }
   render() {
     const id = this.props.index
     const activeFab = this.state.active
@@ -139,24 +149,30 @@ class SingleMap extends Component {
           </Row>
         </Grid>
         {/* </Content> */}
-        <Fab
-              active={this.state.active}
-              direction="up"
-              style={styles.fab}
-              position="bottomRight"
-              onPress={() => this.setState({ active: !this.state.active })}
-          >
-              <Icon name="md-share" />
-              {/* <Button style={styles.buttonW}>
-                  <Icon name="logo-whatsapp" />
-              </Button> */}
-              <Button style={styles.buttonF}>
-                  <Icon name="logo-facebook" />
-              </Button>
-              {/* <Button style={styles.buttonM}>
-                  <Icon name="mail" />
-              </Button> */}
-          </Fab>
+        {this.props.listEstablishment[index].web ? (
+          <ActionButton
+            active={this.state.active}
+            onPress={() => this.setState({ active: !this.state.active })}
+            buttonColor='#5067FF'
+            icon={<Icon name="md-share"
+            style={{ color: 'white'}}/>} >
+            <ActionButton.Item
+              buttonColor='#3B5998'
+              // title='facebook'
+              onPress={()=> this.goToURL(`https://www.facebook.com/sharer/sharer.php?u=${this.props.listEstablishment[index].web}`)} >
+              <Icon name="logo-facebook" style={styles.buttonF}/>
+            </ActionButton.Item>
+            <ActionButton.Item
+              buttonColor='#3B5998'
+              // title='facebook'
+              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].web} #quehacermerida`)} >
+              <Icon name="logo-twitter" style={styles.buttonF}/>
+            </ActionButton.Item>
+
+          </ActionButton>
+          ):(
+            console.log("no hay web")
+          )}
       </Container>
     );
   }
