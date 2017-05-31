@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, WebView } from 'react-native';
+import { TouchableOpacity, Image, WebView,BackAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, Button, Item, Icon, Input, Left, Body, Right } from 'native-base';
@@ -49,6 +49,7 @@ class Home extends Component {
     this.props.fetchVideo()
 
   }
+  
 
   pushRoute(route, index, value) {
     this.props.setIndex(index);

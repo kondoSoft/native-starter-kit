@@ -8,7 +8,7 @@ export const PRINT_VIDEO = 'PRINT_VIDEO';
 export const SUCCESS_MAIL  = 'SUCCESS_MAIL';
 export const LOADING_TRUE = 'LOADING_TRUE';
 export const RESET_STATE = 'RESET_STATE';
-
+export const RESET_STATE_BACK = 'RESET_STATE_BACK'
 
 export function setIndex(index:number):Action {
   return {
@@ -116,5 +116,10 @@ export function setLoadingTrue(){
 export function resetState(){
   return {
     type: RESET_STATE,
+  }
+}
+export function resetStateBack(){
+  return {
+    type: RESET_STATE_BACK,
   }
 }
