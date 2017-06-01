@@ -6,6 +6,7 @@ import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Lef
 import ListItems from '../listItems'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
+import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
 
 const {
   reset,
@@ -52,7 +53,7 @@ class Bookmarks extends Component {
           </Right>
         </Header>
         <Content scrollEnabled={true} style={styles.content}>
-          <ListItems source={this.props.bookmarks}/>
+          <ListItems source={this.props.bookmarks} add_bookmark={this.props.add_bookmark} remove_bookmark={this.props.remove_bookmark}/>
 
         </Content>
       </Container>
@@ -65,6 +66,8 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    add_bookmark: () => dispatch(add_bookmark()),
+    remove_bookmark: id => dispatch(remove_bookmark(id))
   };
 }
 

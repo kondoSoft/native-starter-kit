@@ -5,13 +5,13 @@ export const ADD_BOOKMARK = 'ADD_BOOKMARK';
 export const REMOVE_BOOKMARK = 'REMOVE_BOOKMARK';
 
 
-export function add_bookmark(index:number):Action {
+export function add_bookmark(index):Action {
   return {
     type: ADD_BOOKMARK,
     payload: index,
   };
 }
-export function remove_bookmark(index:number):Action {
+export function remove_bookmark(index):Action {
   return {
     type: REMOVE_BOOKMARK ,
     payload: index,

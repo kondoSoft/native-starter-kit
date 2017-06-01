@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
+import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
 
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles'
@@ -35,8 +36,19 @@ class ListEstablishment extends Component {
     this.props.setEstablishment(index)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
+  isBookmark(establismentItem, bookmarks){
+    console.log(establismentItem)
+    console.log(bookmarks);
+    var res = bookmarks.filter((val)=>  val.id == establismentItem.id)
+    console.log(res)
+    if (res.length > 0){
+      return <Icon style={styles.fontIcon} onPress={() => this.props.remove_bookmark(establismentItem.id)} name="md-heart" />
+    }
+    return <Icon style={styles.fontIcon} onPress={() => this.props.add_bookmark(establismentItem)} name="heart" />
+  }
 
   render() {
+    bookmarks = this.props.bookmarks
     return (
         <Content style= {styles.content}>
           {this.props.listEstablishment.map((item, i) =>
@@ -66,7 +78,12 @@ class ListEstablishment extends Component {
                   </Body>
 
                     <Button transparent textStyle={{color: '#87838B'}}>
-                      <Icon style={styles.fontIcon} name="heart" />
+
+                      {
+                        this.isBookmark(this.props.listEstablishment[i], this.props.bookmarks)
+
+                      }
+
                       {/* <Text style={styles.textIconFav} >{this.props.listEstablishment[i].favorites}</Text> */}
                     </Button>
 
@@ -85,6 +102,8 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    add_bookmark: id => dispatch(add_bookmark(id)),
+    remove_bookmark: id => dispatch(remove_bookmark(id)),
   };
 }
 const mapStateToProps = state => ({

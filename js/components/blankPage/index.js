@@ -41,17 +41,12 @@ class BlankPage extends Component {
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
     this.props.resetState()
-    console.log("Me ejecute")
+
   }
-  // componentDidMount(){
-  //   BackAndroid.addEventListener("backPress", ()=>{
-  //     this.props.resetStateBack()
-  //   })
-  // }
   componentWillUnmount(){
 
     this.props.resetStateBack()
-    console.log("Me removi");
+
   }
 
 

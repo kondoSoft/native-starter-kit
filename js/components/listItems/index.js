@@ -61,8 +61,9 @@ class ListItems extends Component {
                   </TouchableOpacity>
                 </Body>
 
-                  <Button transparent textStyle={{color: '#87838B'}}>
-                    <Icon style={styles.fontIcon} name="heart" />
+                  <Button onPress={() => this.props.remove_bookmark(this.props.source[i].id)} transparent textStyle={{color: '#87838B'}}>
+                    <Icon style={styles.fontIcon} name="ios-heart" />
+
                     {/* <Text style={styles.textIconFav} >{this.props.source[i].favorites}</Text> */}
                   </Button>
 
