@@ -94,9 +94,9 @@ class SingleMap extends Component {
             </Button>
           </Left>
           <Right style={styles.headerRight}>
-            <Button transparent >
+            {/* <Button transparent >
               <Icon style={styles.fontIconHeart} name="heart" />
-            </Button>
+            </Button> */}
             <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
               <Icon style={{ color: 'dimgray' }} name="md-more" />
             </Button>

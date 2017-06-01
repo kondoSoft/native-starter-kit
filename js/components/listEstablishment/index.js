@@ -37,14 +37,12 @@ class ListEstablishment extends Component {
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
   isBookmark(establismentItem, bookmarks){
-    console.log(establismentItem)
-    console.log(bookmarks);
     var res = bookmarks.filter((val)=>  val.id == establismentItem.id)
-    console.log(res)
+
     if (res.length > 0){
       return <Icon style={styles.fontIcon} onPress={() => this.props.remove_bookmark(establismentItem.id)} name="md-heart" />
     }
-    return <Icon style={styles.fontIcon} onPress={() => this.props.add_bookmark(establismentItem)} name="heart" />
+    return <Icon style={styles.fontIcon} onPress={() => this.props.add_bookmark(establismentItem)} name="md-heart-outline" />
   }
 
   render() {

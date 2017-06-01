@@ -10,6 +10,10 @@ import {REHYDRATE} from 'redux-persist/constants'
 
 const initialState = {
     space:[
+        "facebook" : "",
+        "instagram": "",
+        "twitter": "",
+        "web": "",
       ]
 };
 
@@ -32,7 +36,7 @@ export default function (state:State = initialState, action:Action): State {
     };
   }
   if (action.type === REHYDRATE) {
-    
+
     var incoming = action.payload.bookmarks
     // incoming = []
     if (incoming) return {...state, ...incoming,}

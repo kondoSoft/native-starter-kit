@@ -28,7 +28,6 @@ class Bookmarks extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
