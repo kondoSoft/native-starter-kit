@@ -1,6 +1,7 @@
 
 import type { Action } from '../actions/bookmarks';
 import { ADD_BOOKMARK, REMOVE_BOOKMARK }from '../actions/bookmarks'
+import {REHYDRATE} from 'redux-persist/constants'
 //
 // export type State = {
 //     drawerState: string,
@@ -29,6 +30,14 @@ export default function (state:State = initialState, action:Action): State {
       ...state,
       space : newState,
     };
+  }
+  if (action.type === REHYDRATE) {
+    
+    var incoming = action.payload.bookmarks
+    // incoming = []
+    if (incoming) return {...state, ...incoming,}
+    return state
+
   }
 
   return state;
