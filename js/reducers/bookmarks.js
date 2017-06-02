@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/bookmarks';
-import { ADD_BOOKMARK, REMOVE_BOOKMARK }from '../actions/bookmarks'
+import { ADD_BOOKMARK, REMOVE_BOOKMARK, SET_ITEM }from '../actions/bookmarks'
 import {REHYDRATE} from 'redux-persist/constants'
 //
 // export type State = {
@@ -14,7 +14,9 @@ const initialState = {
         "instagram": "",
         "twitter": "",
         "web": "",
-      ]
+      ],
+    selectedItem: undefined,
+
 };
 
 export default function (state:State = initialState, action:Action): State {
@@ -33,7 +35,7 @@ export default function (state:State = initialState, action:Action): State {
     return {
       ...state,
       space : newState,
-    };
+    }
   }
   if (action.type === REHYDRATE) {
 
@@ -42,6 +44,12 @@ export default function (state:State = initialState, action:Action): State {
     if (incoming) return {...state, ...incoming,}
     return state
 
+  }
+  if (action.type == SET_ITEM){
+    return {
+      ...state,
+      selectedItem: action.payload
+    }
   }
 
   return state;

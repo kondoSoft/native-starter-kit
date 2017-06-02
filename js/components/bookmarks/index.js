@@ -28,6 +28,7 @@ class Bookmarks extends Component {
   }
 
   render() {
+    console.log(this.props.navigation);
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -35,8 +36,8 @@ class Bookmarks extends Component {
       <Container style={styles.container}>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
-            <Button transparent onPress={() => this.popRoute()}>
-              <Icon style={{color: 'dimgray'}} name="arrow-round-back" />
+            <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
+              <Icon style={{ color: 'dimgray' }} name="md-close" />
             </Button>
           </Left>
           <Body>
@@ -74,6 +75,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
   index: state.list.selectedIndex,
+  listEstablishment: state.listEstablishment.results,
   listTypeClassifieds: state.listTypeClassifieds.results,
   selectedType: state.listTypeClassifieds.selectedType,
   bookmarks:state.bookmarks.space

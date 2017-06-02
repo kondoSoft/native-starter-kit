@@ -24,7 +24,7 @@ const LONGITUDE = -89.619899;
 const LATITUDE_DELTA = 0.0053;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-class SingleMap extends Component {
+class SingleMapBookmark extends Component {
 
   constructor(props) {
     super(props);
@@ -165,7 +165,7 @@ class SingleMap extends Component {
             <ActionButton.Item
               buttonColor='#3B5998'
               // title='facebook'
-              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].name} ${this.props.listEstablishment[index].web} a traves de #quehacermerida`)} >
+              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].name} ${this.props.listEstablishment[index].web} #quehacermerida`)} >
               <Icon name="logo-twitter" style={styles.buttonF}/>
             </ActionButton.Item>
 
@@ -177,7 +177,7 @@ class SingleMap extends Component {
     );
   }
 }
-SingleMap.propTypes = {
+SingleMapBookmark.propTypes = {
   provider: MapView.ProviderPropType,
 };
 
@@ -192,9 +192,9 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
-  index: state.listEstablishment.selectedEstablishment,
-  listEstablishment: state.listEstablishment.results,
+  index: state.bookmarks.selectedItem,
+  listEstablishment: state.bookmarks.space
 });
 
 
-export default connect(mapStateToProps, bindAction)(SingleMap);
+export default connect(mapStateToProps, bindAction)(SingleMapBookmark);
