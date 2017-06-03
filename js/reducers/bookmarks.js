@@ -10,10 +10,7 @@ import {REHYDRATE} from 'redux-persist/constants'
 
 const initialState = {
     space:[
-        "facebook" : "",
-        "instagram": "",
-        "twitter": "",
-        "web": "",
+        
       ],
     selectedItem: undefined,
 
