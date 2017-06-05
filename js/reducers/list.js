@@ -2,6 +2,7 @@
 import type { Action } from '../actions/types';
 import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL, LOADING_TRUE, RESET_STATE} from '../actions/list';
 import resetState from '../actions/list';
+import {REHYDRATE} from 'redux-persist/constants'
 
 export type State = {
     list: string
@@ -69,6 +70,12 @@ export default function (state:State = initialState, action:Action): State {
       ...state,
       messageSuccess: {}
     }
+  } else if (action.type === REHYDRATE) {
+
+    var incoming = action.payload.bookmarks
+    if (incoming) return {...state, ...incoming,}
+    return state
+
   }
 
 

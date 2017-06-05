@@ -3,7 +3,7 @@ import { TouchableOpacity, Image, View } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
-
+import { set_item } from '../../actions/bookmarks';
 
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles'
@@ -12,6 +12,7 @@ import styles from './styles'
 const {
   reset,
   pushRoute,
+  replaceAt,
 
 } = actions;
 
@@ -28,25 +29,37 @@ class ListItems extends Component {
   }
 
   pushRoute(route, index) {
-    this.props.setEstablishment(index)
+
+    this.props.set_item(index)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
+  }
+  replaceAt(route, index){
+    const currentRouteKey = this.props.navigation.routes[this.props.navigation.routes.length-1].key
+    this.props.set_item(index);
+    this.props.replaceAt(currentRouteKey,{ key: route, index: 1}, this.props.navigation.key)
   }
 
   render() {
     return (
+
       <Content style= {styles.content}>
         {this.props.source.map((item, i) =>
         <Card  key={i} style={styles.card}>
+
           <CardItem header  style={styles.header}>
+
             <TouchableOpacity
-              onPress={() => this.pushRoute('single', i)}
+              onPress={() => {
+
+                this.replaceAt('singleBookmark', i)
+              }}
               >
               <Text style={styles.textHeader}>{this.props.source[i].name}</Text>
             </TouchableOpacity>
           </CardItem>
           <CardItem style={styles.bodyText}>
             <TouchableOpacity
-              onPress={() => this.pushRoute('single', i)}
+              onPress={() => this.replaceAt('singleBookmark', i)}
               >
               <Thumbnail style={styles.thumbnail} square source={{uri: this.props.source[i].logo}}></Thumbnail>
             </TouchableOpacity>
@@ -55,14 +68,15 @@ class ListItems extends Component {
                 <Body style={{ flex: 1, flexDirection: 'row'}}>
                   <TouchableOpacity
                     // style={{ flex: 1 }}
-                    onPress={() => this.pushRoute('single', i)}
+                    onPress={() => this.replaceAt('singleBookmark', i)}
                     >
                     <Text style={styles.textDescription}>{this.props.source[i].description.substring(0,120)+ "..."}</Text>
                   </TouchableOpacity>
                 </Body>
 
-                  <Button transparent textStyle={{color: '#87838B'}}>
-                    <Icon style={styles.fontIcon} name="heart" />
+                  <Button onPress={() => this.props.remove_bookmark(this.props.source[i].id)} transparent textStyle={{color: '#87838B'}}>
+                    <Icon style={styles.fontIcon} name="ios-heart" />
+
                     {/* <Text style={styles.textIconFav} >{this.props.source[i].favorites}</Text> */}
                   </Button>
 
@@ -77,15 +91,16 @@ class ListItems extends Component {
 }
 function bindAction(dispatch) {
   return {
-    setEstablishment: index => dispatch(setEstablishment(index)),
+    set_item: index => dispatch(set_item(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    replaceAt: (routeKey, route, key) => dispatch(replaceAt(routeKey, route, key)),
+
   };
 }
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  bookmarks:state.bookmarks.space
 });
 
 export default connect(mapStateToProps, bindAction)(ListItems);

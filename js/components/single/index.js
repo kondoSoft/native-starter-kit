@@ -11,6 +11,7 @@ import Swiper from 'react-native-swiper';
 import { Platform } from 'react-native';
 import ActionButton from 'react-native-action-button';
 const { width, height } = Dimensions.get('window');
+import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
 const {
   reset,
   popRoute,
@@ -45,6 +46,7 @@ class Single extends Component {
 
 
   pushRoute(route, index) {
+
     this.props.setEstablishment(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
@@ -103,6 +105,14 @@ class Single extends Component {
       });
 
   }
+  isBookmark(establismentItem, bookmarks){
+    var res = bookmarks.filter((val)=>  val.id == establismentItem.id)
+
+    if (res.length > 0){
+      return <Icon style={styles.fontIcon} onPress={() => this.props.remove_bookmark(establismentItem.id)} name="md-heart" />
+    }
+    return <Icon style={styles.fontIcon} onPress={() => this.props.add_bookmark(establismentItem)} name="md-heart-outline" />
+  }
   render() {
 
     const activeFab = this.state.active;
@@ -139,7 +149,10 @@ class Single extends Component {
             </Left>
             <Right style={styles.headerRight}>
               <Button transparent >
-                <Icon style={styles.fontIconHeart} name="heart" onPress={()=>{console.log('a favoritos')}} />
+                {/* <Icon style={styles.fontIconHeart} name="md-heart" onPress={()=>{console.log('a favoritos')}} /> */}
+                {
+                  this.isBookmark(this.props.listEstablishment[index], this.props.bookmarks)
+                }
               </Button>
               <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
                 <Icon style={{ color: 'dimgray' }} name="md-more" />
@@ -231,7 +244,7 @@ class Single extends Component {
           <ActionButton.Item
             buttonColor='#3B5998'
             // title='facebook'
-            onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].web} #quehacermerida`)} >
+            onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].name} ${this.props.listEstablishment[index].web} a traves de QueHacerMerida`)} >
             <Icon name="logo-twitter" style={styles.buttonF}/>
           </ActionButton.Item>
 
@@ -239,7 +252,7 @@ class Single extends Component {
         ):(
           console.log("no hay web")
         )}
-        
+
       </Container>
     );
   }
@@ -252,6 +265,8 @@ function bindAction(dispatch) {
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    add_bookmark: id => dispatch(add_bookmark(id)),
+    remove_bookmark: id => dispatch(remove_bookmark(id)),
   };
 }
 
@@ -259,6 +274,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   index: state.listEstablishment.selectedEstablishment,
   listEstablishment: state.listEstablishment.results,
+  bookmarks:state.bookmarks.space
 });
 
 

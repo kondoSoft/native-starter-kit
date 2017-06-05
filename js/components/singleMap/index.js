@@ -94,12 +94,12 @@ class SingleMap extends Component {
             </Button>
           </Left>
           <Right style={styles.headerRight}>
-            <Button transparent >
+            {/* <Button transparent >
               <Icon style={styles.fontIconHeart} name="heart" />
-            </Button>
-            <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
+            </Button> */}
+            {/* <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
               <Icon style={{ color: 'dimgray' }} name="md-more" />
-            </Button>
+            </Button> */}
           </Right>
         </Header>
         <Grid style={{ flex: 1,
@@ -165,7 +165,7 @@ class SingleMap extends Component {
             <ActionButton.Item
               buttonColor='#3B5998'
               // title='facebook'
-              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].web} #quehacermerida`)} >
+              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].name} ${this.props.listEstablishment[index].web} a traves de QueHacerMerida`)} >
               <Icon name="logo-twitter" style={styles.buttonF}/>
             </ActionButton.Item>
 

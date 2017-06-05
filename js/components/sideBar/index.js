@@ -17,11 +17,13 @@ class SideBar extends Component {
   }
 
   navigateTo(route, reset) {
+
     this.props.navigateTo(route, 'home');
-    if (reset) {
-      this.props.resetState()
-    }
+    // if (reset) {
+    //   this.props.resetState()
+    // }
   }
+
 
   render() {
     return (
@@ -37,7 +39,7 @@ class SideBar extends Component {
             <Icon style={styles.icon} name="ios-mail"/>
             <Text style={styles.text}>CONTACTANOS</Text>
           </ListItem>
-          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('bookmarks')} >
+          <ListItem style={styles.listItem} button onPress={() => this.navigateTo('bookmarks', true)} >
             <Icon style={styles.icon} name="ios-heart"/>
             <Text style={styles.text}>FAVORITOS</Text>
           </ListItem>

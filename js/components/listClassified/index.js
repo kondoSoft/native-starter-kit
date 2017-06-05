@@ -37,7 +37,6 @@ function ColItem(props){
 
 
     var items = props.listCategory.map((data, i) => {
-      console.log(data.logo);
       return (
         <Thumbnail style={styles.thumbnail} square source={{uri: data.logo }}>
           {/* <Text style={styles.text}>{data[i].name}</Text> */}

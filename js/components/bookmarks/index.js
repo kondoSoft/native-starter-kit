@@ -6,6 +6,7 @@ import { Container, Header, Title, Content, Text, Button, Icon, Item, Input, Lef
 import ListItems from '../listItems'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
+import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
 
 const {
   reset,
@@ -27,7 +28,7 @@ class Bookmarks extends Component {
   }
 
   render() {
-    console.log(this.props);
+
     const { props: { name, index, list } } = this;
     const { width, height } = Dimensions.get('window')
 
@@ -35,8 +36,8 @@ class Bookmarks extends Component {
       <Container style={styles.container}>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
           <Left>
-            <Button transparent onPress={() => this.popRoute()}>
-              <Icon style={{color: 'dimgray'}} name="arrow-round-back" />
+            <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
+              <Icon style={{ color: 'dimgray' }} name="md-close" />
             </Button>
           </Left>
           <Body>
@@ -52,7 +53,7 @@ class Bookmarks extends Component {
           </Right>
         </Header>
         <Content scrollEnabled={true} style={styles.content}>
-          <ListItems source={this.props.bookmarks}/>
+          <ListItems source={this.props.bookmarks} add_bookmark={this.props.add_bookmark} remove_bookmark={this.props.remove_bookmark}/>
 
         </Content>
       </Container>
@@ -65,6 +66,8 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    add_bookmark: () => dispatch(add_bookmark()),
+    remove_bookmark: id => dispatch(remove_bookmark(id))
   };
 }
 
@@ -72,6 +75,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   name: state.user.name,
   index: state.list.selectedIndex,
+  listEstablishment: state.listEstablishment.results,
   listTypeClassifieds: state.listTypeClassifieds.results,
   selectedType: state.listTypeClassifieds.selectedType,
   bookmarks:state.bookmarks.space

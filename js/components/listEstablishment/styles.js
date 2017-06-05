@@ -92,6 +92,7 @@ export default {
   fontIcon: {
     fontSize: 15,
   },
+  
   iconFav:{
     flex: 1,
   },
