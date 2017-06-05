@@ -49,7 +49,7 @@ class Home extends Component {
     this.props.fetchVideo()
 
   }
-  
+
 
   pushRoute(route, index, value) {
     this.props.setIndex(index);

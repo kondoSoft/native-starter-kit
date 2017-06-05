@@ -20,47 +20,12 @@ const {
 
 } = actions;
 
-function OpenRow(props){
-  props.listCategory.map((item, i) => {
-    i++
-    return item
-  })
-  return (
 
-      <Row key={i} style={{ backgroundColor:'blue'}} />
-
-  )
+function ColItem(data){
+  <Thumbnail style={styles.thumbnail} square source={{uri: data.listCategory.logo }}>
+    <Text style={styles.text}>{data.listCategory.name}</Text>
+  </Thumbnail>
 }
-
-
-function ColItem(props){
-
-
-    var items = props.listCategory.map((data, i) => {
-      return (
-        <Thumbnail style={styles.thumbnail} square source={{uri: data.logo }}>
-          {/* <Text style={styles.text}>{data[i].name}</Text> */}
-        </Thumbnail>
-      )
-    })
-
-}
-  // return (
-  //
-  //
-  //        <Col  style={styles.col}>
-  //         <TouchableOpacity style={styles.touchableOpacity}
-  //             onPress={() => this.pushRoute('subCategory', i)}
-  //           >
-  //           <Thumbnail style={styles.thumbnail} square source={{uri: props.listCategory[i].logo }}>
-  //             <Text style={styles.text}>{props.listCategory[i].name}</Text>
-  //           </Thumbnail>
-  //         </TouchableOpacity>
-  //        </Col>
-  //      )
-  //     })
-  //   )
-
 
 
 
@@ -80,7 +45,7 @@ class ListClassified extends Component {
   constructor(props) {
     super(props);
 
-    this.listRow = this.listRow.bind(this)
+    // this.listRow = this.listRow.bind(this)
 
   }
   componentWillMount(){
@@ -95,6 +60,7 @@ class ListClassified extends Component {
   }
   // listRow(column){
   //   var list = this.props.listCategory
+  //   console.log(list);
   //   list.map((item, i) => {
   //     i++
   //
@@ -105,9 +71,28 @@ class ListClassified extends Component {
   //   })
   // }
 
+  generateFor(first, last){
 
+    console.log(first);
+    console.log(last);
+    for (var i = first; i < last; i++) {
+      var listCategory =  this.props.listCategory.slice(first,last)
+      console.log(i);
+      // console.log(first);
+      // console.log(last);
+    }
+
+    return (
+      <Row style={{ backgroundColor: 'blue', height: 100}}>
+        {listCategory.map((item, i)=><Text key={i}>{item.name}</Text>)}
+      </Row>
+    )
+  }
   render() {
-    // this.listRow(3)
+    var initial_index = 0
+    var listCategory =  this.props.listCategory
+    var final_index = 3
+
     return (
       <Swiper
         showsButtons
@@ -116,26 +101,10 @@ class ListClassified extends Component {
         scrollEnabled={true}
       >
         <View style={styles.slide1}>
-          <Grid style={styles.slide} >
-            {/* <OpenRow /> */}
-            <ColItem listCategory={this.props.listCategory}/>
+          <Grid style={styles.slide}>
+            {this.generateFor(initial_index, final_index)}
+
           </Grid>
-              {/* {this.props.listCategory.map((item, i) =>
-
-                <Row key={i}>
-                  <Col  style={styles.col}>
-                      <TouchableOpacity style={styles.touchableOpacity}
-                        onPress={() => this.pushRoute('subCategory', i)}
-                        >
-                          <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                            <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                          </Thumbnail>
-                      </TouchableOpacity>
-                  </Col>
-                </Row>
-
-            )} */}
-
         </View>
         <View>
 
