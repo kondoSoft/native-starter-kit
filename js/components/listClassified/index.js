@@ -8,7 +8,7 @@ import { Grid, Row, Col } from 'react-native-easy-grid';
 import styles from './styles'
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchClassifieds } from '../../actions/listCategory';
-import { fetchEstablishmentClassified } from '../../actions/listEstablishment'
+// import { fetchEstablishmentClassified } from '../../actions/listEstablishment'
 import { fetchPKClassifieds } from '../../actions/listType';
 
 import Swiper from 'react-native-swiper';
@@ -26,8 +26,6 @@ function ColItem(data){
     <Text style={styles.text}>{data.listCategory.name}</Text>
   </Thumbnail>
 }
-
-
 
 class ListClassified extends Component {
 
@@ -50,7 +48,6 @@ class ListClassified extends Component {
   }
   componentWillMount(){
     // this.props.fetchClassifieds()
-    // this.props.fetchEstablishmentClassified()
   }
 
   pushRoute(route, index) {
@@ -58,41 +55,19 @@ class ListClassified extends Component {
     this.props.fetchPKClassifieds(this.props.listCategory[index].id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
-  // listRow(column){
-  //   var list = this.props.listCategory
-  //   console.log(list);
-  //   list.map((item, i) => {
-  //     i++
-  //
-  //     console.log('>, ', item);
-  //     if (i%3 == 0){
-  //       console.log('division');
-  //     }
-  //   })
-  // }
 
   generateFor(first, last){
+    var listCategory =  this.props.listCategory.slice(first,last)
+      return (
+        <Row style={{ backgroundColor: 'blue', height: 100}}>
+           {listCategory.map((item, i)=><Text key={i}>{item.name}</Text>)}
+        </Row>
 
-    console.log(first);
-    console.log(last);
-    for (var i = first; i < last; i++) {
-      var listCategory =  this.props.listCategory.slice(first,last)
-      console.log(i);
-      // console.log(first);
-      // console.log(last);
-    }
-
-    return (
-      <Row style={{ backgroundColor: 'blue', height: 100}}>
-        {listCategory.map((item, i)=><Text key={i}>{item.name}</Text>)}
-      </Row>
-    )
+      )
   }
   render() {
-    var initial_index = 0
-    var listCategory =  this.props.listCategory
-    var final_index = 3
-
+    var first = 0
+    var last = 3
     return (
       <Swiper
         showsButtons
@@ -102,7 +77,7 @@ class ListClassified extends Component {
       >
         <View style={styles.slide1}>
           <Grid style={styles.slide}>
-            {this.generateFor(initial_index, final_index)}
+            {this.generateFor(first, last)}
 
           </Grid>
         </View>
@@ -117,7 +92,6 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchClassifieds: index => dispatch(fetchClassifieds(index)),
-    fetchEstablishmentClassified: index => dispatch(fetchEstablishmentClassified(index)),
     fetchPKClassifieds: index => dispatch(fetchPKClassifieds(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),

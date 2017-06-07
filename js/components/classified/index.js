@@ -86,8 +86,8 @@ class Classified extends Component {
             </Row>
         </Grid>
         <Content scrollEnabled={true} style={styles.content}>
-          {/* <ListCategory /> */}
-          <ListClassified />
+          <ListCategory />
+          {/* <ListClassified /> */}
 
         </Content>
       </Container>

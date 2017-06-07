@@ -58,7 +58,7 @@ class Home extends Component {
   }
   pushRouteC(route, index) {
     this.props.setIndex(index);
-    this.props.fetchClassifiedsCategory(this.props.list[index].id)
+    this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
@@ -151,7 +151,7 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
-    fetchClassifiedsCategory: index => dispatch(fetchClassifiedsCategory(index)),
+    fetchClassifiedsCategory: (index, page) => dispatch(fetchClassifiedsCategory(index, page)),
     fetchVideo: index => dispatch(fetchVideo(index)),
     fetchSearch: name => dispatch(fetchSearch(name)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
