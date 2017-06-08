@@ -51,12 +51,12 @@ class ListCategory extends Component {
 
     return (
       <Swiper
-        dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 5, bottom: 100, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-        activeDot={<View style={{bottom:100,backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}}/>}
+        dot={<View style={{backgroundColor: 'white', width: 14, bottom: 100, height: 14, borderRadius: 7, borderWidth: 3, borderColor: '#039BE5', marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+        activeDot={<View style={{bottom:100,backgroundColor: '#039BE5', width: 14, height: 14, borderRadius: 7, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}}/>}
         // activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-        // paginationStyle={{
+        paginationStyle={{
         //   bottom: -23, left: null, right: 10
-        // }}
+         }}
 
         height={height}
         showsPagination={true}

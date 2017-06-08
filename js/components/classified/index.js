@@ -4,7 +4,6 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions, BackAndroid } from 'react-native'
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
-import ListClassified from '../listClassified'
 import { openDrawer } from '../../actions/drawer';
 import { fetchAdvertisingCategory, resetStateBack } from '../../actions/list';
 import styles from './styles';
@@ -86,8 +85,6 @@ class Classified extends Component {
         </Grid>
         <Content scrollEnabled={false} style={styles.content}>
           <ListCategory />
-          {/* <ListClassified /> */}
-
         </Content>
       </Container>
     );

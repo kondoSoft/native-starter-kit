@@ -45,6 +45,7 @@ class SubCategory extends Component {
 
   }
   render() {
+  
     var randomIndex = this.getRandomIndex()
     const { props: { name, index } } = this;
     return (

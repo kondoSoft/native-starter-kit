@@ -43,20 +43,39 @@ class ListSubCategory extends Component {
     }
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
+  listSubcategory(){
+    var item
+    if(this.props.listTypeClassifieds != ""){
+      item = this.props.listTypeClassifieds.map((item, i) =>
+        <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
+          <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
+          <Right>
+             <Icon name="arrow-forward" />
+           </Right>
+        </ListItem>
+      )
+    }else{
+      item = (<View><Text style={{ textAlign: 'center' }}>No hay datos sobre esta categoria</Text></View>)
+    }
+  return (
+    item
+  )
+  }
 
   render() {
-
+    console.log(this.props);
     return (
       <Container>
         <Content style= {styles.content}>
-            {this.props.listTypeClassifieds.map((item, i) =>
-            <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
-              <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
-              <Right>
-                 <Icon name="arrow-forward" />
-               </Right>
-            </ListItem>
-          )}
+          {this.listSubcategory()}
+          {/* {this.props.listTypeClassifieds.map((item, i) =>
+              <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
+                <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
+                <Right>
+                   <Icon name="arrow-forward" />
+                 </Right>
+              </ListItem>
+          )} */}
 
         </Content>
       </Container>
@@ -77,9 +96,7 @@ function bindAction(dispatch) {
 }
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  // listEstablishment: state.listEstablishment.results,
-  listCategory: state.listZone.selectedPKCategory,
-  list: state.listZone.results,
+  listEstablishment: state.listEstablishment.results,
   listTypeClassifieds: state.listTypeClassifieds.results,
   setZone: state.listZone.selectedZone,
   listZone: state.listZone.results,
