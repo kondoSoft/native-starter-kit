@@ -20,22 +20,11 @@ export default {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // alignItems: 'center',
+
     justifyContent: 'space-around',
     // backgroundColor: 'blue',
-    // backgroundColor: 'transparent',
-    // height: 3000,
-  },
 
-  // row:{
-  //   flex: 1,
-  //   backgroundColor: 'yellow',
-  //   flexDirection: 'row',
-  //   // justifyContent: 'space-around',
-  //   // alignItems: 'center',
-  //   flexWrap: 'wrap',
-  //   height: 100,
-  // },
+  },
   col:{
     width: 100,
     height: 100,
@@ -71,10 +60,10 @@ export default {
     shadowRadius: 1,
     bottom: 2,
   },
-  // paginationStyle:{
-  //   flex: 1,
-  //   bottom: 70,
-  //   backgroundColor: 'lightgray',
-  //   height: 90,
-  // },
+  paginationStyle:{
+    flex: 1,
+    bottom: 70,
+    backgroundColor: 'lightgray',
+    height: 90,
+  },
 };

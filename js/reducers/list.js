@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL, LOADING_TRUE, RESET_STATE} from '../actions/list';
+import { SET_INDEX, PRINT_CATEGORY, PRINT_ADVERTISING, PRINT_VIDEO, SUCCESS_MAIL, LOADING_TRUE, RESET_STATE, PRINT_ADVERTISING_ZONE,PRINT_ADVERTISING_CATEGORY,PRINT_ADVERTISING_SUBCATEGORY} from '../actions/list';
 import resetState from '../actions/list';
 import {REHYDRATE} from 'redux-persist/constants'
 
@@ -17,6 +17,18 @@ const initialState = {
     }
   ],
   advertising: [ {
+    'image': ''
+    }
+  ],
+  advertisingZone: [ {
+    'image': ''
+    }
+  ],
+  advertisingCategory: [ {
+    'image': ''
+    }
+  ],
+  advertisingSubcategory: [ {
     'image': ''
     }
   ],
@@ -46,7 +58,25 @@ export default function (state:State = initialState, action:Action): State {
   else if (action.type === PRINT_ADVERTISING) {
     return {
       ...state,
-      advertising: action.payload.results
+      advertising: action.payload.results,
+      advertisingZone: action.payload.results,
+      advertisingCategory: action.payload.results,
+      advertisingSubcategory: action.payload.results,
+    }
+  }else if (action.type === PRINT_ADVERTISING_ZONE) {
+    return {
+      ...state,
+      advertisingZone: action.payload.results,
+    }
+  }else if (action.type === PRINT_ADVERTISING_CATEGORY) {
+    return {
+      ...state,
+      advertisingCategory: action.payload.results,
+    }
+  }else if (action.type === PRINT_ADVERTISING_SUBCATEGORY) {
+    return {
+      ...state,
+      advertisingSubcategory: action.payload.results,
     }
   }else if (action.type === PRINT_VIDEO) {
     return {

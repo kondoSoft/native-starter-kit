@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, View, StatusBar } from 'react-native';
+import { TouchableOpacity, Image, View, StatusBar, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
@@ -12,7 +12,7 @@ import { fetchEstablishmentClassified } from '../../actions/listEstablishment'
 import { fetchPKClassifieds } from '../../actions/listType';
 
 import Swiper from 'react-native-swiper';
-
+const { height, width } = Dimensions.get('window')
 
 const {
   reset,
@@ -20,10 +20,12 @@ const {
 
 } = actions;
 
+
+
 class ListCategory extends Component {
 
   static propTypes = {
-    listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
+    // listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
     listZone: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
@@ -37,33 +39,48 @@ class ListCategory extends Component {
     super(props);
 
   }
-  componentWillMount(){
-    // this.props.fetchClassifieds()
-    // this.props.fetchEstablishmentClassified()
-  }
 
-  pushRoute(route, index) {
+  pushRoute(route, index, indexGrid) {
+    // console.log("indexGrid", this.props);
     this.props.setIndex(index)
-    this.props.fetchPKClassifieds(this.props.listCategory[index].id)
+    this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
   }
 
   render() {
+
     return (
-        <Grid style={styles.slide} >
-              {this.props.listCategory.map((item, i) =>
-              <Col key={i} style={styles.col}
-                >
+      <Swiper
+        dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 5, bottom: 100, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+        activeDot={<View style={{bottom:100,backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}}/>}
+        // activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+        // paginationStyle={{
+        //   bottom: -23, left: null, right: 10
+        // }}
+
+        height={height}
+        showsPagination={true}
+        scrollEnabled={true}
+        showsButtons={false}
+      >
+          {this.props.listCategory.map((item, indexGrid)=>
+            <Grid key={indexGrid} style={styles.slide} >
+              {/* {item.map((obj, i)=>{console.log(obj, indexGrid)})} */}
+              {item.map((establishment, i)=>
+                <Col key={i} style={styles.col}>
                   <TouchableOpacity style={styles.touchableOpacity}
-                    onPress={() => this.pushRoute('subCategory', i)}
+                    onPress={() => this.pushRoute('subCategory', i, indexGrid)}
                     >
-                      <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                        <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                      </Thumbnail>
+                    <Thumbnail style={styles.thumbnail} square source={{uri: establishment.logo }}>
+                      <Text style={styles.text}>{establishment.name}</Text>
+                    </Thumbnail>
                   </TouchableOpacity>
-              </Col>
+                </Col>
               )}
-        </Grid>
+
+            </Grid>
+          )}
+      </Swiper>
     );
   }
 }
@@ -81,6 +98,7 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   name: state.user.name,
   navigation: state.cardNavigation,
+  index: state.list.selectedIndex,
   listCategory: state.listZone.selectedPKCategory,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,

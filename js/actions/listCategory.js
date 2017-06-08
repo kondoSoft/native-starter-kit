@@ -26,7 +26,6 @@ export function printClassifiedsCategory(index:number, page:number ):Action {
   };
 }
 
-
 export function fetchClassifieds(index:number):Action{
   return dispatch => {
     return fetch('http://138.68.2.137/classifieds/',{
@@ -57,23 +56,8 @@ export function fetchClassifieds(index:number):Action{
 //     .catch(err => console.log(err))
 //   }
 // }
-// export function fetchClassifiedsCategory(index:number):Action{
-//
-//   return dispatch => {
-//     return fetch('http://138.68.2.137/classifieds/?category_id=' + index,{
-//       method: 'GET',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//       }
-//     })
-//     .then(res => res.json())
-//     .then(res => dispatch(printClassifiedsCategory(res)))
-//     .catch(err => console.log(err))
-//   }
-// }
-export function fetchClassifiedsCategory(index:number, page:number):Action{
 
+export function fetchClassifiedsCategory(index:number, page:number):Action{
   return dispatch => {
     return fetch('http://127.0.0.1:8000/classifieds/?category_id=' + index + '&page=' + page,{
       method: 'GET',
@@ -83,7 +67,12 @@ export function fetchClassifiedsCategory(index:number, page:number):Action{
       }
     })
     .then(res => res.json())
-    .then(res => dispatch(printClassifiedsCategory(res)))
+    .then(res => {
+      if(res.next != null) {
+        dispatch(fetchClassifiedsCategory(index, page+1))
+      }
+      dispatch(printClassifiedsCategory(res))
+    })
     .catch(err => console.log(err))
   }
 }

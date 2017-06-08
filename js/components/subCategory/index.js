@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions } from 'react-native'
-
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListSubCategory from '../listSubCategory'
 import { openDrawer } from '../../actions/drawer';
 import { setZone } from '../../actions/listZone';
-
+import {fetchAdvertisingSubcategory} from '../../actions/list'
 import styles from './style';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
@@ -40,7 +39,11 @@ class SubCategory extends Component {
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
+  componentWillMount(){
 
+    this.props.fetchAdvertisingSubcategory()
+
+  }
   render() {
     var randomIndex = this.getRandomIndex()
     const { props: { name, index } } = this;
@@ -79,12 +82,13 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    fetchAdvertisingSubcategory: index => dispatch(fetchAdvertisingSubcategory(index)),
   };
 }
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  advertising: state.list.advertising,
+  advertising: state.list.advertisingSubcategory,
   listCategory: state.listZone.selectedPKCategory,
   name: state.user.name,
   index: state.list.selectedIndex,
