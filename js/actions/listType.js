@@ -25,8 +25,6 @@ export function pk_classified(pk){
   }
 }
 
-
-
 export function fetchTypeClassifieds(index:number):Action{
   return dispatch => {
     return fetch('http://127.0.0.1:8000/type_classifieds/',{

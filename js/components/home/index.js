@@ -80,8 +80,11 @@ class Home extends Component {
    }
 
   render() {
-
     var randomIndex = this.getRandomIndex()
+    var url
+    if(this.props.video[0] != undefined){
+      url = this.props.video[0].url
+    }
     return (
       <Container style={styles.container}>
         <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
@@ -104,9 +107,10 @@ class Home extends Component {
           <Content padder scrollEnabled={true} style={styles.contentHome}>
             <Grid style={styles.videoGrid}>
               <Row style={styles.videoRow}>
-                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text>
+                {(this.props.video[0] != undefined) ? <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text> : <Text></Text>}
+                {/* <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text> */}
                 <WebView
-                  source={{ uri: this.props.video[0].url }}
+                  source={{ uri: url }}
                   style={styles.webView}
                   javaScriptEnabled={true}
                 />

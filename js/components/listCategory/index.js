@@ -7,8 +7,8 @@ import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import styles from './styles'
 import { openDrawer } from '../../actions/drawer';
-import { setIndex, fetchClassifieds } from '../../actions/listCategory';
-import { fetchEstablishmentClassified } from '../../actions/listEstablishment'
+import { setIndex } from '../../actions/listCategory';
+import { fetchEstablishment } from '../../actions/listEstablishment'
 import { fetchPKClassifieds } from '../../actions/listType';
 
 import Swiper from 'react-native-swiper';
@@ -44,11 +44,13 @@ class ListCategory extends Component {
     // console.log("indexGrid", this.props);
     this.props.setIndex(index)
     this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
+
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
+    this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id,this.props.listZone[this.props.selectZone].id)
+    console.log(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id);
   }
 
   render() {
-
     return (
       <Swiper
         dot={<View style={{backgroundColor: 'white', width: 14, bottom: 100, height: 14, borderRadius: 7, borderWidth: 3, borderColor: '#039BE5', marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
@@ -87,8 +89,7 @@ class ListCategory extends Component {
 function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
-    fetchClassifieds: index => dispatch(fetchClassifieds(index)),
-    fetchEstablishmentClassified: index => dispatch(fetchEstablishmentClassified(index)),
+    fetchEstablishment: (classifieds_id, zone_id) => dispatch(fetchEstablishment(classifieds_id, zone_id)),
     fetchPKClassifieds: index => dispatch(fetchPKClassifieds(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
@@ -103,6 +104,7 @@ const mapStateToProps = state => ({
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
   list: state.list.list,
+  listZone: state.listZone.results,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);
