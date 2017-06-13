@@ -67,16 +67,32 @@ export function fetchEstablishmentType(type_id:number):Action{
 }
 
 export function fetchEstablishment(classifieds_id:number, zone_id:number):Action{
-  return dispatch => {
-    return fetch('http://127.0.0.1:8000/establishment/?classified_id=' + classifieds_id + '&zone_id=' + zone_id,{
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(res => res.json())
-    .then(res => dispatch(printEstablishment(res)))
-    .catch(err => console.log(err))
+  if(zone_id == undefined){
+    return dispatch => {
+      return fetch('http://127.0.0.1:8000/establishment/?classified_id=' + classifieds_id,{
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(res => res.json())
+      .then(res => dispatch(printEstablishment(res)))
+      .catch(err => console.log(err))
+    }
+  }else{
+    return dispatch => {
+      return fetch('http://127.0.0.1:8000/establishment/?classified_id=' + classifieds_id + '&zone_id=' + zone_id,{
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(res => res.json())
+      .then(res => dispatch(printEstablishment(res)))
+      .catch(err => console.log(err))
+    }
   }
+
 }

@@ -36,6 +36,7 @@ class ListSubCategory extends Component {
 
   pushRoute(route, index) {
     this.props.setType(index);
+    console.log(index);
     if(this.props.listZone[this.props.setZone] == undefined){
       this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
     }else{
@@ -46,34 +47,41 @@ class ListSubCategory extends Component {
   listSubcategory(){
     // array con datos de los id de type por cada establishment
     var establishment = []
-    this.props.listEstablishment.map((est, i)=>{
-      establishment.push(est.type_classifieds)
+    var filteredArray
+    var items = []
+
+    this.props.listEstablishment.map((item, i)=>{
+      establishment.push(item.type_classifieds)
+    })
+    filteredArray = establishment.filter(function(item, pos){
+      return establishment.indexOf(item) == pos;
     })
 
-    var item
-    if(this.props.listTypeClassifieds != ""){
-      item = this.props.listTypeClassifieds.map((item, i) =>
-        <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
-          {/* pruebas de la lista para solo pasar el id de type */}
-          {console.log(this.props.listTypeClassifieds)}
-
-          <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
-          <Right>
-             <Icon name="arrow-forward" />
-           </Right>
-        </ListItem>
-      )
+    if(this.props.listEstablishment != ""){
+      this.props.listTypeClassifieds.map((item, i) =>{
+        filteredArray.map((filter, y)=>{
+          if(item.id == filter) {
+            items.push({item: item, index: i})
+            }
+          })
+        })
+      return(
+        items.map((obj, i)=>{
+          return (<ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', obj.index)}>
+            <Text>{obj.item.type_classifieds}</Text>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+            )
+          })
+        )
     }else{
-      item = (<View><Text style={{ textAlign: 'center' }}>No hay datos sobre esta categoria</Text></View>)
+      return (<View><Text style={{ textAlign: 'center' }}>No hay datos sobre esta categoria</Text></View>)
     }
-  return (
-    item
-    )
   }
 
-
   render() {
-
     return (
       <Container>
         <Content style= {styles.content}>

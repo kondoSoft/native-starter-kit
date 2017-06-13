@@ -46,11 +46,17 @@ class ListCategory extends Component {
     this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
 
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
-    this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id,this.props.listZone[this.props.selectZone].id)
-    console.log(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id);
+    if(this.props.listZone[this.props.selectZone] == undefined){
+      this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id)
+    }else{
+      this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id)
+    }
+
+    // console.log(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id);
   }
 
   render() {
+
     return (
       <Swiper
         dot={<View style={{backgroundColor: 'white', width: 14, bottom: 100, height: 14, borderRadius: 7, borderWidth: 3, borderColor: '#039BE5', marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
