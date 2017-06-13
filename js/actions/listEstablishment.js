@@ -39,7 +39,7 @@ export function printEstablishmentType(type_id:number, zone_id:number):Action{
 export function fetchEstablishmentTypeG(type_id:number, zone_id:number):Action{
 
   return dispatch => {
-    return fetch('http://138.68.2.137/establishment/?type_id=' + type_id + '&zone_id=' + zone_id,{
+    return fetch('http://138.68.2.137:8080/establishment/?type_id=' + type_id + '&zone_id=' + zone_id,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -53,7 +53,7 @@ export function fetchEstablishmentTypeG(type_id:number, zone_id:number):Action{
 }
 export function fetchEstablishmentType(type_id:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/establishment/?type_id=' + type_id,{
+    return fetch('http://138.68.2.137:8080/establishment/?type_id=' + type_id,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -69,7 +69,7 @@ export function fetchEstablishmentType(type_id:number):Action{
 export function fetchEstablishment(classifieds_id:number, zone_id:number):Action{
   if(zone_id == undefined){
     return dispatch => {
-      return fetch('http://127.0.0.1:8000/establishment/?classified_id=' + classifieds_id,{
+      return fetch('http://138.68.2.137:8080/establishment/?classified_id=' + classifieds_id,{
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -82,7 +82,7 @@ export function fetchEstablishment(classifieds_id:number, zone_id:number):Action
     }
   }else{
     return dispatch => {
-      return fetch('http://127.0.0.1:8000/establishment/?classified_id=' + classifieds_id + '&zone_id=' + zone_id,{
+      return fetch('http://138.68.2.137:8080/establishment/?classified_id=' + classifieds_id + '&zone_id=' + zone_id,{
         method: 'GET',
         headers: {
           'Accept': 'application/json',

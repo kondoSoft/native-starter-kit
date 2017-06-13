@@ -66,7 +66,7 @@ export function successMail(message):Action{
 
 export function fetchCategory(index:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/category/',{
+    return fetch('http://138.68.2.137:8080/category/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -81,7 +81,7 @@ export function fetchCategory(index:number):Action{
 // Advertising
 export function fetchAdvertising(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/advertising/',{
+    return fetch('http://138.68.2.137:8080/advertising/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -95,7 +95,7 @@ export function fetchAdvertising(index:number):Action{
 }
 export function fetchAdvertisingZone(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/advertising_zone/',{
+    return fetch('http://138.68.2.137:8080/advertising_zone/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -109,7 +109,7 @@ export function fetchAdvertisingZone(index:number):Action{
 }
 export function fetchAdvertisingCategory(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/advertising_category/',{
+    return fetch('http://138.68.2.137:8080/advertising_category/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -123,7 +123,7 @@ export function fetchAdvertisingCategory(index:number):Action{
 }
 export function fetchAdvertisingSubcategory(index:number):Action{
   return dispatch => {
-    return fetch('http://127.0.0.1:8000/advertising_subcategory/',{
+    return fetch('http://138.68.2.137:8080/advertising_subcategory/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -138,7 +138,7 @@ export function fetchAdvertisingSubcategory(index:number):Action{
 // End Advertising
 export function fetchVideo(index:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/videourl/',{
+    return fetch('http://138.68.2.137:8080/videourl/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -153,7 +153,7 @@ export function fetchVideo(index:number):Action{
 
 export function sendMail(name, phone, email):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/contact_email/',{
+    return fetch('http://138.68.2.137:8080/contact_email/',{
       method: 'POST',
       headers: {
         'Accept': 'application/json',

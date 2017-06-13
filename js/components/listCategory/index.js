@@ -41,7 +41,6 @@ class ListCategory extends Component {
   }
 
   pushRoute(route, index, indexGrid) {
-    // console.log("indexGrid", this.props);
     this.props.setIndex(index)
     this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
 
@@ -52,7 +51,6 @@ class ListCategory extends Component {
       this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id)
     }
 
-    // console.log(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id);
   }
 
   render() {
