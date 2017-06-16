@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail, ListItem  } from 'native-base';
 import { setType } from '../../actions/listType';
-import { fetchEstablishmentType, fetchEstablishmentTypeG, fetchEstablishment } from '../../actions/listEstablishment';
+
+import { fetchEstablishmentType, fetchEstablishmentTypeG, fetchEstablishment} from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
@@ -34,13 +35,9 @@ class ListSubCategory extends Component {
     }),
   }
 
-  pushRoute(route, index) {
+  pushRoute(route, index, idEst) {
+    console.log(idEst);
     this.props.setType(index);
-    // if(this.props.listZone[this.props.setZone] == undefined){
-    //   this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
-    // }else{
-    //   this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
-    // }
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
   listSubcategory(){
@@ -66,8 +63,8 @@ class ListSubCategory extends Component {
         })
       return(
         items.map((obj, i)=>{
-          console.log(obj);
-          return (<ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', obj.item.id)}>
+        return (
+          <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', obj.item.id, i)}>
             <Text>{obj.item.type_classifieds}</Text>
             <Right>
               <Icon name="arrow-forward" />
@@ -82,7 +79,6 @@ class ListSubCategory extends Component {
   }
 
   render() {
-    console.log(this.props.listTypeClassifieds);
     return (
       <Container>
         <Content style= {styles.content}>
@@ -96,7 +92,6 @@ class ListSubCategory extends Component {
 function bindAction(dispatch) {
   return {
     setType: index => dispatch(setType(index)),
-    // fetchEstablishment: (zone_id, type_c) => dispatch(fetchEstablishment(zone_id, type_c)),
     fetchEstablishmentType: type_id => dispatch(fetchEstablishmentType(type_id)),
     fetchEstablishmentTypeG: (type_id, zone_id) => dispatch(fetchEstablishmentTypeG(type_id, zone_id)),
     openDrawer: () => dispatch(openDrawer()),

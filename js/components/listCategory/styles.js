@@ -3,27 +3,15 @@ const React = require('react-native');
 
 const { StyleSheet } = React;
 const { width, height } = Dimensions.get('window');
-
 export default {
-  backgroundImage:{
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover',
-    opacity: 1,
-  },
-  wrapper: {
-    flex: 1,
-    width,
+  containerSwiper: {
+
   },
   slide: {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-
     justifyContent: 'space-around',
-    // backgroundColor: 'blue',
-
   },
   col:{
     width: 100,
@@ -36,8 +24,6 @@ export default {
   thumbnail:{
     flex: 1,
     width: 100,
-    // height: 90,
-    // flexDirection: 'column',
     marginTop: 10,
     marginBottom: 10,
     justifyContent: 'flex-end',
@@ -66,4 +52,5 @@ export default {
     backgroundColor: 'lightgray',
     height: 90,
   },
+
 };

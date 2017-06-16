@@ -13,6 +13,7 @@ const {
   popRoute,
 } = actions;
 
+const { width, height } = Dimensions.get('window');
 
 class Classified extends Component {
 
@@ -57,6 +58,7 @@ class Classified extends Component {
   }
 
   render() {
+
     // console.log(this.props.listZone[this.props.selectedZone]);
     var randomIndex = this.getRandomIndex()
     const { props: { name, index, listCategory } } = this;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, View } from 'react-native';
+import { TouchableOpacity, Image, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
@@ -56,18 +56,17 @@ class ListEstablishment extends Component {
 
     return (
       establishment.map((item, i)=>{
-        console.log(item.logo);
         return (<Card  key={i} style={styles.card}>
           <CardItem header  style={styles.header}>
             <TouchableOpacity
-              onPress={() => this.pushRoute('single', i)}
+              onPress={() => this.pushRoute('single', item.id)}
               >
               <Text style={styles.textHeader}>{item.name}</Text>
             </TouchableOpacity>
           </CardItem>
           <CardItem style={styles.bodyText}>
             <TouchableOpacity
-                onPress={() => this.pushRoute('single', i)}
+                onPress={() => this.pushRoute('single', item.id)}
                 >
             <Thumbnail style={styles.thumbnail} square source={{uri: item.logo}}/>
             </TouchableOpacity>
@@ -76,9 +75,11 @@ class ListEstablishment extends Component {
                 <Body style={{ flex: 1, flexDirection: 'row'}}>
                   <TouchableOpacity
                     // style={{ flex: 1 }}
-                    onPress={() => this.pushRoute('single', i)}
+                    onPress={() => this.pushRoute('single', item.id)}
                     >
-                      <Text style={styles.textDescription}>{item.description.substring(0,120)+ "..."}</Text>
+                      <Text style={styles.textDescription}>
+                        {(Platform.OS === 'android') ? item.description.substring(0,103)+ "..." : item.description.substring(0,120)+ "..."}
+                      </Text>
                   </TouchableOpacity>
                 </Body>
                 <Button transparent textStyle={{color: '#87838B'}}>
@@ -95,6 +96,7 @@ class ListEstablishment extends Component {
   }
 
   render() {
+
     bookmarks = this.props.bookmarks
     return (
       <Content style= {styles.content}>

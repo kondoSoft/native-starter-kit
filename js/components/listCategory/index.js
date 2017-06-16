@@ -1,6 +1,5 @@
-
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, View, StatusBar, Dimensions } from 'react-native';
+import { TouchableOpacity, Image, View, StatusBar, Dimensions, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
@@ -20,8 +19,6 @@ const {
 
 } = actions;
 
-
-
 class ListCategory extends Component {
 
   static propTypes = {
@@ -37,7 +34,20 @@ class ListCategory extends Component {
   }
   constructor(props) {
     super(props);
-
+      this.state = {
+        heightSwiper: '',
+      }
+  }
+  componentWillMount(){
+    if(Platform.OS === 'android'){
+      this.setState({
+        heightSwiper: height-118,
+      })
+    }else{
+      this.setState({
+        heightSwiper: height-25,
+      })
+    }
   }
 
   pushRoute(route, index, indexGrid) {
@@ -55,23 +65,38 @@ class ListCategory extends Component {
 
   render() {
 
+
     return (
       <Swiper
-        dot={<View style={{backgroundColor: 'white', width: 14, bottom: 100, height: 14, borderRadius: 7, borderWidth: 3, borderColor: '#039BE5', marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-        activeDot={<View style={{bottom:100,backgroundColor: '#039BE5', width: 14, height: 14, borderRadius: 7, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}}/>}
+        dot={<View style={{
+          ...Platform.select({
+            android: {
+              top: 0 ,
+            },
+            ios: {
+              bottom: 100
+            },
+          }),
+          backgroundColor: 'white', width: 14, height: 14, borderRadius: 7, borderWidth: 3, borderColor: '#039BE5', marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+        activeDot={<View style={{
+          ...Platform.select({
+            android: {
+              top: 0,
+            },
+            ios: {
+              bottom: 100
+            },
+          }),
+          backgroundColor: '#039BE5', width: 14, height: 14, borderRadius: 7, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}}/>}
         // activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-        paginationStyle={{
-        //   bottom: -23, left: null, right: 10
-         }}
-
-        height={height}
         showsPagination={true}
         scrollEnabled={true}
         showsButtons={false}
+        height={this.state.heightSwiper}
+        // style={styles.containerSwiper}
       >
           {this.props.listCategory.map((item, indexGrid)=>
             <Grid key={indexGrid} style={styles.slide} >
-              {/* {item.map((obj, i)=>{console.log(obj, indexGrid)})} */}
               {item.map((establishment, i)=>
                 <Col key={i} style={styles.col}>
                   <TouchableOpacity style={styles.touchableOpacity}
