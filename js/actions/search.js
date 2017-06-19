@@ -21,7 +21,7 @@ export function setIndex(index:number):Action {
 export function fetchSearch(name:string):Action{
   var name= name
   return dispatch => {
-    return fetch('http://138.68.2.137/search/?search=' + name,{
+    return fetch('http://138.68.2.137:8080/search/?search=' + name,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

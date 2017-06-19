@@ -30,13 +30,15 @@ class SingleMap extends Component {
     super(props);
        this.state = {
          region: {
-           latitude: props.listEstablishment[this.props.index].coor.latitude,
-           longitude: props.listEstablishment[this.props.index].coor.longitude,
+           latitude: '',
+           longitude: '',
            latitudeDelta: LATITUDE_DELTA,
            longitudeDelta: LONGITUDE_DELTA,
           },
           active: false,
+          establishment:{
 
+          },
         }
       this.handleMaps = this.handleMaps.bind(this)
    }
@@ -52,17 +54,35 @@ class SingleMap extends Component {
       key: React.PropTypes.string,
     }),
   }
+  componentWillMount(){
+    this.getEstablishment()
+  }
+  getEstablishment(){
 
+    this.props.listEstablishment.map((item, i)=>{
+      console.log(item.id == this.props.index);
+      if (item.id == this.props.index) {
+        console.log(item);
+        console.log(item.coor.latitude, item.coor.longitude);
+        this.setState({
+          establishment: item,
+          region:{
+            latitude: item.coor.latitude,
+            longitude: item.coor.longitude
+          },
+        })
+      }
+    })
+
+  }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
-  componentWillMount(){
 
-  }
   handleMaps(id){
 
-    var lat = this.props.listEstablishment[id].coor.latitude
-    var long = this.props.listEstablishment[id].coor.longitude
+    var lat = this.state.establishment.coor.latitude
+    var long = this.state.establishment.coor.longitude
     if(Platform.OS === 'ios'){
       var url = 'http://maps.apple.com/maps?daddr=' + lat + ',' + long
     }else{
@@ -83,6 +103,7 @@ class SingleMap extends Component {
   }
   render() {
     const id = this.props.index
+
     const activeFab = this.state.active
     const { props: { name, index, listEstablishment } } = this;
     return (
@@ -94,12 +115,6 @@ class SingleMap extends Component {
             </Button>
           </Left>
           <Right style={styles.headerRight}>
-            {/* <Button transparent >
-              <Icon style={styles.fontIconHeart} name="heart" />
-            </Button> */}
-            {/* <Button style={{ marginRight: -8 }} transparent onPress={this.props.openDrawer}>
-              <Icon style={{ color: 'dimgray' }} name="md-more" />
-            </Button> */}
           </Right>
         </Header>
         <Grid style={{ flex: 1,
@@ -111,12 +126,12 @@ class SingleMap extends Component {
             <MapView
               provider={this.props.provider}
               style={styles.map}
-              initialRegion={this.props.listEstablishment[id].coor}
+              initialRegion={this.state.establishment.coor}
             >
               <MapView.Marker
-                title={this.props.listEstablishment[id].name}
-                key={this.props.listEstablishment[id].id}
-                coordinate={this.props.listEstablishment[id].coor}
+                title={this.state.establishment.name}
+                key={this.state.establishment.id}
+                coordinate={this.state.establishment.coor}
                 image={markerMerida}
                 onPress={() => this.handleMaps(id)}
               />
@@ -126,22 +141,22 @@ class SingleMap extends Component {
         {/* <Content scrollEnabled={false}> */}
         <Grid style={styles.gridDescription}>
           <Row style={styles.rowDescription}>
-            <H3>{this.props.listEstablishment[id].name}</H3>
+            <H3>{this.state.establishment.name}</H3>
           </Row>
           <Row style={styles.rowMain}>
             <Icon style={styles.iconGray} name="md-pin" />
-            <Text style={styles.textRow}>{this.props.listEstablishment[id].address}</Text>
+            <Text style={styles.textRow}>{this.state.establishment.address}</Text>
           </Row>
           <Row style={styles.rowDescription}>
             <Col style={styles.colDescription}>
               <Icon style={styles.iconGray} name="md-call" />
-              <Text style={styles.textRow}>{this.props.listEstablishment[id].phone}</Text>
+              <Text style={styles.textRow}>{this.state.establishment.phone}</Text>
             </Col>
           </Row>
           <Row>
             <Right>
               { activeFab ? (
-                <Text style={styles.fontFooter}>Estoy en: "{this.props.listEstablishment[id].name}" a traves de Que Hacer? Merida</Text>
+                <Text style={styles.fontFooter}>Estoy en: "{this.state.establishment.name}" a traves de Que Hacer? Merida</Text>
               ):(
                 <Text></Text>
               )}
@@ -149,7 +164,7 @@ class SingleMap extends Component {
           </Row>
         </Grid>
         {/* </Content> */}
-        {this.props.listEstablishment[index].web ? (
+        {this.state.establishment.web ? (
           <ActionButton
             active={this.state.active}
             onPress={() => this.setState({ active: !this.state.active })}
@@ -159,13 +174,13 @@ class SingleMap extends Component {
             <ActionButton.Item
               buttonColor='#3B5998'
               // title='facebook'
-              onPress={()=> this.goToURL(`https://www.facebook.com/sharer/sharer.php?u=${this.props.listEstablishment[index].web}`)} >
+              onPress={()=> this.goToURL(`https://www.facebook.com/sharer/sharer.php?u=${this.state.establishment.web}`)} >
               <Icon name="logo-facebook" style={styles.buttonF}/>
             </ActionButton.Item>
             <ActionButton.Item
               buttonColor='#3B5998'
               // title='facebook'
-              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.props.listEstablishment[index].name} ${this.props.listEstablishment[index].web} a traves de QueHacerMerida`)} >
+              onPress={()=> this.goToURL(`https://twitter.com/intent/tweet?text=Estoy en ${this.state.establishment.name} ${this.state.establishment.web} a traves de QueHacerMerida`)} >
               <Icon name="logo-twitter" style={styles.buttonF}/>
             </ActionButton.Item>
 

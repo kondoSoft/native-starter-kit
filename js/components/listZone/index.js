@@ -9,6 +9,7 @@ import { openDrawer } from '../../actions/drawer';
 import { setZone, fetchZone, fetchPkZone } from '../../actions/listZone';
 import styles from './styles';
 import Swiper from 'react-native-swiper'
+import { fetchClassifiedsCategory } from '../../actions/listCategory';
 
 const {
   reset,
@@ -31,16 +32,16 @@ class ListZone extends Component {
   }
   componentWillMount(){
     this.props.fetchZone()
-
+    this.props.fetchClassifiedsCategory(this.props.list[0].id, 1)
   }
 
   pushRoute(route, index) {
     this.props.setZone(index);
-    // this.props.fetchPkZone(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
+
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
           <StatusBar barStyle='light-content'/>
@@ -78,12 +79,15 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    fetchClassifiedsCategory: (index, page) => dispatch(fetchClassifiedsCategory(index, page)),
+
   };
 }
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   listZone: state.listZone.results,
+  list: state.list.list,
 });
 
 export default connect(mapStateToProps, bindAction)(ListZone);

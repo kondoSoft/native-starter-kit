@@ -4,9 +4,8 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Dimensions, BackAndroid } from 'react-native'
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
-import ListClassified from '../listClassified'
 import { openDrawer } from '../../actions/drawer';
-import { fetchAdvertising } from '../../actions/list';
+import { fetchAdvertisingCategory, resetStateBack } from '../../actions/list';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
@@ -14,6 +13,7 @@ const {
   popRoute,
 } = actions;
 
+const { width, height } = Dimensions.get('window');
 
 class Classified extends Component {
 
@@ -47,18 +47,18 @@ class Classified extends Component {
   }
   componentWillMount(){
 
-    this.props.fetchAdvertising()
+    this.props.fetchAdvertisingCategory()
 
   }
-  // componentDidMount(){
-  //   console.log("estoy en classified");
-  //   BackAndroid.removeEventListener("backPress", ()=>{
-  //     this.props.popRoute(this.props.navigation.key)
-  //   })
-  // }
+  componentWillUnmount(){
+    if(this.props.index == 1){
+      this.props.resetStateBack()
+    }
 
+  }
 
   render() {
+
     // console.log(this.props.listZone[this.props.selectedZone]);
     var randomIndex = this.getRandomIndex()
     const { props: { name, index, listCategory } } = this;
@@ -85,10 +85,8 @@ class Classified extends Component {
               <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
             </Row>
         </Grid>
-        <Content scrollEnabled={true} style={styles.content}>
+        <Content scrollEnabled={false} style={styles.content}>
           <ListCategory />
-          {/* <ListClassified /> */}
-
         </Content>
       </Container>
     );
@@ -98,15 +96,16 @@ class Classified extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
-    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
+    fetchAdvertisingCategory: index => dispatch(fetchAdvertisingCategory(index)),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    resetStateBack: () => dispatch(resetStateBack()),
   };
 }
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  advertising: state.list.advertising,
+  advertising: state.list.advertisingCategory,
   name: state.user.name,
   index: state.list.selectedIndex,
   list: state.list.list,

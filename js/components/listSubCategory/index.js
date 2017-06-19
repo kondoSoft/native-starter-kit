@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail, ListItem  } from 'native-base';
 import { setType } from '../../actions/listType';
-import { fetchEstablishmentType, fetchEstablishmentTypeG } from '../../actions/listEstablishment';
+
+import { fetchEstablishmentType, fetchEstablishmentTypeG, fetchEstablishment} from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
 
 import styles from './styles'
@@ -34,30 +35,54 @@ class ListSubCategory extends Component {
     }),
   }
 
-  pushRoute(route, index) {
+  pushRoute(route, index, idEst) {
+    console.log(idEst);
     this.props.setType(index);
-    if(this.props.listZone[this.props.setZone] == undefined){
-      this.props.fetchEstablishmentType(this.props.listTypeClassifieds[index].id)
-    }else{
-      this.props.fetchEstablishmentTypeG(this.props.listTypeClassifieds[index].id, this.props.listZone[this.props.setZone].id)
-    }
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
+  }
+  listSubcategory(){
+    // array con datos de los id de type por cada establishment
+    var establishment = []
+    var filteredArray
+    var items = []
+
+    this.props.listEstablishment.map((item, i)=>{
+      establishment.push(item.type_classifieds)
+    })
+    filteredArray = establishment.filter(function(item, pos){
+      return establishment.indexOf(item) == pos;
+    })
+
+    if(this.props.listEstablishment != ""){
+      this.props.listTypeClassifieds.map((item, i) =>{
+        filteredArray.map((filter, y)=>{
+          if(item.id == filter) {
+            items.push({item: item, index: i})
+            }
+          })
+        })
+      return(
+        items.map((obj, i)=>{
+        return (
+          <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', obj.item.id, i)}>
+            <Text>{obj.item.type_classifieds}</Text>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+            )
+          })
+        )
+    }else{
+      return (<View><Text style={{ textAlign: 'center' }}>No hay datos sobre esta categoria</Text></View>)
+    }
   }
 
   render() {
-
     return (
       <Container>
         <Content style= {styles.content}>
-            {this.props.listTypeClassifieds.map((item, i) =>
-            <ListItem  key={i} style={styles.card} onPress={() => this.pushRoute('establishments', i)}>
-              <Text>{this.props.listTypeClassifieds[i].type_classifieds}</Text>
-              <Right>
-                 <Icon name="arrow-forward" />
-               </Right>
-            </ListItem>
-          )}
-
+          {this.listSubcategory()}
         </Content>
       </Container>
 
@@ -77,12 +102,10 @@ function bindAction(dispatch) {
 }
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  // listEstablishment: state.listEstablishment.results,
-  listCategory: state.listZone.selectedPKCategory,
-  list: state.listZone.results,
+  listEstablishment: state.listEstablishment.results,
   listTypeClassifieds: state.listTypeClassifieds.results,
-  setZone: state.listZone.selectedZone,
   listZone: state.listZone.results,
+  selectZone: state.listZone.selectedZone,
 
 });
 

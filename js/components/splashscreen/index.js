@@ -24,7 +24,7 @@ export default class SplashPage extends Component {
   render() { // eslint-disable-line class-methods-use-this
 
     return (
-      <Image source={{ uri: 'http://138.68.2.137/media/hotel_4.png'}} style={{ flex: 1, height: null, width: null }} />
+      <Image source={{ uri: 'http://138.68.2.137:8080/media/hotel_4.png'}} style={{ flex: 1, height: null, width: null }} />
     );
   }
 }

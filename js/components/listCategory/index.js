@@ -1,18 +1,17 @@
-
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, View, StatusBar } from 'react-native';
+import { TouchableOpacity, Image, View, StatusBar, Dimensions, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import styles from './styles'
 import { openDrawer } from '../../actions/drawer';
-import { setIndex, fetchClassifieds } from '../../actions/listCategory';
-import { fetchEstablishmentClassified } from '../../actions/listEstablishment'
+import { setIndex } from '../../actions/listCategory';
+import { fetchEstablishment } from '../../actions/listEstablishment'
 import { fetchPKClassifieds } from '../../actions/listType';
 
 import Swiper from 'react-native-swiper';
-
+const { height, width } = Dimensions.get('window')
 
 const {
   reset,
@@ -23,7 +22,7 @@ const {
 class ListCategory extends Component {
 
   static propTypes = {
-    listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
+    // listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
     listZone: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
@@ -35,43 +34,91 @@ class ListCategory extends Component {
   }
   constructor(props) {
     super(props);
-
+      this.state = {
+        heightSwiper: '',
+      }
   }
   componentWillMount(){
-    // this.props.fetchClassifieds()
-    // this.props.fetchEstablishmentClassified()
+    if(Platform.OS === 'android'){
+      this.setState({
+        heightSwiper: height-118,
+      })
+    }else{
+      this.setState({
+        heightSwiper: height-25,
+      })
+    }
   }
 
-  pushRoute(route, index) {
+  pushRoute(route, index, indexGrid) {
     this.props.setIndex(index)
-    this.props.fetchPKClassifieds(this.props.listCategory[index].id)
+    this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
+
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
+    if(this.props.listZone[this.props.selectZone] == undefined){
+      this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id)
+    }else{
+      this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id)
+    }
+
   }
 
   render() {
+
+
     return (
-        <Grid style={styles.slide} >
-              {this.props.listCategory.map((item, i) =>
-              <Col key={i} style={styles.col}
-                >
+      <Swiper
+        dot={<View style={{
+          ...Platform.select({
+            android: {
+              top: 0 ,
+            },
+            ios: {
+              bottom: 100
+            },
+          }),
+          backgroundColor: 'white', width: 14, height: 14, borderRadius: 7, borderWidth: 3, borderColor: '#039BE5', marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+        activeDot={<View style={{
+          ...Platform.select({
+            android: {
+              top: 0,
+            },
+            ios: {
+              bottom: 100
+            },
+          }),
+          backgroundColor: '#039BE5', width: 14, height: 14, borderRadius: 7, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}}/>}
+        // activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+        showsPagination={true}
+        scrollEnabled={true}
+        showsButtons={false}
+        height={this.state.heightSwiper}
+        // style={styles.containerSwiper}
+      >
+          {this.props.listCategory.map((item, indexGrid)=>
+            <Grid key={indexGrid} style={styles.slide} >
+              {item.map((establishment, i)=>
+                <Col key={i} style={styles.col}>
                   <TouchableOpacity style={styles.touchableOpacity}
-                    onPress={() => this.pushRoute('subCategory', i)}
+                    onPress={() => this.pushRoute('subCategory', i, indexGrid)}
                     >
-                      <Thumbnail style={styles.thumbnail} square source={{uri: this.props.listCategory[i].logo }}>
-                        <Text style={styles.text}>{this.props.listCategory[i].name}</Text>
-                      </Thumbnail>
+                    <Thumbnail style={styles.thumbnail} square source={{uri: establishment.logo }}>
+                      <Text style={styles.text}>{establishment.name}</Text>
+                    </Thumbnail>
                   </TouchableOpacity>
-              </Col>
+                </Col>
               )}
-        </Grid>
+
+            </Grid>
+          )}
+      </Swiper>
     );
   }
 }
 function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
-    fetchClassifieds: index => dispatch(fetchClassifieds(index)),
-    fetchEstablishmentClassified: index => dispatch(fetchEstablishmentClassified(index)),
+    fetchEstablishment: (classifieds_id, zone_id) => dispatch(fetchEstablishment(classifieds_id, zone_id)),
     fetchPKClassifieds: index => dispatch(fetchPKClassifieds(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
@@ -81,10 +128,12 @@ function bindAction(dispatch) {
 const mapStateToProps = state => ({
   name: state.user.name,
   navigation: state.cardNavigation,
+  index: state.list.selectedIndex,
   listCategory: state.listZone.selectedPKCategory,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
   list: state.list.list,
+  listZone: state.listZone.results,
 });
 
 export default connect(mapStateToProps, bindAction)(ListCategory);

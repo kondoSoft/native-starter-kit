@@ -9,7 +9,7 @@ import ListZone from '../listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
-import { fetchAdvertising, resetState, resetStateBack } from '../../actions/list';
+import { fetchAdvertisingZone, resetState, resetStateBack } from '../../actions/list';
 
 
 const {
@@ -34,7 +34,7 @@ class BlankPage extends Component {
   componentWillMount(){
 
 
-    this.props.fetchAdvertising()
+    this.props.fetchAdvertisingZone()
 
   }
 
@@ -93,7 +93,7 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
-    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
+    fetchAdvertisingZone: index => dispatch(fetchAdvertisingZone(index)),
     resetState: () => dispatch(resetState()),
     resetStateBack: () => dispatch(resetStateBack()),
 
@@ -105,7 +105,7 @@ const mapStateToProps = state => ({
   name: state.user.name,
   index: state.list.selectedIndex,
   list: state.list.list,
-  advertising: state.list.advertising,
+  advertising: state.list.advertisingZone,
 });
 
 
