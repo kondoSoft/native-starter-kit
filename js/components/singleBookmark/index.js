@@ -12,6 +12,8 @@ import { Platform } from 'react-native';
 import ActionButton from 'react-native-action-button';
 const { width, height } = Dimensions.get('window');
 import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
+import { setLoading } from '../../actions/listZone'
+import Spinner from 'react-native-loading-spinner-overlay';
 const {
   reset,
   popRoute,
@@ -45,6 +47,7 @@ class SingleBookmark extends Component {
 
   pushRoute(route, index) {
     this.props.set_item(index)
+    this.props.setLoading()
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
@@ -63,6 +66,11 @@ class SingleBookmark extends Component {
         widthSwiper: width,
       })
     }
+  }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 1000)
   }
 
   handleClick(index){
@@ -126,7 +134,6 @@ class SingleBookmark extends Component {
         <Icon style={styles.iconFooter} name="globe"></Icon>
       </Button>
     }
-    console.log();
     return (
         <Container>
         <Header searchBar style={{ backgroundColor: '#ffa726' }}>
@@ -173,6 +180,9 @@ class SingleBookmark extends Component {
         <Content scrollEnabled={true}>
 
         <Grid style={styles.gridDescription}>
+          <View style={{ flex: 1}}>
+            <Spinner visible={this.props.loading} textStyle={{color: '#FFF'}} />
+          </View>
           <Row>
             <H3>{this.props.bookmarks[index].name}</H3>
           </Row>
@@ -250,6 +260,8 @@ function bindAction(dispatch) {
     reset: key => dispatch(reset([{ key: 'bookmarks' }], key, 0)),
     add_bookmark: id => dispatch(add_bookmark(id)),
     remove_bookmark: id => dispatch(remove_bookmark(id)),
+    setLoading: () => dispatch(setLoading())
+
   };
 }
 
@@ -257,7 +269,8 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   index: state.bookmarks.selectedItem,
   listEstablishment: state.listEstablishment.results,
-  bookmarks: state.bookmarks.space
+  bookmarks: state.bookmarks.space,
+  loading: state.listZone.loading,
 });
 
 

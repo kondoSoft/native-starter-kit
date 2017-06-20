@@ -1,6 +1,7 @@
 
 import type { Action } from './types';
 
+
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const PRINT_CLASSIFIEDS = 'PRINT_CLASSIFIEDS';
 export const PRINT_CLASSIFIEDS_CATEGORY = 'PRINT_CLASSIFIEDS_CATEGORY';
@@ -72,6 +73,7 @@ export function fetchClassifiedsCategory(index:number, page:number):Action{
         dispatch(fetchClassifiedsCategory(index, page+1))
       }
       dispatch(printClassifiedsCategory(res))
+
     })
     .catch(err => console.log(err))
   }

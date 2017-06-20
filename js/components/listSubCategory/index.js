@@ -7,7 +7,7 @@ import { setType } from '../../actions/listType';
 
 import { fetchEstablishmentType, fetchEstablishmentTypeG, fetchEstablishment} from '../../actions/listEstablishment';
 import { openDrawer } from '../../actions/drawer';
-
+import { setLoading } from '../../actions/listZone';
 import styles from './styles'
 
 
@@ -34,9 +34,17 @@ class ListSubCategory extends Component {
       key: React.PropTypes.string,
     }),
   }
-
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 1000)
+  }
   pushRoute(route, index, idEst) {
     this.props.setType(index);
+    if(index != undefined){
+      this.props.setLoading()
+    }
+    console.log(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
   listSubcategory(){
@@ -178,6 +186,7 @@ function bindAction(dispatch) {
     replaceAtIndex: (index, route, key) => dispatch(replaceAtIndex(index, route, key)),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    setLoading: () => dispatch(setLoading()),
   };
 }
 const mapStateToProps = state => ({

@@ -9,6 +9,7 @@ import { openDrawer } from '../../actions/drawer';
 import { setIndex } from '../../actions/listCategory';
 import { fetchEstablishment } from '../../actions/listEstablishment'
 import { fetchPKClassifieds } from '../../actions/listType';
+import { setLoading } from '../../actions/listZone';
 
 import Swiper from 'react-native-swiper';
 const { height, width } = Dimensions.get('window')
@@ -48,10 +49,12 @@ class ListCategory extends Component {
         heightSwiper: height-25,
       })
     }
+
   }
 
   pushRoute(route, index, indexGrid) {
     this.props.setIndex(index)
+    this.props.setLoading()
     this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
 
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
@@ -64,8 +67,6 @@ class ListCategory extends Component {
   }
 
   render() {
-
-
     return (
       <Swiper
         dot={<View style={{
@@ -95,6 +96,7 @@ class ListCategory extends Component {
         height={this.state.heightSwiper}
         // style={styles.containerSwiper}
       >
+
           {this.props.listCategory.map((item, indexGrid)=>
             <Grid key={indexGrid} style={styles.slide} >
               {item.map((establishment, i)=>
@@ -123,6 +125,7 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    setLoading: () => dispatch(setLoading()),
   };
 }
 const mapStateToProps = state => ({

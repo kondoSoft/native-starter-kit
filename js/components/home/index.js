@@ -8,7 +8,7 @@ import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchCategory, fetchAdvertising, fetchVideo } from '../../actions/list';
 import { fetchClassifiedsCategory } from '../../actions/listCategory';
-
+import { setLoading } from '../../actions/listZone';
 
 import { fetchSearch } from '../../actions/search';
 
@@ -49,20 +49,23 @@ class Home extends Component {
     this.props.fetchVideo()
   }
 
-
-
   pushRoute(route, index, value) {
     this.props.setIndex(index);
+    this.props.setLoading()
     this.props.fetchSearch(value);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
   pushRouteC(route, index) {
     this.props.setIndex(index);
+    this.props.setLoading()
     this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
   pushRouteZone(route, index) {
+    console.log(index);
     this.props.setIndex(index);
+    this.props.setLoading()
+    // this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
@@ -166,6 +169,7 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    setLoading: () => dispatch(setLoading()),
 
   };
 }

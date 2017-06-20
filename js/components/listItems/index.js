@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
 import { set_item } from '../../actions/bookmarks';
-
+import { setLoading } from '../../actions/listZone'
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles'
 
 
 const {
   reset,
-  pushRoute,
   replaceAt,
 
 } = actions;
@@ -28,16 +27,12 @@ class ListItems extends Component {
     }),
   }
 
-  pushRoute(route, index) {
-
-    this.props.set_item(index)
-    this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
-  }
   replaceAt(route, index){
     const currentRouteKey = this.props.navigation.routes[this.props.navigation.routes.length-1].key
     this.props.set_item(index);
     this.props.replaceAt(currentRouteKey,{ key: route, index: 1}, this.props.navigation.key)
   }
+
 
   render() {
     return (
@@ -93,9 +88,9 @@ function bindAction(dispatch) {
   return {
     set_item: index => dispatch(set_item(index)),
     openDrawer: () => dispatch(openDrawer()),
-    pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     replaceAt: (routeKey, route, key) => dispatch(replaceAt(routeKey, route, key)),
+    setLoading: () => dispatch(setLoading())
 
   };
 }

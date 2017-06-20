@@ -114,3 +114,11 @@ react-native bundle --platform android --dev false --entry-file index.android.js
 ```
 node ./node_modules/react-native/local-cli/cli.js bundle --platform android --dev false --reset-cache --entry-file index.android.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
 ```
+### Passwords android
+```
+Pass master: h1p4t14
+key store password: h1p4t14
+key password: k0nd0s0ft
+key alias: quehacermerida
+key store path: /Users/jblancoh/Projects/que_hacer_movil/keystores/keystore_que_hacer.jks
+```

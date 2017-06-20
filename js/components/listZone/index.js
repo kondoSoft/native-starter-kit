@@ -6,11 +6,11 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Content, Thumbnail, Button, Text  } from 'native-base';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
-import { setZone, fetchZone, fetchPkZone } from '../../actions/listZone';
+import { setZone, fetchZone, fetchPkZone, setLoading } from '../../actions/listZone';
 import styles from './styles';
 import Swiper from 'react-native-swiper'
 import { fetchClassifiedsCategory } from '../../actions/listCategory';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 const {
   reset,
   pushRoute,
@@ -33,18 +33,23 @@ class ListZone extends Component {
   componentWillMount(){
     this.props.fetchZone()
     this.props.fetchClassifiedsCategory(this.props.list[0].id, 1)
+    // this.props.setLoading()
+
   }
 
   pushRoute(route, index) {
     this.props.setZone(index);
+    this.props.setLoading();
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
 
   render() {
-
     return (
         <View style={styles.view} showsVerticalScrollIndicator={false}>
           <StatusBar barStyle='light-content'/>
+          <View style={{ flex: 1 }}>
+            <Spinner visible={this.props.loading} textStyle={{color: '#FFF'}} />
+          </View>
             <Swiper style={styles.wrapper}
               showsPagination={false}
               horizontal={true}
@@ -80,7 +85,7 @@ function bindAction(dispatch) {
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     fetchClassifiedsCategory: (index, page) => dispatch(fetchClassifiedsCategory(index, page)),
-
+    setLoading: () => dispatch(setLoading()),
   };
 }
 
@@ -88,6 +93,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   listZone: state.listZone.results,
   list: state.list.list,
+  loading: state.listZone.loading,
 });
 
 export default connect(mapStateToProps, bindAction)(ListZone);

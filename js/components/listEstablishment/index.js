@@ -5,7 +5,7 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { Button, Container, Content, Card, CardItem, Text, Icon, Right, Left, Body, Thumbnail  } from 'native-base';
 import { setEstablishment } from '../../actions/listEstablishment';
 import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
-
+import { setLoading } from '../../actions/listZone';
 import { openDrawer } from '../../actions/drawer';
 import styles from './styles'
 
@@ -34,7 +34,13 @@ class ListEstablishment extends Component {
 
   pushRoute(route, index) {
     this.props.setEstablishment(index)
+    this.props.setLoading()
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
+  }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 2000)
   }
   isBookmark(establismentItem, bookmarks){
     var res = bookmarks.filter((val)=>  val.id == establismentItem.id)
@@ -115,6 +121,7 @@ function bindAction(dispatch) {
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     add_bookmark: id => dispatch(add_bookmark(id)),
     remove_bookmark: id => dispatch(remove_bookmark(id)),
+    setLoading: () => dispatch(setLoading()),
   };
 }
 const mapStateToProps = state => ({

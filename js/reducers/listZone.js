@@ -1,6 +1,6 @@
 
 import type { Action } from '../actions/types';
-import { SET_ZONE, PRINT_ZONE, PK_ZONE } from '../actions/listZone';
+import { SET_ZONE, PRINT_ZONE, PK_ZONE, LOADING } from '../actions/listZone';
 import { PRINT_CLASSIFIEDS, PRINT_CLASSIFIEDS_CATEGORY, NEXT_PAGE } from '../actions/listCategory';
 import {RESET_STATE, RESET_STATE_BACK} from '../actions/list'
 // import {  } from '../actions/list'
@@ -24,6 +24,7 @@ const initialState = {
   nextPage:  null,
   previousPage:  null,
   count: 0,
+  loading: false,
 };
 
 export default function (state:State = initialState, action:Action): State {
@@ -36,7 +37,13 @@ export default function (state:State = initialState, action:Action): State {
   else if (action.type === PRINT_ZONE) {
     return {
       ...state,
-      results: action.payload.results
+      results: action.payload.results,
+    }
+  }
+  else if (action.type === LOADING) {
+    return {
+      ...state,
+      loading: !state.loading
     }
   }
   else if (action.type == PK_ZONE) {

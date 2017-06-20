@@ -9,7 +9,8 @@ import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import markerMerida from '../../../assets/img/marker-merida.png';
 import ActionButton from 'react-native-action-button';
-
+import { setLoading } from '../../actions/listZone'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const {
   reset,
@@ -57,13 +58,15 @@ class SingleMap extends Component {
   componentWillMount(){
     this.getEstablishment()
   }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 3000)
+  }
   getEstablishment(){
 
     this.props.listEstablishment.map((item, i)=>{
-      console.log(item.id == this.props.index);
       if (item.id == this.props.index) {
-        console.log(item);
-        console.log(item.coor.latitude, item.coor.longitude);
         this.setState({
           establishment: item,
           region:{
@@ -140,6 +143,9 @@ class SingleMap extends Component {
         </Grid>
         {/* <Content scrollEnabled={false}> */}
         <Grid style={styles.gridDescription}>
+          <View style={{ flex: 1}}>
+            <Spinner visible={this.props.loading} textStyle={{color: '#FFF'}} />
+          </View>
           <Row style={styles.rowDescription}>
             <H3>{this.state.establishment.name}</H3>
           </Row>
@@ -201,6 +207,7 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    setLoading: () => dispatch(setLoading())
   };
 }
 
@@ -209,6 +216,7 @@ const mapStateToProps = state => ({
   name: state.user.name,
   index: state.listEstablishment.selectedEstablishment,
   listEstablishment: state.listEstablishment.results,
+  loading: state.listZone.loading,
 });
 
 

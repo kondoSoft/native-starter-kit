@@ -12,6 +12,7 @@ import { Platform } from 'react-native';
 import ActionButton from 'react-native-action-button';
 const { width, height } = Dimensions.get('window');
 import {add_bookmark, remove_bookmark} from '../../actions/bookmarks'
+import { setLoading } from '../../actions/listZone'
 const {
   reset,
   popRoute,
@@ -49,7 +50,7 @@ class Single extends Component {
 
 
   pushRoute(route, index) {
-
+    this.props.setLoading();
     this.props.setEstablishment(index);
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key);
   }
@@ -70,6 +71,11 @@ class Single extends Component {
       })
     }
     this.getId()
+  }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 1000)
   }
 
   handleClick(index){
@@ -279,6 +285,7 @@ function bindAction(dispatch) {
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     add_bookmark: id => dispatch(add_bookmark(id)),
     remove_bookmark: id => dispatch(remove_bookmark(id)),
+    setLoading: () => dispatch(setLoading())
   };
 }
 

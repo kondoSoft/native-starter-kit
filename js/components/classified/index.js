@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Dimensions, BackAndroid } from 'react-native'
+import { Dimensions, BackAndroid, View } from 'react-native'
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
 import { openDrawer } from '../../actions/drawer';
 import { fetchAdvertisingCategory, resetStateBack } from '../../actions/list';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { setLoading } from '../../actions/listZone';
 const {
   reset,
   popRoute,
@@ -46,9 +48,13 @@ class Classified extends Component {
     return randomIndex
   }
   componentWillMount(){
-
     this.props.fetchAdvertisingCategory()
 
+  }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 2000)
   }
   componentWillUnmount(){
     if(this.props.index == 1){
@@ -86,6 +92,9 @@ class Classified extends Component {
             </Row>
         </Grid>
         <Content scrollEnabled={false} style={styles.content}>
+          <View style={{ flex: 1}}>
+            <Spinner visible={this.props.loading} textStyle={{color: '#FFF'}} />
+          </View>
           <ListCategory />
         </Content>
       </Container>
@@ -100,6 +109,7 @@ function bindAction(dispatch) {
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
     resetStateBack: () => dispatch(resetStateBack()),
+    setLoading: () => dispatch(setLoading()),
   };
 }
 
@@ -111,7 +121,8 @@ const mapStateToProps = state => ({
   list: state.list.list,
   listCategory: state.listCategory.results,
   listZone: state.listZone.results,
-  selectedZone: state.listZone.selectedZone
+  selectedZone: state.listZone.selectedZone,
+  loading: state.listZone.loading,
 });
 
 

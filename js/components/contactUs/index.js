@@ -35,7 +35,6 @@ class ContactUs extends Component {
       key: React.PropTypes.string,
     }),
   }
-
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
     this.props.resetState();
@@ -154,6 +153,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   messageSuccess: state.list.messageSuccess,
   loading: state.list.loading,
+
 });
 
 
