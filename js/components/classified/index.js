@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Dimensions } from 'react-native'
+import { Dimensions, BackAndroid, View } from 'react-native'
 import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item, Input, Left, Right, Body, Footer } from 'native-base';
 import ListCategory from '../listCategory'
-import ListClassified from '../listClassified'
 import { openDrawer } from '../../actions/drawer';
-import { fetchAdvertising } from '../../actions/list';
+import { fetchAdvertisingCategory, resetStateBack } from '../../actions/list';
 import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { setLoading } from '../../actions/listZone';
 const {
   reset,
   popRoute,
 } = actions;
 
+const { width, height } = Dimensions.get('window');
 
 class Classified extends Component {
 
@@ -38,7 +40,7 @@ class Classified extends Component {
   }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-
+    // console.log("Me ejecute en classified");
   }
   getRandomIndex(){
     const advertising = this.props.advertising
@@ -46,11 +48,23 @@ class Classified extends Component {
     return randomIndex
   }
   componentWillMount(){
-    this.props.fetchAdvertising()
+    this.props.fetchAdvertisingCategory()
+
+  }
+  componentDidMount(){
+    setTimeout(()=>{
+      this.props.setLoading()
+    }, 2000)
+  }
+  componentWillUnmount(){
+    if(this.props.index == 1){
+      this.props.resetStateBack()
+    }
+
   }
 
-
   render() {
+
     // console.log(this.props.listZone[this.props.selectedZone]);
     var randomIndex = this.getRandomIndex()
     const { props: { name, index, listCategory } } = this;
@@ -77,10 +91,11 @@ class Classified extends Component {
               <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
             </Row>
         </Grid>
-        <Content scrollEnabled={true} style={styles.content}>
+        <Content scrollEnabled={false} style={styles.content}>
+          <View style={{ flex: 1}}>
+            <Spinner visible={this.props.loading} textStyle={{color: '#FFF'}} />
+          </View>
           <ListCategory />
-          {/* <ListClassified /> */}
-
         </Content>
       </Container>
     );
@@ -90,21 +105,24 @@ class Classified extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
-    fetchAdvertising: index => dispatch(fetchAdvertising(index)),
+    fetchAdvertisingCategory: index => dispatch(fetchAdvertisingCategory(index)),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    resetStateBack: () => dispatch(resetStateBack()),
+    setLoading: () => dispatch(setLoading()),
   };
 }
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
-  advertising: state.list.advertising,
+  advertising: state.list.advertisingCategory,
   name: state.user.name,
   index: state.list.selectedIndex,
   list: state.list.list,
   listCategory: state.listCategory.results,
   listZone: state.listZone.results,
-  selectedZone: state.listZone.selectedZone
+  selectedZone: state.listZone.selectedZone,
+  loading: state.listZone.loading,
 });
 
 

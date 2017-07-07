@@ -35,7 +35,6 @@ class ContactUs extends Component {
       key: React.PropTypes.string,
     }),
   }
-
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
     this.props.resetState();
@@ -85,8 +84,8 @@ class ContactUs extends Component {
       <Container>
         <Header style={styles.header}>
             <Left>
-              <Button transparent onPress={() => this.popRoute()}>
-                <Icon style={{color: 'dimgray'}} name="arrow-round-back" />
+              <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
+                <Icon style={{ color: 'dimgray' }} name="md-close" />
               </Button>
             </Left>
             <Right>
@@ -154,6 +153,7 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   messageSuccess: state.list.messageSuccess,
   loading: state.list.loading,
+
 });
 
 

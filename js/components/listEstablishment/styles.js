@@ -41,13 +41,6 @@ export default {
     paddingTop: 0,
     backgroundColor: 'transparent',
     maxHeight:30,
-    // elevation: 0,
-    // ...Platform.select({
-    //   android: {
-    //     backgroundColor: 'blue',
-    //   },
-    // }),
-
   },
 
   bodyText:{
@@ -60,29 +53,21 @@ export default {
         paddingLeft: 12,
       },
     }),
-
-
   },
   cardText:{
     flex: 1,
     flexDirection: 'row',
     padding: 0,
-    // paddingTop: 0,
     borderBottomWidth: 2,
     borderColor: 'lightgray',
-    // paddingBottom: 0,
     bottom: (Platform.OS === 'ios') ? 3 : 5,
     paddingRight: 0,
-    // height: 10
-    // backgroundColor: 'blue',
-
   },
   textDescription:{
     flex: 1,
     fontSize: (Platform.OS === 'ios') ? 10 : 14,
     lineHeight:(Platform.OS === 'ios') ? 10 : 11,
     top: (Platform.OS === 'ios') ? 0 : 4,
-    // maxHeight: 40,
     color: 'gray',
   },
   textIconFav:{
@@ -92,6 +77,7 @@ export default {
   fontIcon: {
     fontSize: 15,
   },
+
   iconFav:{
     flex: 1,
   },

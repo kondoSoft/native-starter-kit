@@ -2,7 +2,7 @@
 import type { Action } from '../actions/types';
 import { SET_CATEGORY } from '../actions/listCategory';
 // import { PK_ZONE } from '../actions/listZone'
-import { RESET_STATE } from '../actions/listZone'
+// import { RESET_STATE } from '../actions/listZone'
 
 
 
@@ -14,6 +14,7 @@ const initialState = {
   results: [
 
   ],
+
   selectedCategory: undefined,
 };
 
@@ -25,11 +26,13 @@ export default function (state:State = initialState, action:Action): State {
       ...state,
       selectedCategory: action.payload,
     };
-  }else if (action.type === RESET_STATE) {
-    return {
-      ...state,
-      results: []
-    }
   }
+  // else if (action.type === RESET_STATE) {
+  //   return {
+  //     ...state,
+  //     results: []
+  //   }
+  // }
+
   return state;
 }

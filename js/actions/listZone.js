@@ -4,6 +4,8 @@ import type { Action } from './types';
 export const SET_ZONE = 'SET_ZONE';
 export const PRINT_ZONE = 'PRINT_ZONE';
 export const PK_ZONE = 'PK_ZONE';
+export const LOADING = 'LOADING';
+
 
 export function setZone(index:number):Action {
   return {
@@ -28,7 +30,7 @@ export function pk_zone(id){
 
 export function fetchZone(index:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/category_zone/',{
+    return fetch('http://138.68.2.137:8080/category_zone/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -36,14 +38,19 @@ export function fetchZone(index:number):Action{
       }
     })
     .then(res => res.json())
-    .then(res => dispatch(printZone(res)))
+    .then(res => {
+      dispatch(printZone(res))
+      setTimeout(()=>{
+        dispatch(setLoading())
+      }, 2000)
+    })
     .catch(err => console.log(err))
   }
 }
 
 export function fetchPkZone(index:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/zone_establishment/?zone_id=' + index,{
+    return fetch('http://138.68.2.137:8080/zone_establishment/?zone_id=' + index,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -53,5 +60,11 @@ export function fetchPkZone(index:number):Action{
     .then(res => res.json())
     .then(res => dispatch(pk_zone(res)))
     .catch(err => console.log(err))
+  }
+}
+
+export function setLoading(){
+  return {
+    type: LOADING,
   }
 }

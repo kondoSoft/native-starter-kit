@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, WebView } from 'react-native';
+import { TouchableOpacity, Image, WebView,BackAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Content, Card, CardItem, Thumbnail, Header, Title, Text, Button, Item, Icon, Input, Left, Body, Right } from 'native-base';
@@ -8,7 +8,7 @@ import { Grid, Row, Col } from 'react-native-easy-grid';
 import { openDrawer } from '../../actions/drawer';
 import { setIndex, fetchCategory, fetchAdvertising, fetchVideo } from '../../actions/list';
 import { fetchClassifiedsCategory } from '../../actions/listCategory';
-
+import { setLoading } from '../../actions/listZone';
 
 import { fetchSearch } from '../../actions/search';
 
@@ -47,17 +47,25 @@ class Home extends Component {
     this.props.fetchCategory()
     this.props.fetchAdvertising()
     this.props.fetchVideo()
-
   }
 
   pushRoute(route, index, value) {
     this.props.setIndex(index);
+    this.props.setLoading()
     this.props.fetchSearch(value);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
   pushRouteC(route, index) {
     this.props.setIndex(index);
-    this.props.fetchClassifiedsCategory(this.props.list[index].id)
+    this.props.setLoading()
+    this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)
+    this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
+  }
+  pushRouteZone(route, index) {
+    console.log(index);
+    this.props.setIndex(index);
+    this.props.setLoading()
+    // this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
@@ -73,8 +81,11 @@ class Home extends Component {
    }
 
   render() {
-
     var randomIndex = this.getRandomIndex()
+    var url
+    if(this.props.video[0] != undefined){
+      url = this.props.video[0].url
+    }
     return (
       <Container style={styles.container}>
         <Image source={require('../../../assets/img/mapsMerida.png')} style={styles.backgroundImage} >
@@ -97,9 +108,10 @@ class Home extends Component {
           <Content padder scrollEnabled={true} style={styles.contentHome}>
             <Grid style={styles.videoGrid}>
               <Row style={styles.videoRow}>
-                <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text>
+                {(this.props.video[0] != undefined) ? <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text> : <Text></Text>}
+                {/* <Text style={{ flex: 1, textAlign: 'center', maxHeight: 20, fontSize:11, top: 5, width: 239 }}>{this.props.video[0].name}</Text> */}
                 <WebView
-                  source={{ uri: this.props.video[0].url }}
+                  source={{ uri: url }}
                   style={styles.webView}
                   javaScriptEnabled={true}
                 />
@@ -110,7 +122,7 @@ class Home extends Component {
               <Card key={i} style={{ flex: 1 }}>
                 <CardItem style={styles.cardItem}>
                   { this.props.list[i] == this.props.list[0] ?  (
-                    <TouchableOpacity onPress={() => this.pushRouteC('blankPage', i)} >
+                    <TouchableOpacity onPress={() => this.pushRouteZone('blankPage', i)} >
 
                       <Body style={{ flex: 1, alignItems: 'center'}}>
                         <Thumbnail square source={{ uri: this.props.list[i].image }} style={styles.thumbnailHome} />
@@ -150,13 +162,15 @@ function bindAction(dispatch) {
   return {
     setIndex: index => dispatch(setIndex(index)),
     fetchCategory: index => dispatch(fetchCategory(index)),
-    fetchClassifiedsCategory: index => dispatch(fetchClassifiedsCategory(index)),
+    fetchClassifiedsCategory: (index, page) => dispatch(fetchClassifiedsCategory(index, page)),
     fetchVideo: index => dispatch(fetchVideo(index)),
     fetchSearch: name => dispatch(fetchSearch(name)),
     fetchAdvertising: index => dispatch(fetchAdvertising(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    setLoading: () => dispatch(setLoading()),
+
   };
 }
 

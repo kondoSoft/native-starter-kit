@@ -25,11 +25,9 @@ export function pk_classified(pk){
   }
 }
 
-
-
 export function fetchTypeClassifieds(index:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/type_classifieds/',{
+    return fetch('http://138.68.2.137:8080/type_classifieds/',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -44,7 +42,7 @@ export function fetchTypeClassifieds(index:number):Action{
 
 export function fetchPKClassifieds(index:number):Action{
   return dispatch => {
-    return fetch('http://138.68.2.137/typeclassifieds_classifieds/?classifieds_id=' + index,{
+    return fetch('http://138.68.2.137:8080/typeclassifieds_classifieds/?classifieds_id=' + index,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',

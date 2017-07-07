@@ -20,11 +20,12 @@ import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import SubCategory from './components/subCategory';
 import Bookmarks from './components/bookmarks';
+import SingleBookmark from './components/singleBookmark';
+import SingleMapBookmark from './components/singleMapBookmark';
 
 // import MainMenu from './components/mainMenu';
 import { statusBarColor } from './themes/base-theme';
 import SplashScreen from "rn-splash-screen";
-
 const {
   popRoute,
 } = actions;
@@ -109,6 +110,10 @@ class AppNavigator extends Component {
         return <SubCategory />;
       case 'bookmarks':
         return <Bookmarks />;
+      case 'singleBookmark':
+        return <SingleBookmark />;
+      case 'singlemapbookmark':
+        return <SingleMapBookmark />;
       default :
         return <Home />;
     }

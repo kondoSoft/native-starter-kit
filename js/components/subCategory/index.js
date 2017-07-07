@@ -6,7 +6,7 @@ import { Container, Header, Title, Thumbnail, Content, Text, Button, Icon, Item,
 import ListSubCategory from '../listSubCategory'
 import { openDrawer } from '../../actions/drawer';
 import { setZone } from '../../actions/listZone';
-
+import {fetchAdvertisingSubcategory} from '../../actions/list'
 import styles from './style';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 const {
@@ -31,12 +31,22 @@ class SubCategory extends Component {
       key: React.PropTypes.string,
     }),
   }
-
+  getRandomIndex(){
+    const advertising = this.props.advertising
+    randomIndex = Math.floor(Math.random()*advertising.length)
+    return randomIndex
+  }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
   }
+  componentWillMount(){
 
+    this.props.fetchAdvertisingSubcategory()
+
+  }
   render() {
+  
+    var randomIndex = this.getRandomIndex()
     const { props: { name, index } } = this;
     return (
       <Container style={styles.container}>
@@ -55,10 +65,10 @@ class SubCategory extends Component {
             </Button>
           </Right>
         </Header>
-        <Grid style={{ maxHeight: 60 }}>
-          <Row style={{height: 60}}>
-            <Thumbnail style={styles.imagePub} square source={require('../../../assets/img/Publicidad/publicidad3.png')} />
-          </Row>
+        <Grid style={{ maxHeight: 62, flex: 1 }}>
+            <Row>
+              <Thumbnail style={styles.imagePub} square source={{ uri: this.props.advertising[randomIndex].image}} />
+            </Row>
         </Grid>
         <Content padder scrollEnabled={true} style={styles.content}>
           <ListSubCategory/>
@@ -73,15 +83,18 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
+    fetchAdvertisingSubcategory: index => dispatch(fetchAdvertisingSubcategory(index)),
   };
 }
 
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
+  advertising: state.list.advertisingSubcategory,
   listCategory: state.listZone.selectedPKCategory,
   name: state.user.name,
   index: state.list.selectedIndex,
   selectedCategory: state.listCategory.selectedCategory,
+
 
 });
 

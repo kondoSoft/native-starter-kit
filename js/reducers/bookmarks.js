@@ -1,6 +1,7 @@
 
 import type { Action } from '../actions/bookmarks';
-import { ADD_BOOKMARK, REMOVE_BOOKMARK }from '../actions/bookmarks'
+import { ADD_BOOKMARK, REMOVE_BOOKMARK, SET_ITEM }from '../actions/bookmarks'
+import {REHYDRATE} from 'redux-persist/constants'
 //
 // export type State = {
 //     drawerState: string,
@@ -9,60 +10,43 @@ import { ADD_BOOKMARK, REMOVE_BOOKMARK }from '../actions/bookmarks'
 
 const initialState = {
     space:[
-      {
-      "id": '01',
-      "name": "Nombre del negocio",
-      "description": "Descrippcion del negocio",
-      "classifieds": [
-         ''
+        
       ],
-      "type_classifieds": "",
-      "zone": '',
-      "address": "",
-      "coor": {
-         "latitudeDelta": '',
-         "longitudeDelta": '',
-         "latitude": '',
-         "longitude": '',
-      }
-    },
-    {
-    "id": '02',
-    "name": "Nombre del negocio 2",
-    "description": "Descrippcion del negocio",
-    "classifieds": [
-       ''
-    ],
-    "type_classifieds": "",
-    "zone": '',
-    "address": "",
-    "coor": {
-       "latitudeDelta": '',
-       "longitudeDelta": '',
-       "latitude": '',
-       "longitude": '',
-    }
-  }
-    ]
+    selectedItem: undefined,
+
 };
 
 export default function (state:State = initialState, action:Action): State {
   if (action.type === ADD_BOOKMARK) {
-    console.log(' I want to add a bookmarks');
-    return
-    // return {
-    //   ...state,
-    //   drawerState: 'opened',
-    // };
+    newState = state.space.filter((val)=>{ return val.id != action.payload.id})
+    newState.push(action.payload)
+    return{
+      ...state,
+      space : newState
+    }
+
   }
 
   if (action.type === REMOVE_BOOKMARK) {
-    console.log('I want to remove a bookmark');
-    return
-    // return {
-    //   ...state,
-    //   drawerState: 'closed',
-    // };
+    newState = state.space.filter((val)=>{ return val.id != action.payload})
+    return {
+      ...state,
+      space : newState,
+    }
+  }
+  if (action.type === REHYDRATE) {
+
+    var incoming = action.payload.bookmarks
+    // incoming = []
+    if (incoming) return {...state, ...incoming,}
+    return state
+
+  }
+  if (action.type == SET_ITEM){
+    return {
+      ...state,
+      selectedItem: action.payload
+    }
   }
 
   return state;
