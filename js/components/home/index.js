@@ -62,7 +62,6 @@ class Home extends Component {
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
   pushRouteZone(route, index) {
-    console.log(index);
     this.props.setIndex(index);
     this.props.setLoading()
     // this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)

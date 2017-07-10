@@ -42,23 +42,8 @@ export function fetchClassifieds(index:number):Action{
   }
 }
 
-// export function fetchClassifiedsCategory(index:number):Action{
-//   console.log(index);
-//   return dispatch => {
-//     return fetch('http://138.68.2.137:8080/classifieds/?category_id=' + index,{
-//       method: 'GET',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//       }
-//     })
-//     .then(res => res.json())
-//     .then(res => dispatch(printClassifiedsCategory(res)))
-//     .catch(err => console.log(err))
-//   }
-// }
-
 export function fetchClassifiedsCategory(index:number, page:number):Action{
+  console.log(index, page);
   return dispatch => {
     return fetch('http://138.68.2.137:8080/classifieds/?category_id=' + index + '&page=' + page,{
       method: 'GET',
