@@ -13,7 +13,7 @@ export function setIndex(index:number):Action {
   };
 }
 
-export function printClassifieds(index:number):Action {
+export function printClassifieds(index:number, page:number):Action {
   return {
     type: PRINT_CLASSIFIEDS,
     payload: index,
@@ -43,7 +43,7 @@ export function fetchClassifieds(index:number):Action{
 }
 
 export function fetchClassifiedsCategory(index:number, page:number):Action{
-  // console.log(index, page);
+
   return dispatch => {
     return fetch('http://138.68.2.137:8080/classifieds/?category_id=' + index + '&page=' + page,{
       method: 'GET',
@@ -57,8 +57,12 @@ export function fetchClassifiedsCategory(index:number, page:number):Action{
       if(res.next != null) {
         dispatch(fetchClassifiedsCategory(index, page+1))
       }
-      dispatch(printClassifiedsCategory(res))
-      console.log(res);
+      if (res.results[0].category == 1) {
+        dispatch(printClassifiedsCategory(res))
+      }else{
+        dispatch(printClassifieds(res))
+      }
+      // console.log('Response Category',res.results[0].category);
     })
     .catch(err => console.log(err))
   }

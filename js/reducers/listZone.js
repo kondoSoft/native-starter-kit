@@ -21,6 +21,7 @@ const initialState = {
   ],
   selectedZone: undefined,
   selectedPKCategory: [],
+  selectedGeneral:[],
   nextPage:  null,
   previousPage:  null,
   count: 0,
@@ -56,7 +57,7 @@ export default function (state:State = initialState, action:Action): State {
   else if (action.type == PRINT_CLASSIFIEDS) {
     return {
       ...state,
-      selectedPKCategory: action.payload.results,
+      selectedGeneral: [...state.selectedPKCategory, action.payload.results],
     }
   }
   else if (action.type === PRINT_CLASSIFIEDS_CATEGORY){
@@ -76,10 +77,7 @@ export default function (state:State = initialState, action:Action): State {
     }
   }
   else if(action.type === RESET_STATE_BACK){
-    console.log(action);
-    // if (incoming) return {...state, ...incoming,}
     return{
-
       ...state,
       selectedPKCategory: [],
       results: []

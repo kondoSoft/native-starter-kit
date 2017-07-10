@@ -19,11 +19,12 @@ const {
   pushRoute,
 
 } = actions;
-
+var categories;
 class ListCategory extends Component {
 
   static propTypes = {
     // listCategory: React.PropTypes.arrayOf(React.PropTypes.object),
+    // listGeneral: React.PropTypes.arrayOf(React.PropTypes.object),
     listZone: React.PropTypes.arrayOf(React.PropTypes.object),
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
@@ -50,23 +51,30 @@ class ListCategory extends Component {
       })
     }
 
+    if(this.props.index == 1 ){
+      categories = this.props.listGeneral
+    }else{
+      categories = this.props.listCategory
+    }
   }
 
   pushRoute(route, index, indexGrid) {
     this.props.setIndex(index)
     this.props.setLoading()
-    this.props.fetchPKClassifieds(this.props.listCategory[indexGrid][index].id)
+    console.log(categories, indexGrid, index);
+    this.props.fetchPKClassifieds(categories[indexGrid][index].id)
 
     this.props.pushRoute({ key: route, index: 1}, this.props.navigation.key)
     if(this.props.listZone[this.props.selectZone] == undefined){
-      this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id)
+      this.props.fetchEstablishment(categories[indexGrid][index].id)
     }else{
-      this.props.fetchEstablishment(this.props.listCategory[indexGrid][index].id, this.props.listZone[this.props.selectZone].id)
+      this.props.fetchEstablishment(categories[indexGrid][index].id, this.props.listZone[this.props.selectZone].id)
     }
 
   }
 
   render() {
+
     return (
       <Swiper
         dot={<View style={{
@@ -97,13 +105,13 @@ class ListCategory extends Component {
         // style={styles.containerSwiper}
       >
 
-          {this.props.listCategory.map((item, indexGrid)=>{
-            console.log('mapeo de listCategory > ', item);
+          {categories.map((item, indexGrid)=>{
             return (
-              <Grid key={indexGrid} style={styles.slide} >
-                {item.map((establishment, i)=>{
-                  return(
-                    <Col key={i} style={styles.col}>
+
+            <Grid key={indexGrid} style={styles.slide} >
+              {item.map((establishment, i)=>{
+                return(
+                  <Col key={i} style={styles.col}>
                     <TouchableOpacity style={styles.touchableOpacity}
                       onPress={() => this.pushRoute('subCategory', i, indexGrid)}
                       >
@@ -113,14 +121,12 @@ class ListCategory extends Component {
                     </TouchableOpacity>
                   </Col>
                 )
-                }
+              }
+              )}
 
-                )}
-
-              </Grid>
+            </Grid>
             )
-          }
-
+            }
           )}
       </Swiper>
     );
@@ -137,11 +143,13 @@ function bindAction(dispatch) {
     setLoading: () => dispatch(setLoading()),
   };
 }
+
 const mapStateToProps = state => ({
   name: state.user.name,
   navigation: state.cardNavigation,
   index: state.list.selectedIndex,
   listCategory: state.listZone.selectedPKCategory,
+  listGeneral: state.listZone.selectedGeneral,
   selectZone: state.listZone.selectedZone,
   listTypeClassifieds: state.listTypeClassifieds.results,
   list: state.list.list,

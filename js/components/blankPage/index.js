@@ -40,7 +40,7 @@ class BlankPage extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-    this.props.resetState()
+    // this.props.resetState()
 
   }
   componentWillUnmount(){
@@ -48,8 +48,6 @@ class BlankPage extends Component {
     this.props.resetStateBack()
 
   }
-
-
 
   render() {
 
