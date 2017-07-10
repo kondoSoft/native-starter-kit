@@ -9,8 +9,6 @@ import styles from './styles';
 import { Grid, Row, Col } from 'react-native-easy-grid';
 import markerMerida from '../../../assets/img/marker-merida.png';
 import ActionButton from 'react-native-action-button';
-import { setLoading } from '../../actions/listZone'
-import Spinner from 'react-native-loading-spinner-overlay';
 
 const {
   reset,
@@ -56,11 +54,6 @@ class SingleMapBookmark extends Component {
 
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-  }
-  componentDidMount(){
-    setTimeout(()=>{
-      this.props.setLoading()
-    }, 2000)
   }
   handleMaps(id){
 
@@ -128,9 +121,6 @@ class SingleMapBookmark extends Component {
         </Grid>
         {/* <Content scrollEnabled={false}> */}
         <Grid style={styles.gridDescription}>
-          <View style={{ flex: 1}}>
-            <Spinner visible={this.props.loading} textStyle={{color: '#FFF'}} />
-          </View>
           <Row style={styles.rowDescription}>
             <H3>{this.props.listEstablishment[id].name}</H3>
           </Row>
@@ -192,7 +182,6 @@ function bindAction(dispatch) {
     openDrawer: () => dispatch(openDrawer()),
     popRoute: key => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'home' }], key, 0)),
-    setLoading: () => dispatch(setLoading())
   };
 }
 

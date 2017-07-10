@@ -76,7 +76,10 @@ export default function (state:State = initialState, action:Action): State {
     }
   }
   else if(action.type === RESET_STATE_BACK){
+    console.log(action);
+    // if (incoming) return {...state, ...incoming,}
     return{
+
       ...state,
       selectedPKCategory: [],
       results: []

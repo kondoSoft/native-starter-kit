@@ -43,7 +43,7 @@ export function fetchClassifieds(index:number):Action{
 }
 
 export function fetchClassifiedsCategory(index:number, page:number):Action{
-  console.log(index, page);
+  // console.log(index, page);
   return dispatch => {
     return fetch('http://138.68.2.137:8080/classifieds/?category_id=' + index + '&page=' + page,{
       method: 'GET',
@@ -58,7 +58,7 @@ export function fetchClassifiedsCategory(index:number, page:number):Action{
         dispatch(fetchClassifiedsCategory(index, page+1))
       }
       dispatch(printClassifiedsCategory(res))
-
+      console.log(res);
     })
     .catch(err => console.log(err))
   }

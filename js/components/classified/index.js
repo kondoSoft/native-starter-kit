@@ -40,7 +40,6 @@ class Classified extends Component {
   }
   popRoute() {
     this.props.popRoute(this.props.navigation.key);
-    // console.log("Me ejecute en classified");
   }
   getRandomIndex(){
     const advertising = this.props.advertising
@@ -57,6 +56,7 @@ class Classified extends Component {
     }, 2000)
   }
   componentWillUnmount(){
+    console.log(this.props.index);
     if(this.props.index == 1){
       this.props.resetStateBack()
     }

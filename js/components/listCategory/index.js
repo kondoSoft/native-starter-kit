@@ -97,21 +97,30 @@ class ListCategory extends Component {
         // style={styles.containerSwiper}
       >
 
-          {this.props.listCategory.map((item, indexGrid)=>
-            <Grid key={indexGrid} style={styles.slide} >
-              {item.map((establishment, i)=>
-                <Col key={i} style={styles.col}>
-                  <TouchableOpacity style={styles.touchableOpacity}
-                    onPress={() => this.pushRoute('subCategory', i, indexGrid)}
-                    >
-                    <Thumbnail style={styles.thumbnail} square source={{uri: establishment.logo }}>
-                      <Text style={styles.text}>{establishment.name}</Text>
-                    </Thumbnail>
-                  </TouchableOpacity>
-                </Col>
-              )}
+          {this.props.listCategory.map((item, indexGrid)=>{
+            console.log('mapeo de listCategory > ', item);
+            return (
+              <Grid key={indexGrid} style={styles.slide} >
+                {item.map((establishment, i)=>{
+                  return(
+                    <Col key={i} style={styles.col}>
+                    <TouchableOpacity style={styles.touchableOpacity}
+                      onPress={() => this.pushRoute('subCategory', i, indexGrid)}
+                      >
+                      <Thumbnail style={styles.thumbnail} square source={{uri: establishment.logo }}>
+                        <Text style={styles.text}>{establishment.name}</Text>
+                      </Thumbnail>
+                    </TouchableOpacity>
+                  </Col>
+                )
+                }
 
-            </Grid>
+                )}
+
+              </Grid>
+            )
+          }
+
           )}
       </Swiper>
     );

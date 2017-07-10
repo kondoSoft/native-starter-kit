@@ -47,6 +47,7 @@ class Home extends Component {
     this.props.fetchCategory()
     this.props.fetchAdvertising()
     this.props.fetchVideo()
+    this.props.fetchClassifiedsCategory(2, 1)
   }
 
   pushRoute(route, index, value) {
@@ -58,7 +59,7 @@ class Home extends Component {
   pushRouteC(route, index) {
     this.props.setIndex(index);
     this.props.setLoading()
-    this.props.fetchClassifiedsCategory(this.props.list[index].id, 1)
+    // this.props.fetchClassifiedsCategory(this.props.list[0].id, 1)
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
   pushRouteZone(route, index) {
