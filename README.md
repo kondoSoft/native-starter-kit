@@ -122,3 +122,10 @@ key password: k0nd0s0ft
 key alias: quehacermerida
 key store path: /Users/jblancoh/Projects/que_hacer_movil/keystores/keystore_que_hacer.jks
 ```
+### Para generar Realease en android
+Se elimina cache de debug
+```
+react-native bundle --platform android --dev false --entry-file index.android.js \
+  --bundle-output android/app/src/main/assets/index.android.bundle \
+  --assets-dest android/app/src/main/res/
+```
